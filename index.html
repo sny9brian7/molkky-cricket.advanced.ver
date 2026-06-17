@@ -3,343 +3,358 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>モルックリケット - プロ</title>
+<title>モルッククリケット - プロ (MULTIPLE PLAYERS ADVANCED)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght=400;700;900&display=swap" rel="stylesheet">
  
 <style>
-:root{
-  --bg:#f0f2f5;
-  --card:#ffffff;
-  --sub:#e2e8f0;
-  --txt:#0f172a;
-  --txt2:#64748b;
- 
-  --ca:#e11d48;
-  --cb:#1d4ed8;
-  --ca-light:#fecdd3;
-  --cb-light:#bfdbfe;
- 
-  --green:#059669;
-  --green-dark:#047857;
- 
-  --flat:#cbd5e1;
-  --open:#10b981;
-  --closed-gray:#94a3b8;
-  --closed-num:#94a3b8;
- 
-  --notice-bg:#fff7ed;
-  --notice-txt:#9a3412;
-  --notice-border:#fb923c;
- 
-  --shadow:0 2px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-  --shadow-md:0 4px 24px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
- 
-  --mark-a-light:#fecdd3;
-  --mark-b-light:#bfdbfe;
- 
-  --action-yellow:#f59e0b;
-  --action-yellow-dark:#d97706;
-  --action-yellow-text:#000000;
- 
-  --border:#e2e8f0;
-  --radius:16px;
-  --radius-lg:22px;
-  --radius-sm:10px;
- 
-  --font-display:'Bebas Neue', sans-serif;
-  --font-body:'Noto Sans JP', sans-serif;
+/* ── THEME INITIALIZATION & VARIABLES ── */
+:root {
+  --bg: #f0f2f5;
+  --card: #ffffff;
+  --sub: #e2e8f0;
+  --txt: #0f172a;
+  --txt2: #64748b;
+  --ca: #e11d48;
+  --cb: #1d4ed8;
+  --cc: #d97706;
+  --cd: #059669;
+  --ca-light: #fecdd3;
+  --cb-light: #bfdbfe;
+  --cc-light: #fef3c7;
+  --cd-light: #a7f3d0;
+  --green: #059669;
+  --green-dark: #047857;
+  --flat: #cbd5e1;
+  --open: #10b981;
+  --closed-gray: #94a3b8;
+  --closed-num: #94a3b8;
+  --notice-bg: #fff7ed;
+  --notice-txt: #9a3412;
+  --notice-border: #fb923c;
+  --shadow: 0 2px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 24px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
+  --action-yellow: #f59e0b;
+  --action-yellow-dark: #d97706;
+  --action-yellow-text: #000000;
+  --border: #e2e8f0;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --radius-sm: 10px;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+  --skew: skewX(0deg);
+  
+  /* グラデーション表記を撤廃し、ライト時は「黒」を標準設定 */
+  --title-color: #0f172a;
+  --primary-gradient: linear-gradient(135deg, #059669, #047857);
+
+  --cyber-glow: transparent;
+  --cyber-bg-alpha: initial;
+  --cyber-border-left: 2px solid var(--border);
+  --dot-radius: 50%;
+  --mark-width: 3.5px;
+  --mark-height: 26px;
+  --mark-radius: 2px;
+  --mark-box-height: 42px;
+  --howan-anim: howanFadeInOut 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  --howan-width: 6px;
+  --howan-height: 50px;
+  --howan-border: 6px;
+  --howan-miss-size: 40px;
+  --score-box-border: 3px solid transparent;
+  --score-box-shadow: initial;
+  --score-box-scale: scale(1.02);
+  --score-box-bottom-indicator: transparent;
+  --text-strike: line-through;
+  --mini-mark-opacity: 0.12;
+  --mini-mark-two-opacity: 0.65;
+  --closed-opacity: 0.4;
+  --popup-skew: skewX(0deg); /* ポップアップ用傾き変数 */
 }
- 
-body.dark{
-  --bg:#0a0f1e;
-  --card:#131929;
-  --sub:#1e2a40;
-  --txt:#f1f5f9;
-  --txt2:#94a3b8;
- 
-  --ca:#f43f5e;
-  --cb:#3b82f6;
-  --ca-light:#4c0519;
-  --cb-light:#1e3a8a;
- 
-  --green:#10b981;
-  --green-dark:#059669;
- 
-  --flat:#334155;
-  --open:#10b981;
-  --closed-gray:#374151;
-  --closed-num:#6b7280;
- 
-  --notice-bg:#2c1508;
-  --notice-txt:#fed7aa;
-  --notice-border:#ea580c;
- 
-  --shadow:0 2px 16px rgba(0,0,0,.3), 0 1px 4px rgba(0,0,0,.2);
-  --shadow-md:0 4px 32px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.2);
- 
-  --mark-a-light:#4c0519;
-  --mark-b-light:#1e3a8a;
- 
-  --action-yellow:#d97706;
-  --action-yellow-dark:#b45309;
- 
-  --border:#1e2a40;
+
+/* SOFT - DARK */
+[data-theme="soft-dark"] {
+  --bg: #0a0f1e;
+  --card: #131929;
+  --sub: #1e2a40;
+  --txt: #f1f5f9;
+  --txt2: #94a3b8;
+  --ca: #f43f5e;
+  --cb: #3b82f6;
+  --cc: #eab308;
+  --cd: #10b981;
+  --ca-light: #4c0519;
+  --cb-light: #1e3a8a;
+  --cc-light: #451a03;
+  --cd-light: #064e3b;
+  --green: #10b981;
+  --green-dark: #059669;
+  --flat: #334155;
+  --open: #10b981;
+  --closed-gray: #374151;
+  --closed-num: #6b7280;
+  --notice-bg: #2c1508;
+  --notice-txt: #fed7aa;
+  --notice-border: #ea580c;
+  --shadow: 0 2px 16px rgba(0,0,0,.3), 0 1px 4px rgba(0,0,0,.2);
+  --shadow-md: 0 4px 32px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.2);
+  --action-yellow: #d97706;
+  --action-yellow-dark: #b45309;
+  --action-yellow-text: #ffffff;
+  --border: #1e2a40;
+  --title-color: #ffffff; /* ダーク時は「白」 */
+  --primary-gradient: linear-gradient(135deg, #10b981, #059669);
 }
- 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+
+/* CYBER - BASE */
+[data-theme^="cyber-"] {
+  --radius: 4px;
+  --radius-lg: 6px;
+  --radius-sm: 2px;
+  --skew: skewX(-6deg);
+  --popup-skew: skewX(0deg); /* サイバー時もターン終了ポップアップは「長方形」に固定 */
+  --cyber-border-left: 1px solid var(--border);
+  --dot-radius: 0%;
+  --mark-width: 2.5px;
+  --mark-height: 22px;
+  --mark-radius: 0px;
+  --mark-box-height: 40px;
+  --howan-anim: dl3FadeIn 1.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  --howan-width: 4.5px;
+  --howan-height: 42px;
+  --howan-border: 4.5px;
+  --howan-miss-size: 32px;
+  --score-box-border: 1px solid var(--border);
+  --score-box-scale: none;
+  --text-strike: line-through;
+  --mini-mark-opacity: 0.05;
+  --mini-mark-two-opacity: 1;
+  --closed-opacity: 0.6;
 }
- 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--txt);
-  font-family:var(--font-body);
-  transition:background .25s, color .25s;
-  min-height:100vh;
+
+/* CYBER - DARK */
+[data-theme="cyber-dark"] {
+  --bg: #050814;
+  --card: #0d1527;
+  --sub: #273b5c;
+  --txt: #ffffff;
+  --txt2: #94a3b5;
+  --ca: #ff124f;
+  --cb: #00bfff;
+  --cc: #ffdd00;
+  --cd: #00ff66;
+  --ca-light: rgba(255, 18, 79, 0.25);
+  --cb-light: rgba(0, 191, 255, 0.25);
+  --cc-light: rgba(255, 221, 0, 0.2);
+  --cd-light: rgba(0, 255, 102, 0.2);
+  --green: #00ff66;
+  --green-dark: #00b344;
+  --flat: #1f2d47;
+  --open: #00ff66;
+  --closed-gray: #475569;
+  --closed-num: #64748b;
+  --notice-bg: #1a1015;
+  --notice-txt: #ffb3c6;
+  --notice-border: #ff124f;
+  --shadow: 0 0 15px rgba(0,0,0,0.5);
+  --shadow-md: 0 0 30px rgba(0, 242, 254, 0.2);
+  --action-yellow: #ffaa00;
+  --action-yellow-dark: #cc8800;
+  --action-yellow-text: #000000;
+  --border: #384f73;
+  --title-color: #ffffff; /* ダーク時は「白」 */
+  --primary-gradient: linear-gradient(135deg, #00ff66, #00b344);
+  --cyber-glow: 0 0 8px currentColor;
+  --cyber-bg-alpha: #111a30;
 }
- 
-.hidden{ display:none!important; }
- 
-.container{
-  max-width:640px;
-  margin:auto;
-  padding:12px;
+
+/* CYBER - LIGHT (白基調に刷新して超高視認化) */
+[data-theme="cyber-light"] {
+  --bg: #f8fafc;        /* 明るくクリアな背景に変更 */
+  --card: #ffffff;      /* カードベースは白に固定 */
+  --sub: #cbd5e1;       /* ボタン等の非アクティブ要素のグレー */
+  --txt: #0f172a;       /* メインテキストは深い黒 */
+  --txt2: #475569;      /* サブテキストも見やすいダークグレー */
+  --ca: #e6003a;
+  --cb: #0088cc;
+  --cc: #c48100;
+  --cd: #00cc52;
+  --ca-light: rgba(230, 0, 58, 0.12);
+  --cb-light: rgba(0, 136, 204, 0.12);
+  --cc-light: rgba(196, 129, 0, 0.12);
+  --cd-light: rgba(0, 204, 82, 0.12);
+  --green: #00cc52;
+  --green-dark: #00993d;
+  --flat: #e2e8f0;      /* ボードの未獲得枠を明るい白ベースのグレーへ変更 */
+  --open: #00cc52;
+  --closed-gray: #94a3b8;
+  --closed-num: #64748b;
+  --notice-bg: #fff1f2;
+  --notice-txt: #e6003a;
+  --notice-border: #ffcbd7;
+  --shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.1);
+  --border: #94a3b8;    /* 境界線をより際立たせる */
+  --title-color: #0f172a; /* ライト時は「黒」 */
+  --primary-gradient: linear-gradient(135deg, #00cc52, #00993d);
+  --cyber-bg-alpha: rgba(241, 245, 249, 0.9);
 }
- 
+
+/* ── BASE LAYOUT ── */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--font-body); min-height: 100vh; transition: background 0.2s, color 0.2s; }
+.hidden { display: none !important; }
+.container { max-width: 600px; margin: auto; padding: 12px; }
+
 /* ── CARDS ── */
-.card{
-  background:var(--card);
-  border-radius:var(--radius-lg);
-  padding:18px;
-  margin-bottom:12px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
-}
- 
-/* ── TOPBAR ── */
-.topbar{
-  display:flex;
-  justify-content:flex-end;
-  margin-bottom:10px;
-}
- 
-.theme-btn{
-  background:var(--card);
-  color:var(--txt);
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  padding:8px 14px;
-  font-size:13px;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:var(--shadow);
-  transition:.15s;
-}
-.theme-btn:active{ transform:scale(.97); }
- 
-/* ── TOP MENU SCREEN ── */
-.menu-title-area {
-  text-align: center;
-  margin-bottom: 24px;
-}
-.menu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.menu-item-btn {
+.card {
   background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  text-align: left;
-  cursor: pointer;
-  transition: transform 0.15s, border-color 0.15s;
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin-bottom: 12px;
   box-shadow: var(--shadow);
-  width: 100%;
-}
-.menu-item-btn:active {
-  transform: scale(0.98);
-  border-color: var(--green);
-}
-.menu-item-title {
-  font-size: 18px;
-  font-weight: 900;
-  color: var(--txt);
-  margin-bottom: 4px;
-}
-.menu-item-desc {
-  font-size: 13px;
-  color: var(--txt2);
-  line-height: 1.4;
-}
-
-/* ── SCOREBOARD EXTENSION ── */
-.dot-container {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 6px;
-}
-.set-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.25);
-  border: 1px solid rgba(0,0,0,0.15);
-  transition: background 0.2s;
-}
-.set-dot.active {
-  background: #ffffff;
-  box-shadow: 0 0 8px #ffffff;
-}
-body.dark .set-dot {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.2);
-}
-body.dark .set-dot.active {
-  background: #ffffff;
-}
-
-/* ── リザルト画面専用：スコア履歴グリッドテーブル ── */
-.history-table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  margin-top: 14px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-}
-.history-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 11px;
-  text-align: center;
-  background: var(--card);
-  min-width: 440px;
-}
-.history-table th, .history-table td {
-  border: 1px solid var(--border);
-  padding: 6px 4px;
-}
-.history-table th {
-  background: var(--sub);
-  color: var(--txt);
-  font-weight: 900;
-}
-.history-table td.turn-col {
-  font-weight: 900;
-  background: var(--sub);
-  width: 40px;
-}
-.history-cell-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  min-height: 42px;
-}
-.cell-score {
-  font-size: 9px;
-  color: var(--txt2);
-  font-weight: 700;
-}
-
-/* ── リザルト・演出共通：本格クリケットマーク ── */
-.c-mark-css {
   position: relative;
-  width: 22px;
-  height: 22px;
-  display: inline-block;
-  vertical-align: middle;
+  overflow: hidden;
 }
+[data-theme^="cyber-"] .card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ── TOPBAR & BUTTONS ── */
+.topbar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+.theme-btn {
+  background: var(--card); color: var(--txt); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 8px 14px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow);
+}
+[data-theme^="cyber-"] .theme-btn {
+  background: var(--cyber-bg-alpha); padding: 6px 14px; font-size: 12px; letter-spacing: 1px;
+}
+[data-theme^="cyber-"] .theme-btn:active { background: var(--sub); }
+
+/* ── MENU SCREEN ── */
+.menu-title-area { text-align: center; margin-bottom: 24px; }
+.menu-list { display: flex; flex-direction: column; gap: 14px; }
+.menu-item-btn {
+  background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+  padding: 20px; text-align: left; cursor: pointer; transition: transform 0.15s, border-color 0.15s; box-shadow: var(--shadow); width: 100%;
+}
+.menu-item-btn:active { transform: scale(0.98); border-color: var(--green); }
+.menu-item-title { font-size: 18px; font-weight: 900; color: var(--txt); margin-bottom: 4px; }
+.menu-item-desc { font-size: 13px; color: var(--txt2); line-height: 1.4; }
+
+[data-theme^="cyber-"] .menu-item-btn {
+  background: var(--cyber-bg-alpha); border: 1px solid var(--border); border-left: 4px solid var(--border); padding: 16px;
+}
+[data-theme^="cyber-"] .menu-item-btn:active {
+  background: var(--sub); border-left-color: var(--green); box-shadow: inset 0 0 10px rgba(0,255,102,0.2);
+}
+[data-theme^="cyber-"] .menu-item-title { font-size: 16px; font-weight: 900; }
+[data-theme^="cyber-"] .menu-item-desc { font-size: 12px; }
+
+/* ── CONFIG SELECTION GRID ── */
+.theme-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.theme-opt-box {
+  border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 12px;
+  text-align: center; cursor: pointer; font-size: 13px; font-weight: 900; background: var(--sub); color: var(--txt2); transition: all 0.15s;
+}
+
+/* 緑アクティブ状態になったときの文字を「白」に強制上書き補正 */
+.theme-opt-box.active {
+  border-color: var(--green);
+  background: var(--green);
+  color: #ffffff !important;
+  box-shadow: var(--shadow-md);
+}
+.theme-opt-box.active span.small {
+  color: #ffffff !important;
+  opacity: 0.9;
+}
+
+[data-theme^="cyber-"] .theme-opt-box { background: var(--cyber-bg-alpha); border: 1px solid var(--border); color: var(--txt); }
+[data-theme^="cyber-"] .theme-opt-box.active { background: var(--green); color: #ffffff !important; border-color: var(--green); }
+
+/* ── SCOREBOARD SET DOTS ── */
+.dot-container { display: flex; justify-content: center; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+.set-dot {
+  width: 9px; height: 9px; border-radius: var(--dot-radius); background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(0,0,0,0.15); transition: background 0.2s;
+}
+.set-dot.active { background: #ffffff; box-shadow: 0 0 8px #ffffff; }
+
+[data-theme^="cyber-"] .set-dot { width: 7px; height: 7px; background: #cbd5e1; border: 1px solid #94a3b8; }
+[data-theme="cyber-dark"] .set-dot { background: #152238; border: 1px solid #273b5c; }
+[data-theme^="cyber-"] .set-dot.active { background: var(--green); box-shadow: 0 0 8px var(--green); border-color: #fff; }
+
+/* ── STATS HISTORY TABLE ── */
+.history-table-wrapper { width: 100%; overflow-x: auto; margin-top: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.history-table { width: 100%; border-collapse: collapse; font-size: 11px; text-align: center; background: var(--card); min-width: 500px; }
+.history-table th, .history-table td { border: 1px solid var(--border); padding: 6px 4px; }
+.history-table th { background: var(--sub); color: var(--txt); font-weight: 900; }
+.history-table td.turn-col { font-weight: 900; background: var(--sub); width: 35px; }
+.history-cell-box { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: var(--mark-box-height); }
+.cell-score { font-size: 9px; color: var(--txt2); font-weight: 700; }
+
+[data-theme^="cyber-"] .history-table { background: #ffffff; min-width: 460px; }
+[data-theme="cyber-dark"] .history-table { background: #090f1c; }
+[data-theme^="cyber-"] .history-table th { background: #e2e8f0; font-weight: 700; color: var(--txt); }
+[data-theme="cyber-dark"] .history-table th { background: var(--card); }
+[data-theme^="cyber-"] .history-table td.turn-col { background: #f1f5f9; color: var(--txt); width: 32px; }
+[data-theme="cyber-dark"] .history-table td.turn-col { background: var(--sub); color: #fff; }
+[data-theme^="cyber-"] .cell-score { font-family: var(--font-display); }
+
+/* ── CRICKET MARKS SVG/CSS ── */
+.c-mark-css { position: relative; width: 22px; height: 22px; display: inline-block; vertical-align: middle; }
+[data-theme^="cyber-"] .c-mark-css { width: 20px; height: 20px; }
+
 .c-mark-css.slash::before,
 .c-mark-css.cross::before, .c-mark-css.cross::after,
 .c-mark-css.circlecross::before, .c-mark-css.circlecross::after {
-  content: "";
-  position: absolute;
-  width: 3.5px;
-  height: 26px;
-  background-color: currentColor;
-  border-radius: 2px;
-  top: 50%;
-  left: 50%;
+  content: ""; position: absolute; width: var(--mark-width); height: var(--mark-height);
+  background-color: currentColor; border-radius: var(--mark-radius); top: 50%; left: 50%;
 }
 .c-mark-css.slash::before { transform: translate(-50%, -50%) rotate(-45deg); }
 .c-mark-css.cross::before, .c-mark-css.circlecross::before { transform: translate(-50%, -50%) rotate(-45deg); }
 .c-mark-css.cross::after, .c-mark-css.circlecross::after { transform: translate(-50%, -50%) rotate(45deg); }
 
-.c-mark-css.circlecross-circle {
-  position: absolute;
-  inset: 0px;
-  border: 3.5px solid currentColor;
-  border-radius: 50%;
-  box-sizing: border-box;
-}
+.c-mark-css.circlecross-circle { position: absolute; inset: 0px; border: var(--mark-width) solid currentColor; border-radius: 50%; box-sizing: border-box; }
+[data-theme^="cyber-"] .c-mark-css.circlecross-circle { border-radius: 0%; }
 
-.m-multi-circle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border: 2.5px solid currentColor;
-  border-radius: 50%;
-  font-size: 11px;
-  font-weight: 900;
-}
+.m-multi-circle { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border: 2.5px solid currentColor; border-radius: 50%; font-size: 11px; font-weight: 900; }
+[data-theme^="cyber-"] .m-multi-circle { width: 20px; height: 20px; border-width: 2px; border-radius: 0%; font-family: var(--font-display); font-size: 12px; transform: skewX(-6deg); }
 
-/* ── ターン終了時記号演出用スタイル ── */
-.turn-end-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
+/* ── TURN-END OVERLAY ANIMATION ── */
+.turn-end-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; }
+[data-theme^="cyber-"] .turn-end-overlay { background: rgba(3, 5, 10, 0.85); backdrop-filter: blur(4px); }
+
 .howan-box {
-  background: var(--card);
-  padding: 30px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  min-width: 220px;
-  animation: howanFadeInOut 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  background: var(--card); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border);
+  text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-width: 220px; 
+  animation: var(--howan-anim);
+  transform: var(--popup-skew); /* ポップアップを「長方形」にするため専用の変数へ紐付け */
 }
-.howan-title {
-  font-size: 14px;
-  font-weight: 900;
-  color: var(--txt2);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.howan-symbols-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin: 10px 0;
-}
+[data-theme^="cyber-"] .howan-box { background: #ffffff; padding: 24px 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); min-width: 260px; gap: 12px; }
+[data-theme="cyber-dark"] .howan-box { background: #070d1a; box-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 20px var(--border); }
+
+.howan-title { font-size: 14px; font-weight: 900; color: var(--txt2); letter-spacing: 1px; text-transform: uppercase; }
+[data-theme^="cyber-"] .howan-title { font-family: var(--font-body); font-size: 18px; color: var(--txt); font-weight: 900; }
+[data-theme="cyber-dark"] .howan-title { color: #fff; }
+
+.howan-symbols-row { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 10px 0; }
+[data-theme^="cyber-"] .howan-symbols-row { gap: 20px; }
+
 .howan-box .c-mark-css { width: 44px; height: 44px; }
+[data-theme^="cyber-"] .howan-box .c-mark-css { width: 36px; height: 36px; }
+
 .howan-box .c-mark-css.slash::before,
 .howan-box .c-mark-css.cross::before, .howan-box .c-mark-css.cross::after,
-.howan-box .c-mark-css.circlecross::before, .howan-box .c-mark-css.circlecross::after { width: 6px; height: 50px; }
-.howan-box .c-mark-css.circlecross-circle { border-width: 6px; }
+.howan-box .c-mark-css.circlecross::before, .howan-box .c-mark-css.circlecross::after { width: var(--howan-width); height: var(--howan-height); }
+.howan-box .c-mark-css.circlecross-circle { border-width: var(--howan-border); }
 .howan-box .m-multi-circle { width: 44px; height: 44px; border-width: 4px; font-size: 20px; }
-.howan-box .miss-color { font-size: 40px; line-height: 1; }
+[data-theme^="cyber-"] .howan-box .m-multi-circle { width: 36px; height: 36px; border-width: 3.5px; font-size: 22px; transform: none; }
+.howan-box .miss-color { font-size: var(--howan-miss-size); line-height: 1; }
 
 @keyframes howanFadeInOut {
   0% { transform: scale(0.85); opacity: 0; }
@@ -348,630 +363,322 @@ body.dark .set-dot.active {
   80% { transform: scale(1); opacity: 1; }
   100% { transform: scale(1.05); opacity: 0; }
 }
-
-.pA-color { color: var(--ca); }
-.pB-color { color: var(--cb); }
-.miss-color { color: var(--txt2); opacity: 0.4; font-size: 14px; font-weight: bold; }
-
-/* ── RULE SCREEN ── */
-.rule-header {
-  font-size: 24px;
-  font-weight: 900;
-  margin-bottom: 16px;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 8px;
-}
-.rule-block {
-  margin-bottom: 20px;
-}
-.rule-h3 {
-  font-size: 15px;
-  font-weight: 900;
-  color: var(--txt);
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.rule-h3::before {
-  content: '';
-  width: 4px;
-  height: 14px;
-  background: var(--green);
-  border-radius: 2px;
-}
-.rule-p {
-  font-size: 13.5px;
-  color: var(--txt);
-  line-height: 1.6;
-  margin: 0 0 8px 0;
-}
-.theory-box {
-  background: var(--notice-bg);
-  border: 1px solid var(--notice-border);
-  color: var(--notice-txt);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  line-height: 1.5;
+@keyframes dl3FadeIn {
+  0% { transform: scale(0.9); opacity: 0; filter: brightness(2); }
+  10% { transform: scale(1); opacity: 1; filter: brightness(1); }
+  85% { transform: scale(1); opacity: 1; filter: brightness(1); }
+  100% { transform: scale(1.05); opacity: 0; filter: brightness(0); }
 }
 
-/* ── SETUP SCREEN ── */
-.setup-title{
-  font-family:var(--font-display);
-  font-size:52px;
-  letter-spacing:3px;
-  text-align:center;
-  line-height:1;
-  margin-bottom:6px;
-  background:linear-gradient(135deg,var(--ca),var(--cb));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
- 
-.setup-subtitle{
-  text-align:center;
-  font-size:12px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:var(--txt2);
-  margin-bottom:28px;
-}
- 
-.field-label{
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--txt2);
-  margin-bottom:6px;
-}
- 
-input[type="text"]{
-  width:100%;
-  padding:14px 16px;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  font-size:16px;
-  font-family:var(--font-body);
-  font-weight:700;
-  margin-bottom:12px;
-  background:var(--sub);
-  color:var(--txt);
-  outline:none;
-  transition:.15s;
-}
-input[type="text"]:focus{
-  border-color:var(--green);
-  background:var(--card);
-}
- 
-.section-divider{
-  border:none;
-  border-top:1px solid var(--border);
-  margin:20px 0 18px;
-}
- 
-.setup-section-title{
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--txt);
-  margin-bottom:14px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.setup-section-title::before{
-  content:'';
-  display:inline-block;
-  width:3px;
-  height:14px;
-  background:linear-gradient(var(--ca),var(--cb));
-  border-radius:2px;
-}
- 
-/* Bonus checkboxes */
-.bonus-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:14px;
-}
- 
-.toggle-chip{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:12px 10px;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  cursor:pointer;
-  font-weight:800;
-  font-size:14px;
-  letter-spacing:1px;
-  transition:.15s;
-  user-select:none;
-  background:var(--sub);
-  color:var(--txt2);
-}
-.toggle-chip input{ display:none; }
-.toggle-chip:has(input:checked){
-  border-color:var(--green);
-  background:var(--green);
-  color:#fff;
-}
-.toggle-chip.double:has(input:checked){ background:#7c3aed; border-color:#7c3aed; }
-.toggle-chip.triple:has(input:checked){ background:#0891b2; border-color:#0891b2; }
- 
-/* Radio throw count */
-.radio-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:6px;
-}
- 
-.radio-chip{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:12px 10px;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  cursor:pointer;
-  font-weight:800;
-  font-size:14px;
-  letter-spacing:1px;
-  transition:.15s;
-  user-select:none;
-  background:var(--sub);
-  color:var(--txt2);
-}
-.radio-chip input{ display:none; }
-.radio-chip:has(input:checked){
-  border-color:var(--green);
-  background:var(--green);
-  color:#fff;
-}
- 
-/* Skittle open marks */
-.skittle-marks-grid{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:6px;
-}
- 
-.sk-num-cell{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
-}
- 
-.sk-num-label{
-  font-family:var(--font-display);
-  font-size:20px;
-  letter-spacing:1px;
-  color:var(--txt);
-}
- 
-.sk-radio-group{
-  display:flex;
-  flex-direction:column;
-  gap:3px;
-  width:100%;
-}
- 
-.sk-radio-opt{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:4px 2px;
-  border:1.5px solid var(--border);
-  border-radius:6px;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:700;
-  transition:.15s;
-  background:var(--sub);
-  color:var(--txt2);
-}
-.sk-radio-opt input{ display:none; }
-.sk-radio-opt:has(input:checked){
-  border-color:var(--cb);
-  background:var(--cb);
-  color:#fff;
-}
- 
-/* Start button */
-button{
-  border:none;
-  border-radius:var(--radius);
-  padding:16px;
-  font-size:16px;
-  font-weight:900;
-  font-family:var(--font-body);
-  cursor:pointer;
-  transition:.15s;
-  letter-spacing:.5px;
-}
-button:active{ transform:scale(.97); }
- 
-.primary{
-  background:linear-gradient(135deg,var(--green),var(--green-dark));
-  color:white;
-  box-shadow:0 4px 14px rgba(5,150,105,.3);
-}
- 
-.secondary{
-  background:var(--sub);
-  color:var(--txt);
-}
- 
-.danger{
-  background:linear-gradient(135deg,var(--ca),#be123c);
-  color:white;
-}
- 
-.large-btn{
-  width:100%;
-  min-height:60px;
-}
+/* ── COLOR UTILITIES ── */
+.pA-color { color: var(--ca); text-shadow: var(--cyber-glow); }
+.pB-color { color: var(--cb); text-shadow: var(--cyber-glow); }
+.pC-color { color: var(--cc); text-shadow: var(--cyber-glow); }
+.pD-color { color: var(--cd); text-shadow: var(--cyber-glow); }
+.miss-color { color: var(--txt2); opacity: var(--closed-opacity); font-weight: bold; font-size: 14px; }
 
-.shuffle-animate {
-  animation: shufflePulse 0.3s ease-in-out;
-}
-@keyframes shufflePulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(0.95); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
-}
- 
-/* ── GAME HEADER ── */
-.header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:var(--bg);
-  padding-bottom:8px;
-}
- 
-.status-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:8px;
-  margin-bottom:10px;
-}
- 
-.status-box{
-  background:var(--card);
-  border-radius:var(--radius-sm);
-  padding:10px 8px;
-  text-align:center;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
-}
- 
-.status-label{
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--txt2);
-  margin-bottom:2px;
-}
- 
-.status-value{
-  font-family:var(--font-display);
-  font-size:22px;
-  letter-spacing:1px;
-}
- 
-.current-a{ color:var(--ca); }
-.current-b{ color:var(--cb); }
- 
-.scoreboard{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
- 
-.score-box{
-  border-radius:var(--radius);
-  padding:14px;
-  text-align:center;
-  color:white;
-  position:relative;
-  overflow:hidden;
-  transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s;
-  border: 3px solid transparent;
-}
-.score-box::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(255,255,255,.08);
-  border-radius:var(--radius);
-}
+/* ── RULES INFO SCREEN ── */
+.rule-header { font-size: 24px; font-weight: 900; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+.rule-block { margin-bottom: 20px; }
+.rule-h3 { font-size: 15px; font-weight: 900; color: var(--txt); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.rule-h3::before { content: ''; width: 4px; height: 14px; background: var(--green); border-radius: 2px; }
+.rule-p { font-size: 13.5px; color: var(--txt); line-height: 1.6; margin: 0 0 8px 0; }
+.theory-box { background: var(--notice-bg); border: 1px solid var(--notice-border); color: var(--notice-txt); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 10px; font-size: 13px; line-height: 1.5; }
 
-/* 手番プレイヤーの超絶強調表示 */
-.score-box.active-turn-a {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(225,29,72,0.6);
-  border-color: rgba(255,255,255,0.7);
+[data-theme^="cyber-"] .rule-header { font-family: var(--font-body); font-weight: 900; color: var(--txt); border-bottom-width: 1px; }
+[data-theme="cyber-dark"] .rule-header { color: #fff; }
+[data-theme^="cyber-"] .rule-h3 { font-size: 14px; color: var(--txt); }
+[data-theme="cyber-dark"] .rule-h3 { color: #fff; }
+[data-theme^="cyber-"] .rule-h3::before { width: 3px; height: 12px; border-radius: 0px; }
+[data-theme^="cyber-"] .rule-p { font-size: 13px; color: var(--txt2); line-height: 1.5; }
+[data-theme^="cyber-"] .theory-box { background: rgba(15, 22, 38, 0.05); border: none; border-left: 3px solid var(--action-yellow); color: var(--txt); font-size: 12.5px; }
+[data-theme="cyber-dark"] .theory-box { background: #0f1626; }
+
+/* ── SETUP MAIN HEADER ── */
+.setup-title {
+  font-family: var(--font-body); font-weight: 900; font-size: 42px; text-align: center; line-height: 1; margin-bottom: 6px;
+  color: var(--title-color); /* ライトモード・ダークモードで完全単色コントロール */
+  transform: var(--skew); padding-top: 12px;
 }
-.score-box.active-turn-b {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(29,78,216,0.6);
-  border-color: rgba(255,255,255,0.7);
-}
-.score-box.inactive-turn {
-  opacity: 0.45;
-  transform: scale(0.96);
-}
+.setup-subtitle { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--txt2); margin-bottom: 28px; }
+.field-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--txt2); margin-bottom: 6px; }
+
+[data-theme^="cyber-"] .setup-title { font-size: 38px; letter-spacing: 1px; padding-top: 8px; }
+[data-theme^="cyber-"] .setup-subtitle { font-size: 11px; letter-spacing: 3px; font-weight: bold; margin-bottom: 24px; }
+[data-theme^="cyber-"] .field-label { letter-spacing: 1px; }
  
-.score-a{ background:linear-gradient(135deg,var(--ca),#be123c); }
-.score-b{ background:linear-gradient(135deg,var(--cb),#1e40af); }
+/* ── FORM ELEMENTS ── */
+input[type="text"], input[type="number"], select {
+  width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-sm); font-size: 16px; font-family: var(--font-body); font-weight: 700; margin-bottom: 12px; background: var(--sub); color: var(--txt); outline: none;
+}
+[data-theme^="cyber-"] input[type="text"], [data-theme^="cyber-"] input[type="number"], [data-theme^="cyber-"] select {
+  padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; background: #ffffff; color: var(--txt);
+}
+[data-theme="cyber-dark"] input[type="text"], [data-theme="cyber-dark"] input[type="number"], [data-theme="cyber-dark"] select { background: #090f1c; color: #fff; }
+input[type="text"]:focus, input[type="number"]:focus, select:focus { border-color: var(--cb); box-shadow: 0 0 10px rgba(0,191,255,0.2); }
+
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 18px; }
+[data-theme^="cyber-"] .section-divider { margin: 18px 0; }
+
+.setup-section-title { font-size: 13px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--txt); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.setup-section-title::before { content: ''; display: inline-block; width: 3px; height: 14px; background: linear-gradient(var(--ca),var(--cb)); border-radius: 2px; }
+[data-theme^="cyber-"] .setup-section-title { font-size: 12px; letter-spacing: 1px; margin-bottom: 12px; }
+[data-theme^="cyber-"] .setup-section-title::before { display: none; }
  
-.score-name{
-  font-size:14px;
-  font-weight:700;
-  letter-spacing:1px;
-  opacity:.9;
-  text-overflow:ellipsis;
-  overflow:hidden;
- white-space:nowrap;
-}
+/* ── SETUP RADIO CHIPS ── */
+.bonus-row, .radio-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.count-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.th-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+[data-theme^="cyber-"] .bonus-row, [data-theme^="cyber-"] .radio-row, [data-theme^="cyber-"] .count-row, [data-theme^="cyber-"] .th-row { gap: 8px; margin-bottom: 12px; }
  
-.score-value{
-  font-family:var(--font-display);
-  font-size:44px;
-  letter-spacing:2px;
-  line-height:1;
+.toggle-chip, .radio-chip {
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 10px; border: 2px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; font-weight: 800; font-size: 14px; letter-spacing: 1px; user-select: none; background: var(--sub); color: var(--txt2); transition: .15s;
 }
+.toggle-chip input, .radio-chip input { display: none; }
+
+/* ラジオ・トグルの選択時、文字を「白」へ確実にする上書き補正 */
+.toggle-chip:has(input:checked), .radio-chip:has(input:checked) { border-color: var(--green); background: var(--green); color: #ffffff !important; }
+
+[data-theme^="cyber-"] .toggle-chip, [data-theme^="cyber-"] .radio-chip { padding: 12px; border: 1px solid var(--border); border-radius: var(--radius); font-weight: 700; font-size: 13px; background: #e2e8f0; color: var(--txt); transition: all 0.1s; }
+[data-theme="cyber-dark"] .toggle-chip, [data-theme="cyber-dark"] .radio-chip { background: #1e2d4a; }
+[data-theme^="cyber-"] .toggle-chip:has(input:checked), [data-theme^="cyber-"] .radio-chip:has(input:checked) { background: var(--green); color: #ffffff !important; box-shadow: none; border-color: var(--green); }
+
+.toggle-chip.double:has(input:checked) { background: #7c3aed; border-color: #7c3aed; color: #ffffff !important; }
+[data-theme^="cyber-"] .toggle-chip.double:has(input:checked) { border-color: #bd00ff; color: #ffffff !important; background: #bd00ff; }
+.toggle-chip.triple:has(input:checked) { background: #0891b2; border-color: #0891b2; color: #ffffff !important; }
+[data-theme^="cyber-"] .toggle-chip.triple:has(input:checked) { border-color: #00f0ff; color: #ffffff !important; background: #00f0ff; }
+
+/* 個別順序入れ替えボタン */
+.swap-btn {
+  background: var(--card); border: 1px dashed var(--border); color: var(--txt2);
+  border-radius: var(--radius-sm); padding: 4px 10px; font-size: 12px; font-weight: bold;
+  cursor: pointer; display: block; margin: -4px auto 8px auto; width: fit-content; transition: 0.15s;
+}
+.swap-btn:active { background: var(--sub); transform: scale(0.95); }
  
-/* ── NOTICE ── */
-.notice{
-  background:var(--notice-bg);
-  color:var(--notice-txt);
-  border:1px solid var(--notice-border);
-  padding:10px 14px;
-  border-radius:var(--radius-sm);
-  text-align:center;
-  font-weight:800;
-  font-size:13px;
-  letter-spacing:.5px;
-  margin-bottom:12px;
-}
+/* ── SKITTLE SETTING MARKS GRID ── */
+.skittle-marks-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+[data-theme^="cyber-"] .skittle-marks-grid { gap: 4px; }
+.sk-num-cell { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.sk-num-label { font-family: var(--font-display); font-size: 20px; letter-spacing: 1px; color: var(--txt); transform: var(--skew); }
+[data-theme^="cyber-"] .sk-num-label { font-size: 18px; }
+[data-theme="cyber-dark"] .sk-num-label { color: #fff; }
+
+.sk-radio-group { display: flex; flex-direction: column; gap: 3px; width: 100%; }
+.sk-radio-opt { display: flex; align-items: center; justify-content: center; padding: 4px 2px; border: 1.5px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 700; background: var(--sub); color: var(--txt2); }
+.sk-radio-opt input { display: none; }
+.sk-radio-opt:has(input:checked) { border-color: var(--cb); background: var(--cb); color: #fff; }
+
+[data-theme^="cyber-"] .sk-radio-opt { padding: 6px 2px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: #e2e8f0; color: var(--txt); }
+[data-theme="cyber-dark"] .sk-radio-opt { background: #1e2d4a; color: var(--txt2); }
+[data-theme^="cyber-"] .sk-radio-opt:has(input:checked) { color: #fff; border-color: var(--cb); background: var(--cb); }
+
+/* ── BUTTON STYLES ── */
+button { border: none; border-radius: var(--radius); padding: 16px; font-size: 16px; font-weight: 900; font-family: var(--font-body); cursor: pointer; letter-spacing: .5px; transition: .15s; }
+button:active { transform: scale(.97); }
+[data-theme^="cyber-"] button { padding: 14px; font-size: 14px; letter-spacing: 1px; transition: all 0.1s; }
+[data-theme^="cyber-"] button:active { transform: scale(0.98); opacity: 0.9; }
  
-/* ── SECTION TITLE ── */
-.section-title{
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:2.5px;
-  text-transform:uppercase;
-  color:var(--txt2);
-  margin-bottom:14px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.section-title span{
-  font-family:var(--font-display);
-  font-size:22px;
-  letter-spacing:1px;
-  color:var(--txt);
-}
+.primary { background: var(--primary-gradient); color: white; box-shadow: 0 4px 14px rgba(5,150,105,.3); }
+.secondary { background: var(--sub); color: var(--txt); border: 1px solid transparent; }
+.danger { background: linear-gradient(135deg,var(--ca),#be123c); color: white; }
+.large-btn { width: 100%; min-height: 60px; }
+
+[data-theme^="cyber-"] .primary { color: #fff; box-shadow: 0 0 15px rgba(0,255,102,0.3); }
+[data-theme="cyber-light"] .primary { color: #fff; }
+[data-theme^="cyber-"] .secondary { background: #cbd5e1; color: var(--txt); border: 1px solid var(--border); }
+[data-theme="cyber-dark"] .secondary { background: #16233d; color: #fff; }
+[data-theme^="cyber-"] .danger { color: #fff; box-shadow: 0 0 15px rgba(255,18,79,0.3); }
+[data-theme^="cyber-"] .large-btn { min-height: 52px; }
+
+.shuffle-animate { animation: shufflePulse 0.3s ease-in-out; }
+[data-theme^="cyber-"] .shuffle-animate { animation: dl3Pulse 0.2s ease; }
+@keyframes shufflePulse { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(0.95); opacity: 0.8; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes dl3Pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
  
-/* ── NEW INTEGRATED BOARD (融合型メインボード) ── */
-.integrated-board {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.skittle-row-btn {
-  display: grid;
-  grid-template-columns: 60px 1fr 60px;
-  align-items: stretch;
-  background: var(--sub);
-  border: 2px solid transparent;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  cursor: pointer;
-  padding: 0;
-  transition: .15s;
-}
-.skittle-row-btn:hover {
-  border-color: var(--green);
-}
-.skittle-row-btn.selected {
-  border-color: var(--green) !important;
-  box-shadow: 0 0 12px rgba(5,150,105,0.4);
-}
-.mini-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 11px;
-  color: var(--txt2);
-  background: transparent;
-  position: relative;
-}
-/* 屋外ユニバーサルデザイン用背景記号記法 */
-.mini-mark::before {
-  content: "";
-  position: absolute;
-  font-size: 20px;
-  font-weight: 900;
-  opacity: 0.12;
-  color: var(--txt);
-}
+/* ── MATCH LIVE GAME HEADER ── */
+.header { position: sticky; top: 0; z-index: 10; background: var(--bg); padding-bottom: 8px; }
+.status-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.status-box { background: var(--card); border-radius: var(--radius-sm); padding: 10px 8px; text-align: center; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.status-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--txt2); margin-bottom: 2px; }
+.status-value { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; transform: var(--skew); }
+ 
+[data-theme^="cyber-"] .status-grid { grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-bottom: 8px; }
+[data-theme^="cyber-"] .status-box { background: #ffffff; padding: 8px 4px; border: 1px solid var(--border); }
+[data-theme="cyber-dark"] .status-box { background: #09101f; }
+[data-theme^="cyber-"] .status-label { font-size: 9px; margin-bottom: 1px; letter-spacing: 1px; }
+[data-theme^="cyber-"] .status-value { font-size: 20px; }
+
+.current-a { color: var(--ca); text-shadow: var(--cyber-glow); }
+.current-b { color: var(--cb); text-shadow: var(--cyber-glow); }
+.current-c { color: var(--cc); text-shadow: var(--cyber-glow); }
+.current-d { color: var(--cd); text-shadow: var(--cyber-glow); }
+ 
+/* ── SCORE BOX CARD SYSTEM ── */
+.scoreboard { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.score-box { border-radius: var(--radius); padding: 10px; text-align: center; color: white; position: relative; overflow: hidden; transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s; border: var(--score-box-border); }
+.score-box::after { content: ''; position: absolute; left: 0; right: 0; height: 3px; background: var(--score-box-bottom-indicator); bottom: 0; }
+.score-box.inactive-turn { opacity: 0.45; transform: scale(0.96); }
+
+.score-a { background: linear-gradient(135deg,var(--ca),#be123c); }
+.score-b { background: linear-gradient(135deg,var(--cb),#1e40af); }
+.score-c { background: linear-gradient(135deg,var(--cc),#b45309); }
+.score-d { background: linear-gradient(135deg,var(--cd),#047857); }
+
+.score-box.active-turn-a { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(225,29,72,0.6); border-color: rgba(255,255,255,0.7); }
+.score-box.active-turn-b { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(29,78,216,0.6); border-color: rgba(255,255,255,0.7); }
+.score-box.active-turn-c { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(234,179,8,0.6); border-color: rgba(255,255,255,0.7); }
+.score-box.active-turn-d { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(34,197,94,0.6); border-color: rgba(255,255,255,0.7); }
+
+.score-name { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; opacity: .9; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+.score-value { font-family: var(--font-display); font-size: 36px; letter-spacing: 1px; line-height: 1; transform: var(--skew); }
+
+[data-theme^="cyber-"] .score-box { padding: 8px; background: #ffffff; color: var(--txt); border: 2px solid var(--border); transition: all 0.2s; }
+[data-theme="cyber-dark"] .score-box { background: #0e172a; color: white; border-width: 1px; }
+[data-theme^="cyber-"] .score-box.inactive-turn { opacity: 0.4; box-shadow: none; border-color: #cbd5e1; }
+[data-theme^="cyber-"] .score-box.active-turn-a { background: #fff1f2; border-color: var(--ca); box-shadow: 0 4px 14px rgba(255,18,79,0.15); --score-box-bottom-indicator: var(--ca); }
+[data-theme="cyber-dark"] .score-box.active-turn-a { background: #1c1424; }
+[data-theme^="cyber-"] .score-box.active-turn-b { background: #f0fdfa; border-color: var(--cb); box-shadow: 0 4px 14px rgba(0,191,255,0.15); --score-box-bottom-indicator: var(--cb); }
+[data-theme="cyber-dark"] .score-box.active-turn-b { background: #0a1f38; }
+[data-theme^="cyber-"] .score-box.active-turn-c { background: #fefce8; border-color: var(--cc); box-shadow: 0 4px 14px rgba(234,179,8,0.15); --score-box-bottom-indicator: var(--cc); }
+[data-theme="cyber-dark"] .score-box.active-turn-c { background: #2d1e0a; }
+[data-theme^="cyber-"] .score-box.active-turn-d { background: #f0fdf4; border-color: var(--cd); box-shadow: 0 4px 14px rgba(34,197,94,0.15); --score-box-bottom-indicator: var(--cd); }
+[data-theme="cyber-dark"] .score-box.active-turn-d { background: #0a2819; }
+
+[data-theme^="cyber-"] .score-name { font-size: 11px; opacity: .9; font-weight: bold; }
+[data-theme^="cyber-"] .score-value { font-size: 32px; margin-top: 2px; letter-spacing: 0px; color: var(--txt); }
+[data-theme="cyber-dark"] .score-value { color: white; }
+ 
+/* ── HEADS-UP NOTIFICATION ── */
+.notice { background: var(--notice-bg); color: var(--notice-txt); border: 1px solid var(--notice-border); padding: 10px 14px; border-radius: var(--radius-sm); text-align: center; font-weight: 800; font-size: 13px; letter-spacing: .5px; margin-bottom: 12px; }
+[data-theme^="cyber-"] .notice { padding: 8px; font-size: 12px; border-radius: 0px; }
+ 
+/* ── IN-GAME SECTION LABELS ── */
+.section-title { font-size: 11px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; color: var(--txt2); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.section-title span { font-family: var(--font-body); font-weight: 900; font-size: 18px; color: var(--txt); }
+
+[data-theme^="cyber-"] .section-title { font-size: 10px; font-weight: 700; margin-bottom: 10px; letter-spacing: 1px; gap: 0px; }
+[data-theme^="cyber-"] .section-title span { font-size: 14px; margin-right: 4px; }
+[data-theme="cyber-dark"] .section-title span { color: #fff; }
+ 
+/* ── MATRIX BOARD COMPONENT ── */
+.integrated-board { display: flex; flex-direction: column; gap: 8px; }
+.skittle-row-btn { display: grid; align-items: stretch; background: var(--sub); border: 2px solid transparent; border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; padding: 0; transition: .15s; }
+.skittle-row-btn:hover { border-color: var(--green); }
+.skittle-row-btn.selected { border-color: var(--green) !important; box-shadow: 0 0 12px rgba(5,150,105,0.4); }
+
+.mini-mark { display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; color: var(--txt2); background: transparent; position: relative; }
+.mini-mark::before { content: ""; position: absolute; font-size: 18px; font-weight: 900; opacity: var(--mini-mark-opacity); color: var(--txt); }
 .mini-mark.has-slash::before { content: "/"; }
 .mini-mark.has-cross::before { content: "✕"; }
 .mini-mark.has-circlecross::before { content: "⨂"; }
-
-.mini-mark.side-a { background: rgba(0,0,0,0.03); }
-.mini-mark.side-b { background: rgba(0,0,0,0.03); }
-
+.mini-mark.side-lane { background: rgba(0,0,0,0.03); }
 .mini-mark.flat { background: transparent; }
-.mini-mark.one-a { background: var(--ca-light); color: var(--ca); }
-.mini-mark.one-b { background: var(--cb-light); color: var(--cb); }
-.mini-mark.two-a { background: var(--ca); color: #fff; opacity: 0.65; }
-.mini-mark.two-b { background: var(--cb); color: #fff; opacity: 0.65; }
-.mini-mark.open-a { background: var(--ca); color: white; font-weight: 900; }
-.mini-mark.open-b { background: var(--cb); color: white; font-weight: 900; }
-.mini-mark.closed { background: var(--closed-gray); color: white; opacity: 0.35; }
 
-.center-num-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 26px;
-  letter-spacing: 1px;
-  background: var(--card);
-  color: var(--txt);
-  padding: 6px 0;
-  font-weight: normal;
-}
-.center-num-btn.closed-num {
-  color: var(--closed-num);
-  text-decoration: line-through;
-  background: var(--sub);
-}
+.mini-mark.one-a { background: var(--ca-light) !important; color: var(--ca) !important; }
+.mini-mark.one-b { background: var(--cb-light) !important; color: var(--cb) !important; }
+.mini-mark.one-c { background: var(--cc-light) !important; color: var(--cc) !important; }
+.mini-mark.one-d { background: var(--cd-light) !important; color: var(--cd) !important; }
+
+.mini-mark.two-a { background: var(--ca) !important; color: #fff !important; opacity: var(--mini-mark-two-opacity); }
+.mini-mark.two-b { background: var(--cb) !important; color: #fff !important; opacity: var(--mini-mark-two-opacity); }
+.mini-mark.two-c { background: var(--cc) !important; color: #fff !important; opacity: var(--mini-mark-two-opacity); }
+.mini-mark.two-d { background: var(--cd) !important; color: #fff !important; opacity: var(--mini-mark-two-opacity); }
+
+.mini-mark.open-a { background: var(--ca) !important; color: white !important; font-weight: 900; }
+.mini-mark.open-b { background: var(--cb) !important; color: white !important; font-weight: 900; }
+.mini-mark.open-c { background: var(--cc) !important; color: white !important; font-weight: 900; }
+.mini-mark.open-d { background: var(--cd) !important; color: white !important; font-weight: 900; }
+
+.mini-mark.closed { background: var(--closed-gray) !important; color: white !important; opacity: var(--closed-opacity); }
+
+.center-num-btn { display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 900; font-size: 20px; background: var(--card); color: var(--txt); padding: 6px 0; transform: var(--skew); }
+.center-num-btn.closed-num { color: var(--closed-num); text-decoration: var(--text-strike); background: var(--sub); }
+
+[data-theme^="cyber-"] .integrated-board { gap: 4px; }
+[data-theme^="cyber-"] .skittle-row-btn { border: 1px solid var(--border); border-radius: 0px; transition: all 0.1s; background: #ffffff; }
+[data-theme="cyber-dark"] .skittle-row-btn { background: #0a1121; }
+[data-theme^="cyber-"] .skittle-row-btn:hover { border-color: var(--txt2); }
+[data-theme^="cyber-"] .skittle-row-btn.selected { box-shadow: 0 0 10px rgba(0,255,102,0.3); }
+[data-theme^="cyber-"] .mini-mark { font-family: var(--font-body); font-size: 11px; font-weight: 900; background: #f1f5f9; color: var(--txt2); }
+[data-theme="cyber-dark"] .mini-mark { background: #070d1a; }
+[data-theme^="cyber-"] .mini-mark::before { font-size: 16px; }
+[data-theme="cyber-dark"] .mini-mark::before { color: #fff; }
+[data-theme^="cyber-"] .mini-mark.side-lane { background: #f8fafc; border: 1px solid #e2e8f0; }
+[data-theme="cyber-dark"] .mini-mark.side-lane { background: #070d1a; border: none; }
+[data-theme^="cyber-"] .mini-mark.flat { background: #ffffff; color: #94a3b8; }
+[data-theme="cyber-dark"] .mini-mark.flat { background: #050a14; color: #1f3152; }
+
+[data-theme^="cyber-"] .mini-mark.two-a { background: rgba(255,12,79,0.85) !important; color: #fff !important; }
+[data-theme^="cyber-"] .mini-mark.two-b { background: rgba(0,136,204,0.85) !important; color: #fff !important; }
+[data-theme^="cyber-"] .mini-mark.two-c { background: rgba(234,179,8,0.85) !important; color: #fff !important; }
+[data-theme^="cyber-"] .mini-mark.two-d { background: rgba(34,197,94,0.85) !important; color: #fff !important; }
+
+[data-theme^="cyber-"] .mini-mark.open-a { background: var(--ca) !important; color: #fff !important; }
+[data-theme^="cyber-"] .mini-mark.open-b { background: var(--cb) !important; color: #fff !important; }
+[data-theme^="cyber-"] .mini-mark.open-c { background: var(--cc) !important; color: #fff !important; }
+[data-theme^="cyber-"] .mini-mark.open-d { background: var(--cd) !important; color: #fff !important; }
+
+[data-theme^="cyber-"] .mini-mark.closed { background: var(--closed-gray) !important; color: #fff !important; }
+[data-theme^="cyber-"] .center-num-btn { font-size: 20px; background: #f8fafc; padding: 4px 0; letter-spacing: 0px; color: var(--txt); }
+[data-theme="cyber-dark"] .center-num-btn { background: #0e182e; color: #fff; }
+[data-theme^="cyber-"] .center-num-btn.closed-num { color: #94a3b8; background: #e2e8f0; }
+[data-theme="cyber-dark"] .center-num-btn.closed-num { color: #2a384e; background: #080e1a; }
  
-/* ── MARK TYPE TOGGLE ── */
-.mark-type-row{
-  display:flex;
-  gap:8px;
-  margin-bottom:12px;
-}
+/* ── KEYPAD INPUT ELEMENT PANEL ── */
+.mark-type-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.mark-type-btn { flex: 1; padding: 12px 6px; font-size: 13px; font-weight: 900; letter-spacing: .5px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--sub); color: var(--txt2); }
+.mark-type-btn.active-single { border-color: var(--green); background: var(--green); color: white; }
+.mark-type-btn.active-double { border-color: #7c3aed; background: #7c3aed; color: white; }
+.mark-type-btn.active-triple { border-color: #0891b2; background: #0891b2; color: white; }
+
+[data-theme^="cyber-"] .mark-type-row { gap: 6px; margin-bottom: 10px; }
+[data-theme^="cyber-"] .mark-type-btn { padding: 10px 4px; font-family: var(--font-body); font-size: 12px; border: 1px solid var(--border); border-radius: var(--radius); background: #e2e8f0; color: var(--txt); letter-spacing: 0px; }
+[data-theme="cyber-dark"] .mark-type-btn { background: #1e2d4a; color: #94a3b5; }
+[data-theme^="cyber-"] .mark-type-btn.active-single { background: var(--green); color: #fff; border-color: var(--green); }
+[data-theme^="cyber-"] .mark-type-btn.active-double { border-color: #bd00ff; background: #bd00ff; color: #fff; }
+[data-theme^="cyber-"] .mark-type-btn.active-triple { border-color: #00f0ff; background: #00f0ff; color: #fff; }
  
-.mark-type-btn{
-  flex:1;
-  padding:12px 6px;
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:.5px;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  background:var(--sub);
-  color:var(--txt2);
-  transition:.15s;
-}
-.mark-type-btn:hover{ border-color:var(--txt2); }
+/* ── PANEL MULTI SYSTEM CORE BUTTONS ── */
+.action-btn { background: linear-gradient(135deg,var(--action-yellow),var(--action-yellow-dark)); color: #fff; box-shadow: 0 4px 12px rgba(245,158,11,.25); }
+.undo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+
+[data-theme^="cyber-"] .action-btn { background: linear-gradient(135deg, #ff9900, #e68a00); font-weight: 900; box-shadow: 0 0 10px rgba(255,153,0,0.2); }
+[data-theme^="cyber-"] .undo-wrap { gap: 8px; margin-bottom: 16px; }
  
-.mark-type-btn.active-single{
-  border-color:var(--green);
-  background:var(--green);
-  color:white;
-}
-.mark-type-btn.active-double{
-  border-color:#7c3aed;
-  background:#7c3aed;
-  color:white;
-}
-.mark-type-btn.active-triple{
-  border-color:#0891b2;
-  background:#0891b2;
-  color:white;
-}
+/* ── FLOATING OVERLAYS DIALOG SYSTEM ── */
+.confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 999; padding: 18px; }
+.confirm-box { width: 100%; max-width: 540px; max-height: 92vh; background: var(--card); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-md); border: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
+.confirm-text { font-size: 18px; font-weight: 700; line-height: 1.7; white-space: pre-line; color: var(--txt); }
+.confirm-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; flex-shrink: 0; }
  
-/* ── ACTION BUTTON ── */
-.action-btn{
-  background:linear-gradient(135deg,var(--action-yellow),var(--action-yellow-dark));
-  color:var(--action-yellow-text);
-  box-shadow:0 4px 12px rgba(245,158,11,.25);
-}
- 
-/* ── UNDO WRAP ── */
-.undo-wrap{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:20px;
-}
- 
-/* ── CONFIRM / MODAL ── */
-.confirm-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(4px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-  padding:18px;
-}
- 
-.confirm-box{
-  width:100%;
-  max-width:540px;
-  max-height:92vh;
-  background:var(--card);
-  border-radius:var(--radius-lg);
-  padding:22px;
-  box-shadow:var(--shadow-md);
-  border:1px solid var(--border);
-  display:flex;
-  flex-direction:column;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-}
- 
-.confirm-text{
-  font-size:18px;
-  font-weight:700;
-  line-height:1.7;
-  white-space:pre-line;
-}
- 
-.confirm-buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:18px;
-  flex-shrink: 0;
-}
- 
-/* ── WINNER MODAL ── */
-.winner{
-  font-family:var(--font-display);
-  font-size:42px;
-  letter-spacing:3px;
-  text-align:center;
-  margin-bottom:14px;
-}
- 
-.stats{
-  background:var(--sub);
-  border-radius:var(--radius);
-  padding:16px;
-  margin-top:14px;
-}
- 
-.stat-line{
-  margin-bottom:14px;
-  line-height:1.8;
-  font-size:14px;
-}
- 
-.small{
-  font-size:13px;
-  color:var(--txt2);
-}
+[data-theme^="cyber-"] .confirm-overlay { background: rgba(3,5,10,0.85); padding: 14px; }
+[data-theme^="cyber-"] .confirm-box { max-width: 440px; max-height: 88vh; border-radius: var(--radius); padding: 20px; box-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 15px var(--border); }
+[data-theme="cyber-dark"] .confirm-box { background: #0c1426; }
+[data-theme^="cyber-"] .confirm-text { font-size: 15px; line-height: 1.6; }
+[data-theme^="cyber-"] .confirm-buttons { gap: 8px; margin-top: 16px; }
+
+/* ── STATS MATCH WIN SYSTEM VIEW ── */
+.winner { font-family: var(--font-body); font-weight: 900; font-size: 32px; text-align: center; margin-bottom: 14px; transform: var(--skew); color: var(--txt); }
+.stats { background: var(--sub); border-radius: var(--radius); padding: 16px; margin-top: 14px; }
+.stat-line { margin-bottom: 14px; line-height: 1.8; font-size: 14px; color: var(--txt); border-bottom: 1px dashed var(--border); padding-bottom: 8px; }
+.small { font-size: 13px; color: var(--txt2); }
+
+[data-theme^="cyber-"] .winner { font-size: 32px; letter-spacing: 1px; margin-bottom: 12px; }
+[data-theme="cyber-dark"] .winner { color: #fff; }
+[data-theme^="cyber-"] .stats { background: #ffffff; border: 1px solid var(--border); padding: 12px; margin-top: 12px; border-radius: 0; }
+[data-theme="cyber-dark"] .stats { background: #060b14; }
+[data-theme^="cyber-"] .stat-line { margin-bottom: 12px; line-height: 1.6; font-size: 13px; }
+[data-theme^="cyber-"] .small { font-size: 11px; }
+
+.handicap-inputs { display: grid; gap: 6px; align-items: center; margin-bottom: 8px; }
+.handicap-inputs .sk-label { font-family: var(--font-body); font-weight: 900; font-size: 16px; text-align: center; }
  
 @media(max-width:480px){
-  .score-value{ font-size:36px; }
-  .center-num-btn{ font-size:22px; }
+  .score-value { font-size: 30px; }
+  [data-theme^="cyber-"] .score-value { font-size: 28px; }
+  .center-num-btn { font-size: 20px; }
+  [data-theme^="cyber-"] .center-num-btn { font-size: 18px; }
 }
 </style>
 </head>
@@ -981,9 +688,6 @@ button:active{ transform:scale(.97); }
 <div class="container">
  
   <div id="topMenuScreen">
-    <div class="topbar">
-      <button class="theme-btn" onclick="toggleTheme()" id="themeBtnTop">🌙 DARK</button>
-    </div>
     <div class="card">
       <div class="menu-title-area">
         <div class="setup-title">MÖLKKY CRICKET</div>
@@ -992,157 +696,228 @@ button:active{ transform:scale(.97); }
       
       <div class="menu-list">
         <button class="menu-item-btn" onclick="openSetup('normal')">
-          <div class="menu-item-title">① 1試合対戦</div>
-          <div class="menu-item-desc">1試合完結形式です。手軽に1ゲームを楽しみたいときはこちら。</div>
+          <div class="menu-item-title">① ノーマル対戦 (NORMAL MATCH)</div>
+          <div class="menu-item-desc">初心者や手軽に遊びたい方向けの固定ルールモード（2人対戦・ハンデ無し）。</div>
         </button>
         
-        <button class="menu-item-btn" onclick="openSetup('match')">
-          <div class="menu-item-title">② セット対戦</div>
-          <div class="menu-item-desc">2本先取、3本先取などのセット先取形式です。本格的に対戦をしたいときはこちら。</div>
+        <button class="menu-item-btn" onclick="openSetup('custom')">
+          <div class="menu-item-title">② カスタム対戦 (CUSTOM MATCH)</div>
+          <div class="menu-item-desc">人数、マッチ形式、投擲数、ボーナス、ハンデなどを自由に設定できます。</div>
+        </button>
+        
+        <button class="menu-item-btn" onclick="switchScreen('themeConfigScreen')">
+          <div class="menu-item-title">⚙️ システム・テーマ設定 (SYSTEM & THEME)</div>
+          <div class="menu-item-desc">アプリ全体のカラーテーマ・ビジュアルスタイルを変更できます。</div>
         </button>
         
         <button class="menu-item-btn" onclick="switchScreen('ruleScreen')">
-          <div class="menu-item-title">③ ルール解説</div>
-          <div class="menu-item-desc">モルックリケットの基本ルール、得点計算、セオリーを解説。</div>
+          <div class="menu-item-title">📖 ルール解説 (RULE INFO)</div>
+          <div class="menu-item-desc">多人数クリケット（ダーツ準拠）の基本ルール、得点、セオリーを解説。</div>
         </button>
       </div>
+    </div>
+  </div>
+
+  <div id="themeConfigScreen" class="hidden">
+    <div class="topbar">
+      <button class="theme-btn" onclick="backToTopMenu()" style="margin-right:auto;">↩ MENU</button>
+    </div>
+    <div class="card">
+      <div class="setup-title" style="font-size:36px; margin-bottom:4px;">THEME CONFIG</div>
+      <div class="setup-subtitle" style="margin-bottom:20px;">表示テーマの切り替え</div>
+      
+      <div class="field-label">1. SELECT STYLE (デザインスタイル)</div>
+      <div class="theme-select-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 20px;">
+        <div class="theme-opt-box active" id="style-opt-soft" onclick="selectStyleConfig('soft')">
+          SOFT<br><span class="small">標準・標準フォント</span>
+        </div>
+        <div class="theme-opt-box" id="style-opt-cyber" onclick="selectStyleConfig('cyber')">
+          CYBER<br><span class="small">近未来・デジタル調</span>
+        </div>
+      </div>
+
+      <div class="field-label">2. SELECT COLOR (カラーモード)</div>
+      <div class="theme-select-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="theme-opt-box active" id="color-opt-light" onclick="selectColorConfig('light')">
+          LIGHT<br><span class="small">明るい背景</span>
+        </div>
+        <div class="theme-opt-box" id="color-opt-dark" onclick="selectColorConfig('dark')">
+          DARK<br><span class="small">暗い背景</span>
+        </div>
+      </div>
+      
+      <hr class="section-divider">
+      <button class="secondary large-btn" onclick="backToTopMenu()">↩ メインメニューに戻る</button>
     </div>
   </div>
 
   <div id="setupScreen" class="hidden">
- 
     <div class="topbar">
       <button class="theme-btn" onclick="backToTopMenu()" style="margin-right:auto;">↩ MENU</button>
-      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 DARK</button>
     </div>
  
     <div class="card" id="setupCardContainer">
- 
       <div class="setup-title" id="setupMainTitle">MÖLKKY</div>
       <div class="setup-subtitle" id="setupSubTitle">Cricket Scoreboard</div>
  
-      <div class="field-label">PLAYER A</div>
-      <input type="text" id="playerAInput" placeholder="名前 / チーム名">
- 
-      <div class="field-label">PLAYER B</div>
-      <input type="text" id="playerBInput" placeholder="名前 / チーム名">
-      
-      <button class="secondary" onclick="shufflePlayerOrder()" style="width:100%; min-height:44px; padding:10px; font-size:13px; margin-bottom:16px;">
-        🎲 投げ順をシャッフル (先攻・後攻を入れ替え)
-      </button>
- 
-      <div id="matchFormatArea" class="hidden">
-        <hr class="section-divider">
-        <div class="setup-section-title">MATCH FORMAT</div>
-        <div class="radio-row">
-          <label class="radio-chip">
-            <input type="radio" name="matchTarget" value="2" checked>
-            2本先取 (BO3)
+      <div id="customPlayerCountArea">
+        <div class="setup-section-title">PLAYER COUNT (対戦人数設定)</div>
+        <div class="count-row">
+          <label class="radio-chip" id="btnCount2">
+            <input type="radio" name="playerCount" value="2" checked onchange="handlePlayerCountChange()"> 2人対戦
           </label>
-          <label class="radio-chip">
-            <input type="radio" name="matchTarget" value="3">
-            3本先取 (BO5)
+          <label class="radio-chip" id="btnCount3">
+            <input type="radio" name="playerCount" value="3" onchange="handlePlayerCountChange()"> 3人対戦
+          </label>
+          <label class="radio-chip" id="btnCount4">
+            <input type="radio" name="playerCount" value="4" onchange="handlePlayerCountChange()"> 4人対戦
           </label>
         </div>
       </div>
 
-      <hr class="section-divider">
- 
-      <div class="setup-section-title">BONUS MARKS</div>
-      <div class="bonus-row">
-        <label class="toggle-chip double">
-          <input type="checkbox" id="chkDouble" checked>
-          ✕2 &nbsp;DOUBLE
-        </label>
-        <label class="toggle-chip triple">
-          <input type="checkbox" id="chkTriple">
-          ✕3 &nbsp;TRIPLE
-        </label>
-      </div>
- 
-      <hr class="section-divider">
- 
-      <div class="setup-section-title">THROWS / TURN</div>
-      <div class="radio-row" style="margin-bottom:6px;">
-        <label class="radio-chip">
-          <input type="radio" name="throwCount" value="2" checked>
-          2 THROWS
-        </label>
-        <label class="radio-chip">
-          <input type="radio" name="throwCount" value="3">
-          3 THROWS
-        </label>
-      </div>
- 
-      <hr class="section-divider">
- 
-      <div class="setup-section-title">OPEN MARKS PER SKITTLE</div>
-      <div class="small" style="margin-bottom:10px;">各スキットルをオープンするのに必要なマーク数の一括変更</div>
-      <div class="radio-row" style="margin-bottom:16px;">
-        <button class="secondary" onclick="setAllOpenMarksBulk(2)" style="padding:12px; font-weight:800; font-size:13px;">一括で 2マーク にする</button>
-        <button class="secondary" onclick="setAllOpenMarksBulk(3)" style="padding:12px; font-weight:800; font-size:13px;">一括で 3マーク にする</button>
-      </div>
+      <div class="setup-section-title">NAMES (プレイヤー名入力)</div>
       
-      <label style="display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; cursor:pointer; margin-bottom:12px; user-select:none;">
-        <input type="checkbox" id="toggleCustomMarks" onchange="toggleCustomMarksArea()" style="width:16px; height:16px; accent-color:var(--green);">
-        スキットルごとに個別に設定する
-      </label>
+      <div class="field-label" style="color: var(--ca);">PLAYER A</div>
+      <input type="text" id="playerAInput" placeholder="名前 / チーム名 (A)">
+ 
+      <button type="button" class="swap-btn" id="swapABBtn" onclick="swapPlayersData(0, 1)">⇄ AとBを入れ替え</button>
 
-      <div id="customSkittleMarksWrapper" class="hidden">
-        <div class="skittle-marks-grid" id="skittleMarkSetup"></div>
+      <div class="field-label" style="color: var(--cb);">PLAYER B</div>
+      <input type="text" id="playerBInput" placeholder="名前 / チーム名 (B)">
+      
+      <div id="playerCWrapper" class="hidden">
+        <button type="button" class="swap-btn" id="swapBCBtn" onclick="swapPlayersData(1, 2)">⇄ BとCを入れ替え</button>
+        <div class="field-label" style="color: var(--cc);">PLAYER C</div>
+        <input type="text" id="playerCInput" placeholder="名前 / チーム名 (C)">
+      </div>
+
+      <div id="playerDWrapper" class="hidden">
+        <button type="button" class="swap-btn" id="swapCDBtn" onclick="swapPlayersData(2, 3)">⇄ CとDを入れ替え</button>
+        <div class="field-label" style="color: var(--cd);">PLAYER D</div>
+        <input type="text" id="playerDInput" placeholder="名前 / チーム名 (D)">
+      </div>
+
+      <div id="matchFormatArea" class="hidden">
+        <hr class="section-divider">
+        <div class="setup-section-title">MATCH FORMAT</div>
+        <div class="small" style="margin-bottom:10px;">マッチ全体の勝利条件（勝利に必要なセット数：1〜5）</div>
+        <input type="number" id="matchTargetInput" value="1" min="1" max="5" style="width: 100%; text-align: center;">
+      </div>
+
+      <div id="handicapToggleArea" class="hidden">
+        <hr class="section-divider">
+        <div class="setup-section-title">HANDICAP SYSTEM</div>
+        <div class="small" style="margin-bottom:10px;">ハンデ機能（初期スコア・初期マーク）の有効化</div>
+        <div class="radio-row">
+          <label class="radio-chip" id="lblHandicapOff">
+            <input type="radio" name="handicapSwitch" value="off" checked onchange="handleHandicapToggle()"> ハンデ無し
+          </label>
+          <label class="radio-chip" id="lblHandicapOn">
+            <input type="radio" name="handicapSwitch" value="on" onchange="handleHandicapToggle()"> ハンデを設定する
+          </label>
+        </div>
+      </div>
+
+      <div id="handicapConfigArea" class="hidden">
+        <div style="background: var(--bg); padding: 12px; border-radius: var(--radius-sm); border: 1px dashed var(--border);">
+          <div id="handicapScoresGrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+            <div>
+              <div class="field-label">A 初期スコア</div>
+              <input type="number" id="handicapScoreA" value="0" min="0">
+            </div>
+            <div>
+              <div class="field-label">B 初期スコア</div>
+              <input type="number" id="handicapScoreB" value="0" min="0">
+            </div>
+            <div id="handicapScoreCWrap" class="hidden">
+              <div class="field-label">C 初期スコア</div>
+              <input type="number" id="handicapScoreC" value="0" min="0">
+            </div>
+            <div id="handicapScoreDWrap" class="hidden">
+              <div class="field-label">D 初期スコア</div>
+              <input type="number" id="handicapScoreD" value="0" min="0">
+            </div>
+          </div>
+
+          <div class="field-label" style="margin-bottom:8px;">各スキットルの初期マーク数設定</div>
+          <div id="handicapMarksContainer"></div>
+        </div>
+      </div>
+
+      <div id="bonusMarksArea">
+        <hr class="section-divider">
+        <div class="setup-section-title">BONUS MARKS</div>
+        <div class="small" style="margin-bottom:10px;">DOUBLE(×2)やTRIPLE(×3)マークボーナスの有効化</div>
+        <div class="bonus-row">
+          <label class="toggle-chip double" id="lblChkDouble">
+            <input type="checkbox" id="chkDouble" checked onchange="syncCheckboxChips()">
+            ✕2 &nbsp;DOUBLE
+          </label>
+          <label class="toggle-chip triple" id="lblChkTriple">
+            <input type="checkbox" id="chkTriple" onchange="syncCheckboxChips()">
+            ✕3 &nbsp;TRIPLE
+          </label>
+        </div>
+      </div>
+ 
+      <div id="throwsPerTurnArea">
+        <hr class="section-divider">
+        <div class="setup-section-title">THROWS / TURN</div>
+        <div class="small" style="margin-bottom:10px;">プレイヤーが1ターンに投げられる本数</div>
+        <div class="th-row">
+          <label class="radio-chip" id="btnThrow1">
+            <input type="radio" name="throwCount" value="1" onchange="syncThrowChips()"> 1 THROW
+          </label>
+          <label class="radio-chip" id="btnThrow2">
+            <input type="radio" name="throwCount" value="2" checked onchange="syncThrowChips()"> 2 THROWS
+          </label>
+          <label class="radio-chip" id="btnThrow3">
+            <input type="radio" name="throwCount" value="3" onchange="syncThrowChips()"> 3 THROWS
+          </label>
+        </div>
+      </div>
+ 
+      <div id="openMarksConfigArea">
+        <hr class="section-divider">
+        <div class="setup-section-title">OPEN MARKS PER SKITTLE</div>
+        <div class="small" style="margin-bottom:10px;">各スキットルをオープンするのに必要なマーク数</div>
+        <div class="radio-row" style="margin-bottom:16px;">
+          <button type="button" class="secondary" onclick="setAllOpenMarksBulk(2)" style="padding:12px; font-weight:800; font-size:13px;">一括で 2マーク</button>
+          <button type="button" class="secondary" onclick="setAllOpenMarksBulk(3)" style="padding:12px; font-weight:800; font-size:13px;">一括で 3マーク</button>
+        </div>
+        
+        <div id="customSkittleMarksWrapper">
+          <div class="skittle-marks-grid" id="skittleMarkSetup"></div>
+        </div>
       </div>
  
       <hr class="section-divider">
- 
-      <button class="primary large-btn" onclick="startGame()" style="margin-top:4px;">
-        🎯 GAME START
-      </button>
- 
+      <button type="button" class="primary large-btn" onclick="startGame()" style="margin-top:4px;">🎯 GAME START</button>
     </div>
- 
   </div>
  
   <div id="gameScreen" class="hidden">
- 
     <div class="header">
- 
       <div class="topbar">
         <button class="theme-btn" onclick="confirmReset()" style="margin-right:auto;">↩ QUIT</button>
-        <button class="theme-btn" onclick="toggleTheme()" id="themeBtn2">🌙 DARK</button>
       </div>
  
       <div class="status-grid">
- 
         <div class="status-box">
           <div class="status-label">TURN</div>
           <div class="status-value" id="turnText"></div>
         </div>
- 
         <div class="status-box">
           <div class="status-label">PLAYER</div>
           <div class="status-value"><span id="playerText"></span></div>
         </div>
- 
         <div class="status-box">
           <div class="status-label">THROW</div>
           <div class="status-value"><span id="throwText"></span></div>
         </div>
- 
       </div>
  
-      <div class="scoreboard">
-        <div class="score-box score-a" id="scoreBoxA">
-          <div class="score-name" id="scoreAName"></div>
-          <div class="score-value" id="scoreA"></div>
-          <div class="dot-container" id="scoreADots"></div>
-        </div>
-        <div class="score-box score-b" id="scoreBoxB">
-          <div class="score-name" id="scoreBName"></div>
-          <div class="score-value" id="scoreB"></div>
-          <div class="dot-container" id="scoreBDots"></div>
-        </div>
-      </div>
- 
+      <div class="scoreboard" id="gameScoreboard"></div>
     </div>
  
     <div id="specialNotice" class="notice hidden">
@@ -1150,13 +925,12 @@ button:active{ transform:scale(.97); }
     </div>
  
     <div class="card">
-      <div class="section-title"><span>BOARD & INPUT</span> タップしてスキットルを選択（もう一度押すと解除）</div>
+      <div class="section-title"><span>BOARD & INPUT</span> タップして選択（もう一度押すと解除）</div>
       <div class="integrated-board" id="integratedBoard"></div>
     </div>
  
     <div class="card">
       <div class="section-title"><span>①</span> ACTION確定パネル</div>
- 
       <div class="mark-type-row" id="markTypeRow">
         <button class="mark-type-btn" id="btnSingle" onclick="selectMarkType('single')">
           SINGLE<br><span class="small">1 MARK</span>
@@ -1170,12 +944,8 @@ button:active{ transform:scale(.97); }
       </div>
  
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-        <button class="action-btn" onclick="confirmSingle()" style="padding:14px; font-size:14px;">
-          🎯 SINGLE確定
-        </button>
-        <button class="action-btn" onclick="confirmMulti()" style="padding:14px; font-size:14px; background:linear-gradient(135deg, #10b981, #059669); box-shadow:0 4px 12px rgba(16,185,129,.25);">
-          👥 MULTI確定
-        </button>
+        <button class="action-btn" onclick="confirmSingle()" style="padding:14px; font-size:14px;">🎯 SINGLE確定</button>
+        <button class="action-btn" onclick="confirmMulti()" style="padding:14px; font-size:14px; background:linear-gradient(135deg, #10b981, #059669); box-shadow:0 4px 12px rgba(16,185,129,.25);">👥 MULTI確定</button>
       </div>
     </div>
  
@@ -1191,66 +961,50 @@ button:active{ transform:scale(.97); }
       <button class="secondary large-btn" onclick="confirmUndo()">↩ UNDO</button>
       <button class="danger large-btn" onclick="confirmReset()">↺ RESET</button>
     </div>
- 
   </div>
 
   <div id="ruleScreen" class="hidden">
     <div class="topbar">
       <button class="theme-btn" onclick="backToTopMenu()" style="margin-right:auto;">↩ MENU</button>
-      <button class="theme-btn" onclick="toggleTheme()" id="themeBtnRule">🌙 DARK</button>
     </div>
     
     <div class="card">
-      <div class="rule-header">MÖLKKY CRICKET ルール解説</div>
+      <div class="rule-header">多人数対応クリケット ルール解説</div>
       
       <div class="rule-block">
-        <div class="rule-h3">1. 勝利条件</div>
-        <p class="rule-p">・<b>①：</b>12ターン終了時点で、相手より高い点数を獲得しているプレイヤーが勝利となります。もし<b>同点の場合、相手よりもオープン状態のスキットルを多く保っているプレイヤーが勝利</b>となります。（それも同数の場合は引き分け）</p>
-        <p class="rule-p">・<b>②：</b><b>相手より点数が同点以上の状態で全てのスキットルをオープン</b>にすれば、その瞬間に勝利となります。</p>
+        <div class="rule-h3">1. 多人数におけるオープンとクローズ</div>
+        <p class="rule-p">・まだ自分が規定マーク数に達していないスキットルへ的中させることで、マークが蓄積されます。規定数に達すると、そのスキットルは自分の中で<b>「オープン（自分専用の加点権利）」</b>となります。</p>
+        <p class="rule-p">・<b>クローズの条件：</b>ゲームに「参加している全プレイヤー」が該当スキットルをオープンした瞬間、そのスキットルは完全に<b>クローズ（無効化）</b>され、盤面から除外されます。以降は全員マークも加点も不可能になります。</p>
       </div>
 
       <div class="rule-block">
-        <div class="rule-h3">2. オープンとクローズ</div>
-        <p class="rule-p">何もされていない状態（フラット）のスキットルに2マーク的中させると、自分の陣地にできます。これを<b>オープン</b>と言います。</p>
-        <p class="rule-p">相手がオープンしているスキットルに自分も2マーク的中させると、そのスキットルを潰すことができます。これを<b>クローズ</b>と言います。クローズされたスキットルは盤面から完全に除外され、両者ともに加点できなくなります。</p>
-        <div class="rule-p" style="padding-left: 8px; border-left: 2px dashed var(--border); font-weight: bold; color: var(--green);">
-          マークのイメージ:<br>
-          ⚪️ フラット ➔ 🟡 1マーク ➔ 🟢 オープン（自分陣地） ➔ 🔴 クローズ（無効化）
-        </div>
+        <div class="rule-h3">2. 加点条件（ダーツ準拠）</div>
+        <p class="rule-p">自分がオープン済み、かつ<b>「まだその数字をオープンしていないプレイヤーが、自分以外に1人でも残っている」</b>状態のときに当てると、数字分の点数が自分へ加算されます。</p>
+        <p class="rule-p">※全員がオープンしてしまった後は誰も加点できません。</p>
       </div>
 
       <div class="rule-block">
-        <div class="rule-h3">3. 得点の取り方</div>
-        <p class="rule-p">オープン状態のスキットルに当てることで、そのスキットルの数字が得点になります。直当て（DOUBLE）の場合は2倍の点数が入ります。1マーク状態で直当てした場合、1マークはオープンに使用され、残りの1マーク分で1倍の得点が入ります。</p>
-      </div>
-
-      <div class="rule-block">
-        <div class="rule-h3">4. 複数本倒した場合（MULTI HIT）</div>
-        <p class="rule-p">倒したスキットルのうち、自分がすでにオープンしているスキットルがある場合、その「スキットルの本数」がそのまま合計点数として加算されます。</p>
-        <p class="rule-p">倒したスキットルの中にフラット、もしくは相手のみがオープンしているスキットルが含まれている場合は、それらのスキットルすべてに1マークを付与できます。</p>
-      </div>
-
-      <div class="rule-block">
-        <div class="rule-h3">5. 先攻の1ターン目特別ルール</div>
-        <p class="rule-p">先攻の1ターン目の2投のみ、どのスキットルに当ててもマーク処理は一切行われず、「倒した本数」がそのままダイレクトに合計得点に加算される特殊ルールが適用されます。</p>
+        <div class="rule-h3">3. 勝利条件</div>
+        <p class="rule-p">・<b>ゲーム中コールド勝ち：</b>自分がすべてのスキットル（6〜12番）をオープンし、かつ自分のスコアが<b>「他のプレイヤー全員のスコア以上」</b>になった瞬間にその場で即時勝利が確定します。</p>
+        <p class="rule-p">・<b>12ターン終了時：</b>最も獲得点数が高いプレイヤーが勝利となります。同点の場合は、その時点でクローズされずに残っている自分自身のオープンキープ数が最も多いプレイヤーを勝ちとして判定します。</p>
       </div>
 
       <div class="rule-block">
         <div class="rule-h3">✨ 勝つための3大セオリー</div>
         <div class="theory-box">
-          <b>💡 数字の大きいスキットルから狙う</b><br>
-          11番や12番といった高得点スキットルを早期にオープンすることで、その後の加点フェーズで有利に立てます。
+          <b>💡 高得点エリアを素早くオープンする</b><br>
+          11番や12番を早期にオープンすることで、他プレイヤーが追いつく前に大きなアドバンテージを得られます。
         </div>
         <div class="theory-box">
-          <b>💡 近いスキットルから狙う</b><br>
-          狙いやすく手前にあるスキットルを確実に仕留めてマークを重ね、着実に自分の陣地を拡大していくことができます。
-        </div>
-        <div class="theory-box">
-          <b>💡 点数を同点以上にしてからクローズにトライする</b><br>
-          勝利の絶対条件は「全オープンした段階でスコアが相手と同点以上であること」です。点数が大きく負けている段階で無理にクローズに手を出すと勝利を確定できないため、まずは点数を捲るか並ぶのが鉄則です。
+          <b>💡 独走しているプレイヤーの加点を止める</b><br>
+          特定のプレイヤーが1つの数字で大量得点している場合、まだオープンしていないメンバーで協力してその数字を狙い、全員オープン（クローズ）させて得点源を潰すのが鉄則です。
         </div>
       </div>
+
+      <hr class="section-divider">
+      <button class="secondary large-btn" onclick="backToTopMenu()">↩ メインメニューに戻る</button>
     </div>
+  </div>
  
 </div>
  
@@ -1266,16 +1020,19 @@ button:active{ transform:scale(.97); }
 
 <div class="confirm-overlay hidden" id="nextSetModal">
   <div class="confirm-box" style="text-align: center;">
-    <div class="winner" id="nextSetWinnerText" style="font-size: 26px; color: var(--green);"></div>
-    <div class="confirm-text" id="nextSetScoreText" style="font-family: var(--font-display); font-size: 32px; text-align: center; margin: 10px 0;"></div>
+    <div class="winner" id="nextSetWinnerText" style="font-size: 24px; color: var(--green);"></div>
+    <div class="confirm-text" id="nextSetScoreText" style="text-align: center; margin: 10px 0; transform: var(--skew);"></div>
     
     <div id="setResultTableArea"></div>
 
     <hr class="section-divider">
-    <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--txt2);">次のセットの先攻プレイヤー（投げ順）を選択してください</div>
-    <div class="confirm-buttons" style="grid-template-columns: 1fr 1fr;">
-      <button class="primary" id="nextSetP1Btn" onclick="executeNextSet(0)">Aが先攻</button>
-      <button class="primary" id="nextSetP2Btn" onclick="executeNextSet(1)" style="background: linear-gradient(135deg,var(--cb),#1e40af); box-shadow: 0 4px 14px rgba(29,78,216,.3);">Bが先攻</button>
+    <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--txt2);">次のセットの投げ順（先攻順）を全員個別に再設定してください</div>
+    
+    <div id="orderConfigContainer" style="text-align: left; max-width: 320px; margin: auto; display: flex; flex-direction: column; gap: 8px;"></div>
+
+    <hr class="section-divider">
+    <div class="confirm-buttons" style="grid-template-columns: 1fr;">
+      <button class="primary" onclick="validateAndExecuteNextSet()">次セットをこの順序で開始 🎯</button>
     </div>
   </div>
 </div>
@@ -1298,7 +1055,7 @@ button:active{ transform:scale(.97); }
  
 <script>
 /* ═══════════════════════════════════════════════════════
-   AUDIO SOUNDS
+   AUDIO SOUNDS CONFIGURATION
 ═══════════════════════════════════════════════════════ */
 const sounds = {
   mark: new Audio('Cyber21-1.mp3'),
@@ -1315,11 +1072,49 @@ function playSE(type) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   SETUP SCREEN
+   THEME SWITCHING RUNTIME MODULE
 ═══════════════════════════════════════════════════════ */
-const nums = [6,7,8,9,10,11,12];
+let currentStyleSelected = 'soft';
+let currentColorSelected = 'light';
+
+function selectStyleConfig(styleName) {
+  currentStyleSelected = styleName;
+  document.getElementById('style-opt-soft').classList.toggle('active', styleName === 'soft');
+  document.getElementById('style-opt-cyber').classList.toggle('active', styleName === 'cyber');
+  applyCombinedTheme();
+}
+
+function selectColorConfig(colorName) {
+  currentColorSelected = colorName;
+  document.getElementById('color-opt-light').classList.toggle('active', colorName === 'light');
+  document.getElementById('color-opt-dark').classList.toggle('active', colorName === 'dark');
+  applyCombinedTheme();
+}
+
+function applyCombinedTheme() {
+  const combinedKey = `${currentStyleSelected}-${currentColorSelected}`;
+  const themeMap = {
+    'soft-light': '',
+    'soft-dark': 'soft-dark',
+    'cyber-light': 'cyber-light',
+    'cyber-dark': 'cyber-dark'
+  };
+
+  const actualTheme = themeMap[combinedKey];
+  if (!actualTheme) {
+    document.body.removeAttribute('data-theme');
+  } else {
+    document.body.setAttribute('data-theme', actualTheme);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   DYNAMIC CONFIG SETUP INTERFACE BUILDER
+═══════════════════════════════════════════════════════ */
+const nums = [6, 7, 8, 9, 10, 11, 12];
+let activeCount = 2; 
  
-function buildSkittleSetupUI(){
+function buildSkittleSetupUI() {
   const grid = document.getElementById("skittleMarkSetup");
   grid.innerHTML = "";
   nums.forEach(n => {
@@ -1329,56 +1124,213 @@ function buildSkittleSetupUI(){
       <div class="sk-num-label">${n}</div>
       <div class="sk-radio-group">
         <label class="sk-radio-opt" id="label_sk_${n}_2">
-          <input type="radio" name="sk_${n}" value="2" checked> 2
+          <input type="radio" name="sk_${n}" value="2" checked onchange="syncHandicapMarkMax(${n})"> 2
         </label>
         <label class="sk-radio-opt" id="label_sk_${n}_3">
-          <input type="radio" name="sk_${n}" value="3"> 3
+          <input type="radio" name="sk_${n}" value="3" onchange="syncHandicapMarkMax(${n})"> 3
         </label>
       </div>
     `;
     grid.appendChild(cell);
   });
+
+  renderHandicapMarksContainer();
 }
-buildSkittleSetupUI();
+
+function renderHandicapMarksContainer() {
+  const handicapMarksContainer = document.getElementById("handicapMarksContainer");
+  handicapMarksContainer.innerHTML = "";
+  
+  let gridStyle = `grid-template-columns: 50px repeat(${activeCount}, 1fr);`;
+  if (activeCount > 2) gridStyle = `grid-template-columns: 40px repeat(${activeCount}, 1fr); gap:4px; font-size:12px;`;
+
+  nums.forEach(n => {
+    const row = document.createElement("div");
+    row.className = "handicap-inputs";
+    row.style = gridStyle;
+    
+    let inner = `<div class="sk-label" style="font-size:14px; font-weight:900;">[${n}]</div>`;
+    inner += `<div><input type="number" id="handicapMarkA_${n}" value="0" min="0" max="2" placeholder="A" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
+    inner += `<div><input type="number" id="handicapMarkB_${n}" value="0" min="0" max="2" placeholder="B" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
+    
+    if (activeCount >= 3) {
+      inner += `<div><input type="number" id="handicapMarkC_${n}" value="0" min="0" max="2" placeholder="C" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
+    }
+    if (activeCount === 4) {
+      inner += `<div><input type="number" id="handicapMarkD_${n}" value="0" min="0" max="2" placeholder="D" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
+    }
+    
+    row.innerHTML = inner;
+    handicapMarksContainer.appendChild(row);
+  });
+  
+  nums.forEach(n => syncHandicapMarkMax(n));
+}
+
+function syncHandicapMarkMax(num) {
+  const checkedRadio = document.querySelector(`input[name='sk_${num}']:checked`);
+  const maxVal = checkedRadio ? parseInt(checkedRadio.value) : 2;
+  ['A', 'B', 'C', 'D'].forEach(p => {
+    const el = document.getElementById(`handicapMark${p}_${num}`);
+    if (el) {
+      el.max = maxVal;
+      if (parseInt(el.value) > maxVal) el.value = maxVal;
+    }
+  });
+}
+
+function handlePlayerCountChange() {
+  if (gameMode === 'normal') {
+    activeCount = 2;
+  } else {
+    activeCount = parseInt(document.querySelector("input[name='playerCount']:checked").value);
+  }
+  
+  document.getElementById("playerCWrapper").classList.toggle("hidden", activeCount < 3);
+  document.getElementById("playerDWrapper").classList.toggle("hidden", activeCount < 4);
+  
+  document.getElementById("handicapScoreCWrap").classList.toggle("hidden", activeCount < 3);
+  document.getElementById("handicapScoreDWrap").classList.toggle("hidden", activeCount < 4);
+  
+  const hGrid = document.getElementById("handicapScoresGrid");
+  if (activeCount === 2) hGrid.style.gridTemplateColumns = "1fr 1fr";
+  else if (activeCount === 3) hGrid.style.gridTemplateColumns = "1fr 1fr 1fr";
+  else hGrid.style.gridTemplateColumns = "1fr 1fr 1fr 1fr";
+
+  renderHandicapMarksContainer();
+  syncSwapperButtonsVisibility();
+  
+  ["btnCount2", "btnCount3", "btnCount4"].forEach(id => {
+    const chip = document.getElementById(id);
+    if (chip) {
+      const radio = chip.querySelector("input");
+      chip.classList.toggle("active", radio && radio.checked);
+    }
+  });
+}
+
+function syncSwapperButtonsVisibility() {
+  document.getElementById("swapABBtn").classList.toggle("hidden", false); 
+  document.getElementById("swapBCBtn").classList.toggle("hidden", activeCount < 3);
+  document.getElementById("swapCDBtn").classList.toggle("hidden", activeCount < 4);
+}
+
+function handleHandicapToggle() {
+  if (gameMode === 'normal') {
+    document.getElementById("handicapConfigArea").classList.add("hidden");
+    return;
+  }
+  const isEnabled = document.querySelector("input[name='handicapSwitch']:checked").value === 'on';
+  document.getElementById("handicapConfigArea").classList.toggle("hidden", !isEnabled);
+  
+  document.getElementById("lblHandicapOff").classList.toggle("active", !isEnabled);
+  document.getElementById("lblHandicapOn").classList.toggle("active", isEnabled);
+}
+
+function syncCheckboxChips() {
+  const cDb = document.getElementById("chkDouble");
+  const cTr = document.getElementById("chkTriple");
+  document.getElementById("lblChkDouble").classList.toggle("active", cDb && cDb.checked);
+  document.getElementById("lblChkTriple").classList.toggle("active", cTr && cTr.checked);
+}
+
+function syncThrowChips() {
+  const chosen = document.querySelector("input[name='throwCount']:checked").value;
+  ["btnThrow1", "btnThrow2", "btnThrow3"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const rad = el.querySelector("input");
+      el.classList.toggle("active", rad && rad.checked);
+    }
+  });
+}
+
+function setAllOpenMarksBulk(value) {
+  nums.forEach(n => {
+    const radio = document.querySelector(`input[name='sk_${n}'][value='${value}']`);
+    if (radio) { radio.checked = true; syncHandicapMarkMax(n); }
+  });
+  nums.forEach(n => {
+    ["2", "3"].forEach(v => {
+      const lbl = document.getElementById(`label_sk_${n}_${v}`);
+      if (lbl) {
+        const rad = lbl.querySelector("input");
+        lbl.classList.toggle("active", rad && rad.checked);
+      }
+    });
+  });
+}
+
+function swapPlayersData(idx1, idx2) {
+  const keys = ['A', 'B', 'C', 'D'];
+  const k1 = keys[idx1];
+  const k2 = keys[idx2];
+  
+  const card = document.getElementById("setupCardContainer");
+  card.classList.add("shuffle-animate");
+  setTimeout(() => card.classList.remove("shuffle-animate"), 200);
+
+  // Swap Names
+  const nameInput1 = document.getElementById(`player${k1}Input`);
+  const nameInput2 = document.getElementById(`player${k2}Input`);
+  const tempName = nameInput1.value;
+  nameInput1.value = nameInput2.value;
+  nameInput2.value = tempName;
+
+  // Swap Handicap Scores
+  const scoreInput1 = document.getElementById(`handicapScore${k1}`);
+  const scoreInput2 = document.getElementById(`handicapScore${k2}`);
+  if (scoreInput1 && scoreInput2) {
+    const tempScore = scoreInput1.value;
+    scoreInput1.value = scoreInput2.value;
+    scoreInput2.value = tempScore;
+  }
+
+  // Swap Handicap Marks
+  nums.forEach(n => {
+    const mark1 = document.getElementById(`handicapMark${k1}_${n}`);
+    const mark2 = document.getElementById(`handicapMark${k2}_${n}`);
+    if (mark1 && mark2) {
+      const tempMark = mark1.value;
+      mark1.value = mark2.value;
+      mark2.value = tempMark;
+    }
+  });
+}
  
 /* ═══════════════════════════════════════════════════════
-   GAME STATE
+   GAME STATE TRANSLATION & VARIABLES
 ═══════════════════════════════════════════════════════ */
 let gameMode = 'normal'; 
 let targetSetsNeeded = 1; 
 let matchHistory = [];    
-
 let throwRecords = {};
+let playerRotationOrder = [0, 1, 2, 3]; 
+
 function initThrowRecordsData() {
   throwRecords = {};
-  for(let t=1; t<=12; t++) {
-    throwRecords[t] = {
-      0: { 1: {markStr:'-', gain:0, total:0}, 2: {markStr:'-', gain:0, total:0}, 3: {markStr:'-', gain:0, total:0} },
-      1: { 1: {markStr:'-', gain:0, total:0}, 2: {markStr:'-', gain:0, total:0}, 3: {markStr:'-', gain:0, total:0} }
-    };
+  for (let t = 1; t <= 12; t++) {
+    throwRecords[t] = {};
+    for (let p = 0; p < 4; p++) {
+      throwRecords[t][p] = {
+        1: {markStr:'-', gain:0, total:0},
+        2: {markStr:'-', gain:0, total:0},
+        3: {markStr:'-', gain:0, total:0}
+      };
+    }
   }
 }
 
-let cfg = {
-  doubleEnabled: true,
-  tripleEnabled: false,
-  throwsPerTurn: 2,
-  openMarks: {}
-};
- 
+let cfg = { doubleEnabled: true, tripleEnabled: false, throwsPerTurn: 2, openMarks: {} };
 let players = [
-  { name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0 },
-  { name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0 }
+  { id: 0, key: 'A', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pA-color', activeClass: 'active-turn-a', scoreClass: 'score-a' },
+  { id: 1, key: 'B', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pB-color', activeClass: 'active-turn-b', scoreClass: 'score-b' },
+  { id: 2, key: 'C', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pC-color', activeClass: 'active-turn-c', scoreClass: 'score-c' },
+  { id: 3, key: 'D', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pD-color', activeClass: 'active-turn-d', scoreClass: 'score-d' }
 ];
  
-nums.forEach(n => {
-  players[0].marks[n] = 0;
-  players[1].marks[n] = 0;
-});
- 
 let turn = 1;
-let currentPlayer = 0;
-let setFirstPlayer = 0; 
+let currentPlayerIndex = 0; 
 let throwNum = 1;
  
 let selectedSingle = null;  
@@ -1391,122 +1343,122 @@ let statHistory = [];
 let statFreezeIndex = null;
  
 /* ═══════════════════════════════════════════════════════
-   THEME & SCREEN NAVIGATION
+   ROUTER AND SCREEN NAVIGATION MODULE
 ═══════════════════════════════════════════════════════ */
-function toggleTheme(){
-  document.body.classList.toggle("dark");
-  const dark = document.body.classList.contains("dark");
-  const txt = dark ? "☀ LIGHT" : "🌙 DARK";
-  ["themeBtn","themeBtn2","themeBtnTop","themeBtnRule"].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.innerText = txt;
-  });
-}
-
 function switchScreen(screenId) {
-  ["topMenuScreen", "setupScreen", "gameScreen", "ruleScreen"].forEach(id => {
-    document.getElementById(id).classList.add("hidden");
+  ["topMenuScreen", "setupScreen", "gameScreen", "ruleScreen", "themeConfigScreen"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle("hidden", id !== screenId);
   });
-  document.getElementById(screenId).classList.remove("hidden");
 }
 
 function openSetup(mode) {
   gameMode = mode;
-  const mainTitle = document.getElementById("setupMainTitle");
-  const subTitle = document.getElementById("setupSubTitle");
-  const formatArea = document.getElementById("matchFormatArea");
   
-  if (mode === 'match') {
-    mainTitle.innerText = "セット対戦";
-    subTitle.innerText = "SET MATCH SETTING";
-    formatArea.classList.remove("hidden");
+  const customOnlyElements = [
+    document.getElementById("customPlayerCountArea"),
+    document.getElementById("matchFormatArea"),
+    document.getElementById("handicapToggleArea"),
+    document.getElementById("bonusMarksArea"),
+    document.getElementById("throwsPerTurnArea"),
+    document.getElementById("openMarksConfigArea")
+  ];
+
+  if (mode === 'normal') {
+    document.getElementById("setupMainTitle").innerText = "ノーマル対戦";
+    document.getElementById("setupSubTitle").innerText = "NORMAL MATCH SETUP";
+    
+    customOnlyElements.forEach(el => { if (el) el.classList.add("hidden"); });
+    document.getElementById("handicapConfigArea").classList.add("hidden");
+    
+    document.getElementById("btnCount2").querySelector("input").checked = true;
   } else {
-    mainTitle.innerText = "1試合対戦";
-    subTitle.innerText = "SINGLE MATCH SETTING";
-    formatArea.classList.add("hidden");
+    document.getElementById("setupMainTitle").innerText = "カスタム対戦";
+    document.getElementById("setupSubTitle").innerText = "CUSTOM MATCH SETUP";
+    
+    customOnlyElements.forEach(el => { if (el) el.classList.remove("hidden"); });
+    handleHandicapToggle();
   }
 
-  document.getElementById("toggleCustomMarks").checked = false;
-  document.getElementById("customSkittleMarksWrapper").classList.add("hidden");
+  handlePlayerCountChange();
+  syncCheckboxChips();
+  syncThrowChips();
   setAllOpenMarksBulk(2); 
 
   switchScreen("setupScreen");
 }
 
-function backToTopMenu() {
-  switchScreen("topMenuScreen");
-}
+function backToTopMenu() { switchScreen("topMenuScreen"); }
+function backToTopMenuFromWinner() { document.getElementById("winnerModal").classList.add("hidden"); backToTopMenu(); }
 
-function backToTopMenuFromWinner() {
-  document.getElementById("winnerModal").classList.add("hidden");
-  backToTopMenu();
-}
-
-function shufflePlayerOrder() {
-  const pAInput = document.getElementById("playerAInput");
-  const pBInput = document.getElementById("playerBInput");
-  const card = document.getElementById("setupCardContainer");
-
-  card.classList.add("shuffle-animate");
-  setTimeout(() => card.classList.remove("shuffle-animate"), 300);
-
-  const tmp = pAInput.value;
-  pAInput.value = pBInput.value;
-  pBInput.value = tmp;
-}
-
-function toggleCustomMarksArea() {
-  const isChecked = document.getElementById("toggleCustomMarks").checked;
-  document.getElementById("customSkittleMarksWrapper").classList.toggle("hidden", !isChecked);
-}
-
-function setAllOpenMarksBulk(value) {
-  nums.forEach(n => {
-    const radio = document.querySelector(`input[name='sk_${n}'][value='${value}']`);
-    if (radio) radio.checked = true;
-  });
-}
- 
 /* ═══════════════════════════════════════════════════════
-   START GAME
+   CORE INIT CONTROLLER GAME LOGIC
 ═══════════════════════════════════════════════════════ */
-function startGame(){
+function startGame() {
   players[0].name = document.getElementById("playerAInput").value.trim() || "PLAYER A";
   players[1].name = document.getElementById("playerBInput").value.trim() || "PLAYER B";
+  players[2].name = document.getElementById("playerCInput").value.trim() || "PLAYER C";
+  players[3].name = document.getElementById("playerDInput").value.trim() || "PLAYER D";
  
-  cfg.doubleEnabled = document.getElementById("chkDouble").checked;
-  cfg.tripleEnabled = document.getElementById("chkTriple").checked;
-  cfg.throwsPerTurn = parseInt(document.querySelector("input[name='throwCount']:checked").value);
- 
-  nums.forEach(n => {
-    cfg.openMarks[n] = parseInt(document.querySelector(`input[name='sk_${n}']:checked`).value);
-  });
+  if (gameMode === 'normal') {
+    activeCount = 2;
+    cfg.doubleEnabled = true;
+    cfg.tripleEnabled = false;
+    cfg.throwsPerTurn = 2;
+    targetSetsNeeded = 1; 
+    nums.forEach(n => { cfg.openMarks[n] = 2; });
+  } else {
+    activeCount = parseInt(document.querySelector("input[name='playerCount']:checked").value);
+    cfg.doubleEnabled = document.getElementById("chkDouble").checked;
+    cfg.tripleEnabled = document.getElementById("chkTriple").checked;
+    cfg.throwsPerTurn = parseInt(document.querySelector("input[name='throwCount']:checked").value);
+    
+    const targetVal = parseInt(document.getElementById("matchTargetInput").value);
+    targetSetsNeeded = (isNaN(targetVal) || targetVal < 1) ? 1 : targetVal;
+
+    nums.forEach(n => {
+      cfg.openMarks[n] = parseInt(document.querySelector(`input[name='sk_${n}']:checked`).value);
+    });
+  }
  
   matchHistory = [];
+  playerRotationOrder = [];
+  for (let i = 0; i < activeCount; i++) playerRotationOrder.push(i);
 
-  if (gameMode === 'match') {
-    targetSetsNeeded = parseInt(document.querySelector("input[name='matchTarget']:checked").value);
-  } else {
-    targetSetsNeeded = 1;
+  players.forEach(p => p.setsWon = 0);
+
+  initNewSet(playerRotationOrder); 
+
+  const isHandicapOn = (gameMode === 'custom' && document.querySelector("input[name='handicapSwitch']:checked").value === 'on');
+  if (isHandicapOn) {
+    for (let i = 0; i < activeCount; i++) {
+      const p = players[playerRotationOrder[i]];
+      const scoreInput = document.getElementById(`handicapScore${p.key}`);
+      p.score = scoreInput ? (parseInt(scoreInput.value) || 0) : 0;
+      
+      nums.forEach(n => {
+        const markInput = document.getElementById(`handicapMark${p.key}_${n}`);
+        const initMark = markInput ? Math.min(cfg.openMarks[n], parseInt(markInput.value) || 0) : 0;
+        p.marks[n] = initMark;
+        p.totalMarks += initMark;
+      });
+    }
   }
 
-  players[0].setsWon = 0;
-  players[1].setsWon = 0;
+  buildScoreboardUI();
+  buildIntegratedBoardUI();
+  updateUI();
 
-  initNewSet(0); 
   switchScreen("gameScreen");
  
   document.getElementById("btnDouble").style.display = cfg.doubleEnabled ? "" : "none";
   document.getElementById("btnTriple").style.display = cfg.tripleEnabled ? "" : "none";
- 
-  buildIntegratedBoardUI();
-  updateUI();
 }
 
-function initNewSet(startingPlayerIdx) {
+function initNewSet(order) {
   turn = 1;
-  currentPlayer = startingPlayerIdx;
-  setFirstPlayer = startingPlayerIdx; 
+  playerRotationOrder = [...order];
+  currentPlayerIndex = 0; 
   throwNum = 1;
   
   history = [];
@@ -1515,20 +1467,35 @@ function initNewSet(startingPlayerIdx) {
   initThrowRecordsData();
 
   players.forEach(p => {
-    p.score = 0;
-    p.totalMarks = 0;
-    p.throws = 0;
-    p.currentMiss = 0;
-    p.maxMiss = 0;
+    p.score = 0; p.totalMarks = 0; p.throws = 0; p.currentMiss = 0; p.maxMiss = 0;
     nums.forEach(n => p.marks[n] = 0);
   });
   resetSelections();
 }
+
+function buildScoreboardUI() {
+  const container = document.getElementById("gameScoreboard");
+  container.innerHTML = "";
+  container.style.gridTemplateColumns = "1fr 1fr";
+
+  playerRotationOrder.forEach(pIdx => {
+    const p = players[pIdx];
+    const box = document.createElement("div");
+    box.className = `score-box ${p.scoreClass}`;
+    box.id = `scoreBox_${p.id}`;
+    box.innerHTML = `
+      <div class="score-name" id="scoreName_${p.id}">${p.name}</div>
+      <div class="score-value" id="scoreVal_${p.id}">0</div>
+      <div class="dot-container" id="scoreDots_${p.id}"></div>
+    `;
+    container.appendChild(box);
+  });
+}
  
 /* ═══════════════════════════════════════════════════════
-   BUILD INTEGRATED BOARD & VISUAL TOGGLE LOGIC
+   MATRIX UI BUILDER MODULE
 ═══════════════════════════════════════════════════════ */
-function buildIntegratedBoardUI(){
+function buildIntegratedBoardUI() {
   const board = document.getElementById("integratedBoard");
   board.innerHTML = "";
  
@@ -1537,12 +1504,33 @@ function buildIntegratedBoardUI(){
     row.className = "skittle-row-btn";
     row.id = `skRow_${num}`;
     row.onclick = () => handleSkittleRowClick(num);
- 
-    row.innerHTML = `
-      <div class="mini-mark side-a" id="skLeft_${num}">—</div>
-      <div class="center-num-btn" id="skCenter_${num}">${num}</div>
-      <div class="mini-mark side-b" id="skRight_${num}">—</div>
-    `;
+    
+    if (activeCount === 2) {
+      row.style.gridTemplateColumns = "60px 1fr 60px";
+      row.innerHTML = `
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[0]}_${num}">—</div>
+        <div class="center-num-btn" id="skCenter_${num}">${num}</div>
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[1]}_${num}">—</div>
+      `;
+    } else if (activeCount === 3) {
+      row.style.gridTemplateColumns = "50px 50px 1fr 50px";
+      row.innerHTML = `
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[0]}_${num}">—</div>
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[1]}_${num}">—</div>
+        <div class="center-num-btn" id="skCenter_${num}">${num}</div>
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[2]}_${num}">—</div>
+      `;
+    } else if (activeCount === 4) {
+      row.style.gridTemplateColumns = "45px 45px 1fr 45px 45px";
+      row.innerHTML = `
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[0]}_${num}">—</div>
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[1]}_${num}">—</div>
+        <div class="center-num-btn" id="skCenter_${num}">${num}</div>
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[2]}_${num}">—</div>
+        <div class="mini-mark side-lane" id="skMark_${playerRotationOrder[3]}_${num}">—</div>
+      `;
+    }
+    
     board.appendChild(row);
   });
 }
@@ -1563,122 +1551,83 @@ function handleSkittleRowClick(num) {
 function syncBoardSelectionUI() {
   nums.forEach(num => {
     const row = document.getElementById(`skRow_${num}`);
-    if (row) {
-      if (selectedMulti.includes(num)) {
-        row.classList.add("selected");
-      } else {
-        row.classList.remove("selected");
+    if (row) row.classList.toggle("selected", selectedMulti.includes(num));
+  });
+}
+ 
+function selectMarkType(type) {
+  selectedMarkType = type;
+  ["btnSingle", "btnDouble", "btnTriple"].forEach(k => {
+    const btn = document.getElementById(k);
+    if (btn) {
+      btn.className = "mark-type-btn";
+      if (k === `btn${type.charAt(0).toUpperCase() + type.slice(1)}`) {
+        btn.classList.add(`active-${type}`);
       }
     }
   });
 }
  
-function selectMarkType(type){
-  selectedMarkType = type;
- 
-  const buttons = {
-    single: document.getElementById("btnSingle"),
-    double: document.getElementById("btnDouble"),
-    triple: document.getElementById("btnTriple")
-  };
- 
-  Object.keys(buttons).forEach(k => {
-    if (buttons[k]) buttons[k].className = "mark-type-btn";
-  });
- 
-  if (buttons[type]) buttons[type].classList.add(`active-${type}`);
-}
- 
 /* ═══════════════════════════════════════════════════════
-   CONFIRM MODAL
+   CONFIRMATION MODAL OVERLAYS
 ═══════════════════════════════════════════════════════ */
-function openConfirm(text, callback){
+function openConfirm(text, callback) {
   pendingAction = callback;
   document.getElementById("confirmText").innerText = text;
   document.getElementById("confirmModal").classList.remove("hidden");
 }
- 
-function closeConfirm(){
-  document.getElementById("confirmModal").classList.add("hidden");
-}
- 
-function executePending(){
-  closeConfirm();
-  if(pendingAction) pendingAction();
-}
+function closeConfirm() { document.getElementById("confirmModal").classList.add("hidden"); }
+function executePending() { closeConfirm(); if (pendingAction) pendingAction(); }
  
 /* ═══════════════════════════════════════════════════════
-   ACTION CONFIRMS & MUTUAL VALIDATION GUARDS
+   HIT PROCESS EVENTS AND USER GUARDS
 ═══════════════════════════════════════════════════════ */
-function confirmSingle(){
+function confirmSingle() {
+  const activePlayer = players[playerRotationOrder[currentPlayerIndex]];
   if (selectedMulti.length > 1) {
     alert("単品ヒット（SINGLE HIT）の場合は、スキットルを1本だけ選択してください。\n複数本的中した場合は『MULTI確定』を押してください。");
     return;
   }
-
-  if(selectedSingle === null || selectedMulti.length === 0 || !selectedMarkType){
+  if (selectedSingle === null || selectedMulti.length === 0 || !selectedMarkType) {
     alert("ボード上でスキットル番号を1本タップして選択し、マーク種別を選択してください");
     return;
   }
   
   const markVal = markTypeValue(selectedMarkType);
-  const markLabel = markTypeLabel(selectedMarkType);
   openConfirm(
-`${players[currentPlayer].name}
- 
-SINGLE HIT
- 
-対象: ${selectedSingle}
-${markLabel}（${markVal} MARK${markVal > 1 ? 'S' : ''}）
- 
-で確定しますか？`,
+    `${activePlayer.name}\n\nSINGLE HIT\n\n対象: ${selectedSingle}\n${markTypeLabel(selectedMarkType)}（${markVal} MARK${markVal > 1 ? 'S' : ''}）\n\nで確定しますか？`,
     () => processSingle(selectedSingle, selectedMarkType)
   );
 }
  
-function confirmMulti(){
-  if(selectedMulti.length === 0){
+function confirmMulti() {
+  const activePlayer = players[playerRotationOrder[currentPlayerIndex]];
+  if (selectedMulti.length === 0) {
     alert("ボード上で倒したスキットルを1本以上タップして選択してください");
     return;
   }
-
   if (selectedMulti.length === 1) {
     alert("複数本的中（MULTI HIT）の場合は、スキットルを2本以上選択してください。\n1本のみ的中した場合は『SINGLE確定』を押してください。");
     return;
   }
 
   openConfirm(
-`${players[currentPlayer].name}
- 
-MULTI HIT
- 
-選択数: ${selectedMulti.length}本 (${selectedMulti.sort((a,b)=>a-b).join(", ")})
- 
-で確定しますか？`,
+    `${activePlayer.name}\n\nMULTI HIT\n\n選択数: ${selectedMulti.length}本 (${selectedMulti.sort((a,b)=>a-b).join(", ")})\n\nで確定しますか？`,
     () => processMulti([...selectedMulti])
   );
 }
  
-function quickMiss(){
+function quickMiss() {
+  const pIdx = playerRotationOrder[currentPlayerIndex];
+  const activePlayer = players[pIdx];
   openConfirm(
-`${players[currentPlayer].name}
- 
-MISS / 0 MARKS
- 
-で確定しますか？`,
+    `${activePlayer.name}\n\nMISS / 0 MARKS\n\nで確定しますか？`,
     () => {
       saveHistory();
+      activePlayer.throws++; activePlayer.currentMiss++;
+      if (activePlayer.currentMiss > activePlayer.maxMiss) activePlayer.maxMiss = activePlayer.currentMiss;
       
-      const p = players[currentPlayer];
-      p.throws++;
-      p.currentMiss++;
-      if(p.currentMiss > p.maxMiss) p.maxMiss = p.currentMiss;
-      
-      throwRecords[turn][currentPlayer][throwNum] = {
-        markStr: 'M', 
-        gain: 0,
-        total: p.score
-      };
+      throwRecords[turn][pIdx][throwNum] = { markStr: 'M', gain: 0, total: activePlayer.score };
       
       playSE('miss');
       recordStatSnapshot();
@@ -1688,146 +1637,101 @@ MISS / 0 MARKS
 }
  
 /* ═══════════════════════════════════════════════════════
-   HELPERS
+   CRICKET MATHEMATICS MATCH CORE RULES HELPERS
 ═══════════════════════════════════════════════════════ */
-function markTypeValue(type){
-  if(type === "double") return 2;
-  if(type === "triple") return 3;
-  return 1;
+function markTypeValue(type) { return type === "double" ? 2 : type === "triple" ? 3 : 1; }
+function markTypeLabel(type) { return type.toUpperCase(); }
+function openThreshold(num) { return cfg.openMarks[num] || 2; }
+function isOpen(playerObj, num) { return playerObj.marks[num] >= openThreshold(num); }
+
+function isClosedGlobally(num) {
+  for (let i = 0; i < activeCount; i++) {
+    if (!isOpen(players[playerRotationOrder[i]], num)) return false;
+  }
+  return true;
 }
- 
-function markTypeLabel(type){
-  return type.toUpperCase();
+
+function hasUnopenedOpponent(myIdx, num) {
+  for (let i = 0; i < activeCount; i++) {
+    let pIdx = playerRotationOrder[i];
+    if (pIdx === myIdx) continue;
+    if (!isOpen(players[pIdx], num)) return true;
+  }
+  return false;
 }
- 
-function openThreshold(num){
-  return cfg.openMarks[num] || 2;
-}
- 
-function isOpen(marks, num){
-  return marks[num] >= openThreshold(num);
-}
- 
-function isClosed(marksA, marksB, num){
-  return isOpen(marksA, num) && isOpen(marksB, num);
-}
- 
-function isSpecialRule(){
-  return turn === 1 && currentPlayer === setFirstPlayer; 
+
+function isSpecialRule() { 
+  return turn === 1 && currentPlayerIndex === 0; 
 }
  
 /* ═══════════════════════════════════════════════════════
-   PROCESS SINGLE HIT
+   CORE PROCESS SINGLE HIT
 ═══════════════════════════════════════════════════════ */
-function processSingle(num, type){
+function processSingle(num, type) {
   saveHistory();
  
-  const p = players[currentPlayer];
-  const e = players[1 - currentPlayer];
+  const pIdx = playerRotationOrder[currentPlayerIndex];
+  const p = players[pIdx];
   const value = markTypeValue(type);
   const req = openThreshold(num);
  
   p.throws++;
-  
   let seType = 'mark';
   let scoreGain = 0;
   let markDisplayStr = (type === 'single') ? '/' : (type === 'double' ? '✕' : '⨂');
 
-  if(isSpecialRule()){
-    p.score += value;
-    p.currentMiss = 0;
-    
-    throwRecords[turn][currentPlayer][throwNum] = {
-      markStr: markDisplayStr,
-      gain: value,
-      total: p.score
-    };
-    
-    playSE('mark');
-    recordStatSnapshot();
-    nextThrow();
-    return;
+  if (isSpecialRule()) {
+    p.score += value; p.currentMiss = 0;
+    throwRecords[turn][pIdx][throwNum] = { markStr: markDisplayStr, gain: value, total: p.score };
+    playSE('mark'); recordStatSnapshot(); nextThrow(); return;
   }
  
   p.totalMarks += value;
  
-  if(isClosed(p.marks, e.marks, num)){
+  if (isClosedGlobally(num)) {
     p.currentMiss = 0;
-    throwRecords[turn][currentPlayer][throwNum] = {
-      markStr: markDisplayStr,
-      gain: 0,
-      total: p.score
-    };
-    playSE('mark');
-    recordStatSnapshot();
-    nextThrow();
-    return;
+    throwRecords[turn][pIdx][throwNum] = { markStr: markDisplayStr, gain: 0, total: p.score };
+    playSE('mark'); recordStatSnapshot(); nextThrow(); return;
   }
  
   let remain = value;
  
-  if (!isOpen(p.marks, num)) {
+  if (!isOpen(p, num)) {
     const need = req - p.marks[num];
     if (remain >= need) {
-      p.marks[num] = req;
-      remain -= need;
-      seType = 'open';
-      
-      if (remain > 0 && !isOpen(e.marks, num)) {
+      p.marks[num] = req; remain -= need; seType = 'open';
+      if (remain > 0 && hasUnopenedOpponent(pIdx, num)) {
         scoreGain = num * remain;
       }
     } else {
       p.marks[num] += remain;
     }
   } else {
-    if (!isOpen(e.marks, num)) {
-      scoreGain = num * remain;
-    }
+    if (hasUnopenedOpponent(pIdx, num)) scoreGain = num * remain;
   }
  
-  if (isOpen(p.marks, num) && isOpen(e.marks, num)) {
-    seType = 'close';
-  }
+  if (isClosedGlobally(num)) seType = 'close';
  
-  p.score += scoreGain;
-  p.currentMiss = 0;
-  
-  throwRecords[turn][currentPlayer][throwNum] = {
-    markStr: markDisplayStr,
-    gain: scoreGain,
-    total: p.score
-  };
+  p.score += scoreGain; p.currentMiss = 0;
+  throwRecords[turn][pIdx][throwNum] = { markStr: markDisplayStr, gain: scoreGain, total: p.score };
 
-  playSE(seType);
-  recordStatSnapshot();
-  nextThrow();
+  playSE(seType); recordStatSnapshot(); nextThrow();
 }
  
 /* ═══════════════════════════════════════════════════════
-   PROCESS MULTI HIT (修正：オープン本数をそのまま加算)
+   CORE PROCESS MULTI HIT
 ═══════════════════════════════════════════════════════ */
-function processMulti(list){
+function processMulti(list) {
   saveHistory();
  
-  const p = players[currentPlayer];
-  const e = players[1 - currentPlayer];
- 
+  const pIdx = playerRotationOrder[currentPlayerIndex];
+  const p = players[pIdx];
   p.throws++;
  
-  if(isSpecialRule()){
-    p.score += list.length;
-    p.currentMiss = 0;
-    
-    throwRecords[turn][currentPlayer][throwNum] = {
-      markStr: `⭕${list.length}`,
-      gain: list.length,
-      total: p.score
-    };
-    
-    playSE('mark');
-    recordStatSnapshot();
-    nextThrow();
-    return;
+  if (isSpecialRule()) {
+    p.score += list.length; p.currentMiss = 0;
+    throwRecords[turn][pIdx][throwNum] = { markStr: `⭕${list.length}`, gain: list.length, total: p.score };
+    playSE('mark'); recordStatSnapshot(); nextThrow(); return;
   }
  
   p.totalMarks += list.length;
@@ -1835,74 +1739,53 @@ function processMulti(list){
   let openedAny = false;
 
   list.forEach(num => {
-    if(isClosed(p.marks, e.marks, num)) return;
- 
-    if(isOpen(p.marks, num)){
-      // 【修正箇所】数字(num)ではなく、オープンしているスキットル1本につき「1点」を加算
-      if(!isOpen(e.marks, num)) scoreGain += 1; 
+    if (isClosedGlobally(num)) return;
+    if (isOpen(p, num)) {
+      if (hasUnopenedOpponent(pIdx, num)) scoreGain += 1; 
       return;
     }
  
     p.marks[num] += 1;
-    if(isOpen(p.marks, num)){
-      p.marks[num] = openThreshold(num);
-      openedAny = true;
+    if (isOpen(p, num)) {
+      p.marks[num] = openThreshold(num); openedAny = true;
     }
   });
  
-  p.score += scoreGain;
-  p.currentMiss = 0;
-  
-  throwRecords[turn][currentPlayer][throwNum] = {
-    markStr: `⭕${list.length}`,
-    gain: scoreGain,
-    total: p.score
-  };
+  p.score += scoreGain; p.currentMiss = 0;
+  throwRecords[turn][pIdx][throwNum] = { markStr: `⭕${list.length}`, gain: scoreGain, total: p.score };
 
-  if(openedAny) {
-    let closedAny = list.some(num => isClosed(players[0].marks, players[1].marks, num));
+  if (openedAny) {
+    let closedAny = list.some(num => isClosedGlobally(num));
     playSE(closedAny ? 'close' : 'open');
   } else {
     playSE('mark');
   }
 
-  recordStatSnapshot();
-  nextThrow();
+  recordStatSnapshot(); nextThrow();
 }
  
 /* ═══════════════════════════════════════════════════════
-   TURN MANAGEMENT 
+   TIMELINE TURN SEQUENCE ROTATOR
 ═══════════════════════════════════════════════════════ */
-function nextThrow(){
-  const isMatchOver = checkColdWinSilent();
-  if (isMatchOver) {
-    triggerTurnEndAnimation(() => {
-      checkColdWin();
-    });
+function nextThrow() {
+  if (checkColdWinSilent()) {
+    triggerTurnEndAnimation(() => { checkColdWin(); });
     return; 
   }
 
-  if(throwNum >= cfg.throwsPerTurn){
+  if (throwNum >= cfg.throwsPerTurn) {
     triggerTurnEndAnimation(() => {
       throwNum = 1; 
-
-      if(currentPlayer === (1 - setFirstPlayer)){
-        currentPlayer = setFirstPlayer; 
-        turn++; 
-        if(turn > 12){
-          finishGame();
-          return;
-        }
+      if (currentPlayerIndex >= activeCount - 1) {
+        currentPlayerIndex = 0; turn++; 
+        if (turn > 12) { finishGame(); return; }
       } else {
-        currentPlayer = 1 - setFirstPlayer; 
+        currentPlayerIndex++; 
       }
-      resetSelections();
-      updateUI();
+      resetSelections(); updateUI();
     });
   } else {
-    throwNum++;
-    resetSelections();
-    updateUI();
+    throwNum++; resetSelections(); updateUI();
   }
 }
 
@@ -1911,152 +1794,127 @@ function triggerTurnEndAnimation(callback) {
   const nameEl = document.getElementById("howanPlayerName");
   const rowEl = document.getElementById("howanSymbolsRow");
   
-  const pColorClass = currentPlayer === 0 ? 'pA-color' : 'pB-color';
+  const pIdx = playerRotationOrder[currentPlayerIndex];
+  const activePlayer = players[pIdx];
+  const pColorClass = activePlayer.colorClass;
   
-  nameEl.innerText = `${players[currentPlayer].name} TURN END`;
+  nameEl.innerText = `${activePlayer.name} TURN END`;
   rowEl.innerHTML = "";
 
-  for(let th = 1; th <= cfg.throwsPerTurn; th++) {
-    let r = throwRecords[turn][currentPlayer][th];
-    if(!r) continue;
+  for (let th = 1; th <= cfg.throwsPerTurn; th++) {
+    let r = throwRecords[turn][pIdx][th];
+    if (!r) continue;
 
     let displayHTML = "";
     let mStr = r.markStr;
 
-    if(mStr === '/') {
+    if (mStr === '/') {
       displayHTML = `<span class="c-mark-css slash ${pColorClass}"></span>`;
-    } else if(mStr === '✕') {
+    } else if (mStr === '✕') {
       displayHTML = `<span class="c-mark-css cross ${pColorClass}"></span>`;
-    } else if(mStr === '⨂') {
+    } else if (mStr === '⨂') {
       displayHTML = `<span class="c-mark-css circlecross ${pColorClass}"><span class="c-mark-css circlecross-circle"></span></span>`;
-    } else if(mStr.startsWith('⭕')) {
+    } else if (mStr.startsWith('⭕')) {
       displayHTML = `<span class="m-multi-circle ${pColorClass}">${mStr.replace('⭕','')}</span>`;
-    } else if(mStr === 'M' || mStr === '-') {
+    } else if (mStr === 'M' || mStr === '-') {
       displayHTML = `<span class="miss-color">•</span>`; 
     }
     rowEl.innerHTML += displayHTML;
   }
 
   overlay.classList.remove("hidden");
-  setTimeout(() => {
-    overlay.classList.add("hidden");
-    callback();
-  }, 1600);
+  setTimeout(() => { overlay.classList.add("hidden"); callback(); }, 1600);
 }
 
 function checkColdWinSilent() {
-  const p = players[currentPlayer];
-  return allOpened(p) && p.score >= players[1 - currentPlayer].score;
+  const pIdx = playerRotationOrder[currentPlayerIndex];
+  const p = players[pIdx];
+  if (!nums.every(n => isOpen(p, n))) return false;
+  
+  for (let i = 0; i < activeCount; i++) {
+    if (players[playerRotationOrder[i]].score > p.score) return false;
+  }
+  return true;
 }
  
-function resetSelections(){
-  selectedSingle = null;
-  selectedMulti = [];
-  selectedMarkType = null;
- 
+function resetSelections() {
+  selectedSingle = null; selectedMulti = []; selectedMarkType = null;
   syncBoardSelectionUI();
   ["btnSingle","btnDouble","btnTriple"].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.className = "mark-type-btn";
+    const el = document.getElementById(id); if (el) el.className = "mark-type-btn";
   });
 }
  
 /* ═══════════════════════════════════════════════════════
-   UPDATE UI
+   LIVE SCOREBOARD DISPLAYS & UPDATE DESIGNS
 ═══════════════════════════════════════════════════════ */
-function getMarkStatusNew(mine, enemy, num, playerIdx){
+function getMarkStatusMulti(pObj, num) {
   const req = openThreshold(num);
-  const suffix = playerIdx === 0 ? 'a' : 'b';
+  const suffix = pObj.key.toLowerCase(); 
+  const mine = pObj.marks[num] || 0;
  
-  if(isOpen({[num]:mine}, num) && isOpen({[num]:enemy}, num)){
-    return ["CLOSED", "closed has-circlecross"];
-  }
-  if(isOpen({[num]:mine}, num)){
-    return ["OPEN", `open-${suffix} has-cross`];
-  }
-  if(mine > 0){
-    return [`${mine} / ${req}`, `${mine === 2 ? 'two' : 'one'}-${suffix} has-slash`];
-  }
+  if (isClosedGlobally(num)) return ["CLOSED", "closed has-circlecross"];
+  if (isOpen(pObj, num)) return ["OPEN", `open-${suffix} has-cross`];
+  if (mine > 0) return [`${mine}/${req}`, `${mine === 2 ? 'two' : 'one'}-${suffix} has-slash`];
   return ["—", "flat"];
 }
 
 function updateDotsUI() {
-  const containerA = document.getElementById("scoreADots");
-  const containerB = document.getElementById("scoreBDots");
-  
-  if (gameMode !== 'match') {
-    containerA.innerHTML = "";
-    containerB.innerHTML = "";
-    return;
-  }
-  
-  let htmlA = "";
-  let htmlB = "";
-  for(let i=1; i<=targetSetsNeeded; i++) {
-    let activeA = (players[0].setsWon >= i) ? "active" : "";
-    let activeB = (players[1].setsWon >= i) ? "active" : "";
-    htmlA += `<div class="set-dot ${activeA}"></div>`;
-    htmlB += `<div class="set-dot ${activeB}"></div>`;
-  }
-  containerA.innerHTML = htmlA;
-  containerB.innerHTML = htmlB;
+  playerRotationOrder.forEach(pIdx => {
+    const p = players[pIdx];
+    const dotContainer = document.getElementById(`scoreDots_${p.id}`);
+    if (!dotContainer) return;
+    
+    if (gameMode !== 'custom' || targetSetsNeeded <= 1) { dotContainer.innerHTML = ""; return; }
+    
+    let html = "";
+    for (let i = 1; i <= targetSetsNeeded; i++) {
+      html += `<div class="set-dot ${p.setsWon >= i ? 'active' : ''}"></div>`;
+    }
+    dotContainer.innerHTML = html;
+  });
 }
  
-function updateUI(){
+function updateUI() {
   document.getElementById("turnText").innerText = turn;
- 
   const pName = document.getElementById("playerText");
   const tText = document.getElementById("throwText");
  
-  pName.innerText = players[currentPlayer].name;
+  const activePlayer = players[playerRotationOrder[currentPlayerIndex]];
+  pName.innerText = activePlayer.name;
   tText.innerText = `${throwNum}/${cfg.throwsPerTurn}`;
+  
+  pName.className = tText.className = activePlayer.colorClass;
  
-  pName.className = currentPlayer === 0 ? "current-a" : "current-b";
-  tText.className = currentPlayer === 0 ? "current-a" : "current-b";
- 
-  document.getElementById("scoreAName").innerText = players[0].name;
-  document.getElementById("scoreBName").innerText = players[1].name;
-  document.getElementById("scoreA").innerText = players[0].score;
-  document.getElementById("scoreB").innerText = players[1].score;
+  playerRotationOrder.forEach(pIdx => {
+    const p = players[pIdx];
+    const sVal = document.getElementById(`scoreVal_${p.id}`);
+    if (sVal) sVal.innerText = p.score;
 
-  const boxA = document.getElementById("scoreBoxA");
-  const boxB = document.getElementById("scoreBoxB");
-  if(currentPlayer === 0) {
-    boxA.className = "score-box score-a active-turn-a";
-    boxB.className = "score-box score-b inactive-turn";
-  } else {
-    boxA.className = "score-box score-a inactive-turn";
-    boxB.className = "score-box score-b active-turn-b";
-  }
+    const box = document.getElementById(`scoreBox_${p.id}`);
+    if (box) {
+      const isCurrent = (p.id === activePlayer.id);
+      box.className = `score-box ${p.scoreClass} ${isCurrent ? p.activeClass : 'inactive-turn'}`;
+    }
+  });
 
   updateDotsUI();
- 
   document.getElementById("specialNotice").classList.toggle("hidden", !isSpecialRule());
  
   nums.forEach(num => {
-    const leftData  = getMarkStatusNew(players[0].marks[num], players[1].marks[num], num, 0);
-    const rightData = getMarkStatusNew(players[1].marks[num], players[0].marks[num], num, 1);
-    
-    const leftEl   = document.getElementById(`skLeft_${num}`);
-    const centerEl = document.getElementById(`skCenter_${num}`);
-    const rightEl  = document.getElementById(`skRight_${num}`);
-    
-    if (leftEl) {
-      leftEl.innerText = leftData[0];
-      leftEl.className = `mini-mark side-a ${leftData[1]}`;
-    }
-    
-    if (rightEl) {
-      rightEl.innerText = rightData[0];
-      rightEl.className = `mini-mark side-b ${rightData[1]}`;
-    }
-    
-    if (centerEl) {
-      if(isClosed(players[0].marks, players[1].marks, num)) {
-        centerEl.className = "center-num-btn closed-num";
-      } else {
-        centerEl.className = "center-num-btn";
+    playerRotationOrder.forEach(pIdx => {
+      const p = players[pIdx];
+      const mData = getMarkStatusMulti(p, num);
+      const markEl = document.getElementById(`skMark_${p.id}_${num}`);
+      if (markEl) {
+        markEl.innerText = mData[0];
+        markEl.className = `mini-mark side-lane ${mData[1]}`;
       }
+    });
+
+    const centerEl = document.getElementById(`skCenter_${num}`);
+    if (centerEl) {
+      centerEl.className = `center-num-btn ${isClosedGlobally(num) ? 'closed-num' : ''}`;
     }
   });
   
@@ -2064,52 +1922,90 @@ function updateUI(){
 }
  
 /* ═══════════════════════════════════════════════════════
-   WIN / END / SET MATCH LOGIC
+   WIN ENGINE RESOLUTIONS AND SET MANAGEMENTS
 ═══════════════════════════════════════════════════════ */
-function allOpened(player) {
-  return nums.every(n => isOpen(player.marks, n));
-}
-
-function checkColdWin(){
-  const p = players[currentPlayer];
-  if(allOpened(p) && p.score >= players[1 - currentPlayer].score){
-    resolveSetEnd(currentPlayer, "点数同点以上・全オープン達成コールド");
-    return true;
+function checkColdWin() {
+  const pIdx = playerRotationOrder[currentPlayerIndex];
+  const p = players[pIdx];
+  if (nums.every(n => isOpen(p, n))) {
+    let scoreWin = true;
+    for (let i = 0; i < activeCount; i++) {
+      if (players[playerRotationOrder[i]].score > p.score) scoreWin = false;
+    }
+    if (scoreWin) {
+      resolveSetEnd(pIdx, "点数トップかつ全オープン達成コールド");
+      return true;
+    }
   }
   return false;
 }
  
-function finishGame(){
-  if(players[0].score > players[1].score){
-    resolveSetEnd(0, "12ターン終了最高得点");
-  } else if(players[1].score > players[0].score){
-    resolveSetEnd(1, "12ターン終了最高得点");
-  } else {
-    const openA = countOpened(players[0]);
-    const openB = countOpened(players[1]);
-    if(openA > openB){
-      resolveSetEnd(0, "同点タイブレーク：オープンキープ数優勢");
-    } else if(openB > openA){
-      resolveSetEnd(1, "同点タイブレーク：オープンキープ数優勢");
-    } else {
-      resolveSetEnd(null, "スコア・オープン数ともに同等につき完全引き分け");
+function finishGame() {
+  let maxScore = -9999;
+  let candidates = [];
+  
+  for (let i = 0; i < activeCount; i++) {
+    let pIdx = playerRotationOrder[i];
+    if (players[pIdx].score > maxScore) {
+      maxScore = players[pIdx].score;
+      candidates = [pIdx];
+    } else if (players[pIdx].score === maxScore) {
+      candidates.push(pIdx);
     }
   }
+
+  if (candidates.length === 1) {
+    resolveSetEnd(candidates[0], "12ターン終了最高得点");
+  } else {
+    let maxKeep = -1;
+    let finalWinnerIdx = candidates[0];
+    let absoluteDraw = true;
+
+    candidates.forEach(pIdx => {
+      let keepCount = countOpenKeep(players[pIdx]);
+      if (keepCount > maxKeep) {
+        maxKeep = keepCount;
+        finalWinnerIdx = pIdx;
+        absoluteDraw = false;
+      } else if (keepCount === maxKeep) {
+        absoluteDraw = true; 
+      }
+    });
+
+    if (!absoluteDraw) {
+      resolveSetEnd(finalWinnerIdx, "同点タイブレーク：残存オープンキープ数優勢");
+    } else {
+      resolveSetEnd(null, "スコア・残存オープンキープ数ともに完全同等につき引き分け");
+    }
+  }
+}
+
+function countOpenKeep(playerObj) {
+  return nums.filter(n => isOpen(playerObj, n) && !isClosedGlobally(n)).length;
 }
 
 function resolveSetEnd(winnerIdx, reason) {
   let setNum = matchHistory.length + 1;
   let logText = "";
-
+  
   if (winnerIdx === null) {
-    logText = `第${setNum}セット: 引き分け (${players[0].score} - ${players[1].score}) [${reason}]`;
+    let scoresStr = playerRotationOrder.map(pIdx => `${players[pIdx].name}:${players[pIdx].score}`).join(" / ");
+    logText = `第${setNum}セット: 引き分け (${scoresStr}) [${reason}]`;
   } else {
     players[winnerIdx].setsWon++;
-    logText = `第${setNum}セット: ${players[winnerIdx].name} 勝利 (${players[0].score} - ${players[1].score}) [${reason}]`;
+    let scoresStr = playerRotationOrder.map(pIdx => `${players[pIdx].name}:${players[pIdx].score}`).join(" / ");
+    logText = `第${setNum}セット: ${players[winnerIdx].name} 勝利 (${scoresStr}) [${reason}]`;
   }
   matchHistory.push(logText);
 
-  if (gameMode === 'match' && players[0].setsWon < targetSetsNeeded && players[1].setsWon < targetSetsNeeded) {
+  let matchOver = false;
+  for (let i = 0; i < activeCount; i++) {
+    if (players[playerRotationOrder[i]].setsWon >= targetSetsNeeded) {
+      matchOver = true;
+    }
+  }
+
+  if (gameMode === 'custom' && targetSetsNeeded > 1 && !matchOver) {
     showNextSetModal(winnerIdx);
   } else {
     showFinalMatchWinner(winnerIdx);
@@ -2120,27 +2016,70 @@ function showNextSetModal(winnerIdx) {
   const modal = document.getElementById("nextSetModal");
   const winTxt = document.getElementById("nextSetWinnerText");
   
-  document.getElementById("nextSetP1Btn").innerText = `${players[0].name} が先攻`;
-  document.getElementById("nextSetP2Btn").innerText = `${players[1].name} が先攻`;
-
   if (winnerIdx === null) {
-    winTxt.innerText = "SET DRAW (引き分け)";
-    winTxt.style.color = "var(--txt2)";
+    winTxt.innerText = "SET DRAW (引き分け)"; winTxt.style.color = "var(--txt2)";
   } else {
     winTxt.innerText = `🎉 ${players[winnerIdx].name} セット獲得！`;
-    winTxt.style.color = (winnerIdx === 0) ? "var(--ca)" : "var(--cb)";
+    if (winnerIdx === 0) winTxt.style.color = "var(--ca)";
+    else if (winnerIdx === 1) winTxt.style.color = "var(--cb)";
+    else if (winnerIdx === 2) winTxt.style.color = "var(--cc)";
+    else winTxt.style.color = "var(--cd)";
   }
 
-  document.getElementById("nextSetScoreText").innerText = `${players[0].score}  -  ${players[1].score}`;
-  document.getElementById("setResultTableArea").innerHTML = generateScoreTableHTML();
+  document.getElementById("nextSetScoreText").innerText = playerRotationOrder.map(pIdx => players[pIdx].score).join("  -  ");
+  document.getElementById("setResultTableArea").innerHTML = createStatsHTML();
   
-  modal.classList.remove("hidden");
+  buildOrderConfigUI();
+  
+  modal.classList.remove("hidden"); 
   modal.querySelector('.confirm-box').scrollTop = 0; 
 }
 
-function executeNextSet(startingPlayerIdx) {
+function buildOrderConfigUI() {
+  const container = document.getElementById("orderConfigContainer");
+  container.innerHTML = "";
+  
+  for (let i = 0; i < activeCount; i++) {
+    const row = document.createElement("div");
+    row.style = "display: flex; align-items: center; justify-content: space-between; gap: 10px;";
+    
+    let options = "";
+    for (let j = 1; j <= activeCount; j++) {
+      options += `<option value="${j}" ${j === (i + 1) ? 'selected' : ''}>${j}番目</option>`;
+    }
+    
+    row.innerHTML = `
+      <span style="font-weight: bold; font-size:14px;">${players[i].name}:</span>
+      <select id="nextOrderSelect_${i}" style="width: 120px; margin-bottom: 0; padding: 6px 10px; font-size:13px;">
+        ${options}
+      </select>
+    `;
+    container.appendChild(row);
+  }
+}
+
+function validateAndExecuteNextSet() {
+  let chosenOrders = [];
+  let uniqueCheck = new Set();
+  
+  for (let i = 0; i < activeCount; i++) {
+    let val = parseInt(document.getElementById(`nextOrderSelect_${i}`).value);
+    chosenOrders.push({ id: i, order: val });
+    uniqueCheck.add(val);
+  }
+  
+  if (uniqueCheck.size !== activeCount) {
+    alert("エラー: 投げ順（番目）に重複があります。全員個別に異なる投げ順を設定してください。");
+    return;
+  }
+  
+  chosenOrders.sort((a, b) => a.order - b.order);
+  let nextOrderArray = chosenOrders.map(item => item.id);
+  
   document.getElementById("nextSetModal").classList.add("hidden");
-  initNewSet(startingPlayerIdx); 
+  initNewSet(nextOrderArray);
+  buildScoreboardUI();
+  buildIntegratedBoardUI();
   updateUI();
 }
 
@@ -2148,193 +2087,160 @@ function showFinalMatchWinner(lastSetWinnerIdx) {
   const titleEl = document.getElementById("winnerText");
   const modal = document.getElementById("winnerModal");
   
-  if (gameMode === 'match') {
-    if (players[0].setsWon === players[1].setsWon) {
-      titleEl.innerHTML = `🤝 MATCH DRAW 🤝<br><span style="font-size: 16px;">完全引き分け</span>`;
+  if (gameMode === 'custom' && targetSetsNeeded > 1) {
+    let maxSets = -1;
+    let winners = [];
+    for (let i = 0; i < activeCount; i++) {
+      let pIdx = playerRotationOrder[i];
+      if (players[pIdx].setsWon > maxSets) {
+        maxSets = players[pIdx].setsWon;
+        winners = [pIdx];
+      } else if (players[pIdx].setsWon === maxSets) {
+        winners.push(pIdx);
+      }
+    }
+
+    if (winners.length === 1) {
+      titleEl.innerHTML = `🏆 MATCH WINNER 🏆<br>${players[winners[0]].name}`;
     } else {
-      let finalWinnerIdx = (players[0].setsWon > players[1].setsWon) ? 0 : 1;
-      titleEl.innerHTML = `🏆 MATCH WINNER 🏆<br>${players[finalWinnerIdx].name}`;
+      titleEl.innerHTML = `🤝 MATCH DRAW 🤝<br><span style="font-size: 16px;">セット完全引き分け</span>`;
     }
     document.getElementById("modalUndoBtn").classList.add("hidden");
   } else {
-    if(lastSetWinnerIdx === null){
-      titleEl.innerHTML = `🤝 DRAW 🤝`;
-    } else {
-      titleEl.innerHTML = `🏆 WINNER 🏆<br>${players[lastSetWinnerIdx].name}`;
-    }
+    titleEl.innerHTML = (lastSetWinnerIdx === null) ? `🤝 DRAW 🤝` : `🏆 WINNER 🏆<br>${players[lastSetWinnerIdx].name}`;
     document.getElementById("modalUndoBtn").classList.remove("hidden");
   }
 
   document.getElementById("statsArea").innerHTML = createStatsHTML();
-  modal.classList.remove("hidden");
-  modal.querySelector('.confirm-box').scrollTop = 0; 
-}
- 
-function countOpened(player){
-  return nums.filter(n => isOpen(player.marks, n)).length;
+  modal.classList.remove("hidden"); modal.querySelector('.confirm-box').scrollTop = 0; 
 }
  
 /* ═══════════════════════════════════════════════════════
-   STATS & GENERATE SCORE TABLE
+   STATS REPORTING METRICS & RENDER TABLES
 ═══════════════════════════════════════════════════════ */
-function recordStatSnapshot(){
+function recordStatSnapshot() {
   statHistory.push(JSON.parse(JSON.stringify(players)));
-  if(statFreezeIndex !== null) return;
-  if(countOpened(players[0]) >= 6 || countOpened(players[1]) >= 6){
+  let isFrozenCandidate = playerRotationOrder.some(pIdx => {
+    return nums.filter(n => isOpen(players[pIdx], n)).length >= 6;
+  });
+  if (isFrozenCandidate && statFreezeIndex === null) {
     statFreezeIndex = statHistory.length - 1;
   }
 }
  
-function getStatsPlayers(){
-  if(statFreezeIndex === null || !statHistory[statFreezeIndex]) return players;
-  return statHistory[statFreezeIndex];
+function getStatsPlayers() {
+  return (statFreezeIndex !== null && statHistory[statFreezeIndex]) ? statHistory[statFreezeIndex] : players;
 }
 
 function generateScoreTableHTML() {
   const maxThrow = cfg.throwsPerTurn; 
   let headerCols = `<th class="turn-col">T</th>`;
   
-  for(let pIdx=0; pIdx<=1; pIdx++) {
-    for(let i=1; i<=maxThrow; i++) {
-      headerCols += `<th style="color:var(${pIdx===0 ? '--ca':'--cb'});">${players[pIdx].name.substring(0,3)} ${i}</th>`;
+  playerRotationOrder.forEach(pIdx => {
+    const p = players[pIdx];
+    let pColor = `var(--ca)`;
+    if (pIdx === 1) pColor = `var(--cb)`;
+    if (pIdx === 2) pColor = `var(--cc)`;
+    if (pIdx === 3) pColor = `var(--cd)`;
+    
+    for (let i = 1; i <= maxThrow; i++) {
+      headerCols += `<th style="color:${pColor}; min-width:45px;">${p.name.substring(0,3)} ${i}</th>`;
     }
-  }
+  });
 
   let tableRows = "";
-  for(let t=1; t<=12; t++) {
+  for (let t = 1; t <= 12; t++) {
     let rowCells = `<td class="turn-col">${t}</td>`;
-    for(let pIdx=0; pIdx<=1; pIdx++) {
-      for(let th=1; th<=maxThrow; th++) {
-        rowCells += createCellMarkup(throwRecords[t][pIdx][th], pIdx);
+    playerRotationOrder.forEach(pIdx => {
+      for (let th = 1; th <= maxThrow; th++) {
+        let rec = throwRecords[t] && throwRecords[t][pIdx] ? throwRecords[t][pIdx][th] : null;
+        rowCells += createCellMarkup(rec, pIdx);
       }
-    }
+    });
     tableRows += `<tr>${rowCells}</tr>`;
   }
 
-  return `
-    <div class="history-table-wrapper">
-      <table class="history-table">
-        <thead><tr>${headerCols}</tr></thead>
-        <tbody>${tableRows}</tbody>
-      </table>
-    </div>
-  `;
+  return `<div class="history-table-wrapper"><table class="history-table"><thead><tr>${headerCols}</tr></thead><tbody>${tableRows}</tbody></table></div>`;
 }
 
 function createCellMarkup(rec, playerIdx) {
-  if(!rec || rec.markStr === '-') {
-    return `<td><div class="history-cell-box"><span style="color:var(--txt2); opacity:0.2;">-</span></div></td>`;
-  }
+  if (!rec || rec.markStr === '-') return `<td><div class="history-cell-box"><span style="color:var(--txt2); opacity:0.2;">-</span></div></td>`;
   
-  const pColorClass = playerIdx === 0 ? 'pA-color' : 'pB-color';
+  const activePlayer = players[playerIdx];
+  const pColorClass = activePlayer.colorClass;
   let displayHTML = "";
   let mStr = rec.markStr;
 
-  if(mStr === '/') {
-    displayHTML = `<span class="c-mark-css slash ${pColorClass}"></span>`;
-  } else if(mStr === '✕') {
-    displayHTML = `<span class="c-mark-css cross ${pColorClass}"></span>`;
-  } else if(mStr === '⨂') {
-    displayHTML = `<span class="c-mark-css circlecross ${pColorClass}"><span class="c-mark-css circlecross-circle"></span></span>`;
-  } else if(mStr.startsWith('⭕')) {
-    displayHTML = `<span class="m-multi-circle ${pColorClass}">${mStr.replace('⭕','')}</span>`;
-  } else if(mStr === 'M') {
-    displayHTML = `<span class="miss-color">•</span>`; 
-  }
+  if (mStr === '/') displayHTML = `<span class="c-mark-css slash ${pColorClass}"></span>`;
+  else if (mStr === '✕') displayHTML = `<span class="c-mark-css cross ${pColorClass}"></span>`;
+  else if (mStr === '⨂') displayHTML = `<span class="c-mark-css circlecross ${pColorClass}"><span class="c-mark-css circlecross-circle"></span></span>`;
+  else if (mStr.startsWith('⭕')) displayHTML = `<span class="m-multi-circle ${pColorClass}">${mStr.replace('⭕','')}</span>`;
+  else if (mStr === 'M') displayHTML = `<span class="miss-color">•</span>`; 
 
-  return `
-    <td>
-      <div class="history-cell-box">
-        ${displayHTML}
-        <span class="cell-score">${rec.gain}/${rec.total}</span>
-      </div>
-    </td>
-  `;
+  return `<td><div class="history-cell-box">${displayHTML}<span class="cell-score">${rec.gain}/${rec.total}</span></div></td>`;
 }
  
-function createStatsHTML(){
-  const s = getStatsPlayers();
-  const tp = cfg.throwsPerTurn;
- 
-  const avgA = s[0].throws === 0 ? 0 : (s[0].totalMarks / (s[0].throws / tp)).toFixed(2);
-  const avgB = s[1].throws === 0 ? 0 : (s[1].totalMarks / (s[1].throws / tp)).toFixed(2);
+function createStatsHTML() {
+  const s = getStatsPlayers(), tp = cfg.throwsPerTurn;
  
   let historySection = "";
-  if (gameMode === 'match' && matchHistory.length > 0) {
-    historySection = `<div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 6px;opacity:.7;">📜 セット対戦履歴</div>`;
-    matchHistory.forEach(logLine => {
-      historySection += `<div class="small" style="line-height:1.4; margin-bottom:4px;">${logLine}</div>`;
-    });
+  if (matchHistory.length > 0) {
+    historySection = `<div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 6px;opacity:.7;text-align:left;">📜 対戦履歴</div>`;
+    matchHistory.forEach(logLine => { historySection += `<div class="small" style="line-height:1.4; margin-bottom:4px; text-align:left;">${logLine}</div>`; });
   }
+
+  let statLinesHTML = "";
+  playerRotationOrder.forEach(pIdx => {
+    const p = s[pIdx];
+    const avg = p.throws === 0 ? 0 : (p.totalMarks / (p.throws / tp)).toFixed(2);
+    statLinesHTML += `
+      <div class="stat-line" style="text-align:left;">
+        <strong>${p.name}</strong><br>
+        ${(gameMode === 'custom' && targetSetsNeeded > 1) ? `獲得セット数: <strong>${p.setsWon}</strong><br>` : ''}
+        平均マーク数 / ターン: <strong>${avg}</strong><br>
+        最大連続 MISS: <strong>${p.maxMiss}</strong>
+      </div>
+    `;
+  });
 
   return `
     <div class="stats">
-      <div style="font-size:13px;font-weight:900;letter-spacing:2px;margin-bottom:6px;opacity:.7;">📊 SCORE HISTORY (スコア推移)</div>
+      <div style="font-size:13px;font-weight:900;letter-spacing:2px;margin-bottom:6px;opacity:.7;text-align:left;">📊 SCORE HISTORY (スコア推移)</div>
       ${generateScoreTableHTML()}
-      
-      <div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 12px;opacity:.7;">📈 MATCH STATS (セット内スタッツ)</div>
-      <div class="stat-line">
-        <strong>${s[0].name}</strong><br>
-        平均マーク数 / ターン: <strong>${avgA}</strong><br>
-        最大連続 MISS: <strong>${s[0].maxMiss}</strong>
-      </div>
-      <div class="stat-line">
-        <strong>${s[1].name}</strong><br>
-        平均マーク数 / ターン: <strong>${avgB}</strong><br>
-        最大連続 MISS: <strong>${s[1].maxMiss}</strong>
-      </div>
+      <div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 12px;opacity:.7;text-align:left;">📈 MATCH STATS (スタッツ)</div>
+      ${statLinesHTML}
       ${historySection}
     </div>
   `;
 }
  
 /* ═══════════════════════════════════════════════════════
-   HISTORY / UNDO / RESET
+   HISTORY SNAPSHOT UNDO MANAGEMENT SYSTEMS
 ═══════════════════════════════════════════════════════ */
-function saveHistory(){
-  history.push(JSON.stringify({ 
-    players, 
-    turn, 
-    currentPlayer, 
-    setFirstPlayer, 
-    throwNum,
-    throwRecords: JSON.parse(JSON.stringify(throwRecords))
-  }));
+function saveHistory() {
+  history.push(JSON.stringify({ players, turn, currentPlayerIndex, playerRotationOrder, throwNum, throwRecords }));
 }
+function undoFromWinner() { document.getElementById("winnerModal").classList.add("hidden"); undo(); }
  
-function undoFromWinner(){
-  document.getElementById("winnerModal").classList.add("hidden");
-  undo();
-}
- 
-function undo(){
-  if(history.length === 0){
-    alert("このセット内で戻れる履歴がありません");
-    return;
-  }
+function undo() {
+  if (history.length === 0) { alert("戻れる履歴がありません"); return; }
   const prev = JSON.parse(history.pop());
-  players = prev.players;
-  turn = prev.turn;
-  currentPlayer = prev.currentPlayer;
-  if(prev.setFirstPlayer !== undefined) setFirstPlayer = prev.setFirstPlayer;
-  throwNum = prev.throwNum;
-  if(prev.throwRecords) throwRecords = prev.throwRecords;
-  resetSelections();
-  updateUI();
+  players = prev.players; turn = prev.turn; currentPlayerIndex = prev.currentPlayerIndex;
+  if (prev.playerRotationOrder !== undefined) playerRotationOrder = prev.playerRotationOrder;
+  throwNum = prev.throwNum; if (prev.throwRecords) throwRecords = prev.throwRecords;
+  resetSelections(); updateUI();
 }
  
-function confirmUndo(){
-  openConfirm("1手前に戻りますか？", () => undo());
-}
- 
-function confirmReset(){
+function confirmUndo() { openConfirm("1手前に戻りますか？", () => undo()); }
+function confirmReset() {
   openConfirm("ゲームを終了してメインメニューに戻りますか？", () => {
     document.getElementById("winnerModal").classList.add("hidden");
     document.getElementById("nextSetModal").classList.add("hidden");
-    resetSelections();
-    backToTopMenu();
+    resetSelections(); backToTopMenu();
   });
 }
+
+buildSkittleSetupUI();
 </script>
  
 </body>
