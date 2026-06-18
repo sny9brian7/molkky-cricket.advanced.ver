@@ -835,22 +835,22 @@ button:active { transform: scale(.97); }
       <div class="menu-list">
         <button class="menu-item-btn" id="menuBtnNormal" onclick="openSetup('normal')">
           <div class="menu-item-title">① ノーマル対戦 (NORMAL MATCH)</div>
-          <div class="menu-item-desc">初心者や手軽に遊びたい方向けの固定ルールモード（2人対戦・ハンデ無し）。</div>
+          <div class="menu-item-desc">手軽に遊びたい方向けのモード。</div>
         </button>
         
         <button class="menu-item-btn" id="menuBtnCustom" onclick="openSetup('custom')">
           <div class="menu-item-title">② カスタム対戦 (CUSTOM MATCH)</div>
-          <div class="menu-item-desc">人数、マッチ形式、投擲数、ボーナス、ハンデなどを自由に設定できます。</div>
+          <div class="menu-item-desc">人数、マッチ形式、連続ミス、ハンデ、投擲数、ボーナス、オープン数などを自由に設定できます。</div>
         </button>
         
         <button class="menu-item-btn" id="menuBtnSystem" onclick="switchScreen('themeConfigScreen')">
-          <div class="menu-item-title">⚙️ システム・テーマ設定 (SYSTEM & THEME)</div>
+          <div class="menu-item-title">⚙️ システム設定(SYSTEM)</div>
           <div class="menu-item-desc">アプリ全体のカラーテーマ・ビジュアルスタイルを変更できます。</div>
         </button>
         
         <button class="menu-item-btn" id="menuBtnRule" onclick="switchScreen('ruleScreen')">
           <div class="menu-item-title">📖 ルール解説 (RULE INFO)</div>
-          <div class="menu-item-desc">多人数クリケット（ダーツ準拠）の基本ルール、得点、セオリーを解説。</div>
+          <div class="menu-item-desc">基本ルール、得点、セオリーを解説。</div>
         </button>
       </div>
     </div>
@@ -861,26 +861,26 @@ button:active { transform: scale(.97); }
       <button class="theme-btn" onclick="backToTopMenu()" style="margin-right:auto;">↩ MENU</button>
     </div>
     <div class="card">
-      <div class="setup-title" style="font-size:36px; margin-bottom:4px;">THEME CONFIG</div>
-      <div class="setup-subtitle" style="margin-bottom:20px;">表示テーマの切り替え</div>
+      <div class="setup-title" style="font-size:36px; margin-bottom:4px;">システム設定</div>
+      <div class="setup-subtitle" style="margin-bottom:20px;">THEME CONFIG</div>
       
       <div class="field-label">1. SELECT STYLE (デザインスタイル)</div>
       <div class="theme-select-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 20px;">
         <div class="theme-opt-box active" id="style-opt-soft" onclick="selectStyleConfig('soft')">
-          SOFT<br><span class="small">標準・標準フォント</span>
+          SOFT
         </div>
         <div class="theme-opt-box" id="style-opt-cyber" onclick="selectStyleConfig('cyber')">
-          CYBER<br><span class="small">近未来・デジタル調</span>
+          CYBER
         </div>
       </div>
 
       <div class="field-label">2. SELECT COLOR (カラーモード)</div>
       <div class="theme-select-grid" style="grid-template-columns: 1fr 1fr;">
         <div class="theme-opt-box active" id="color-opt-light" onclick="selectColorConfig('light')">
-          LIGHT<br><span class="small">明るい背景</span>
+          LIGHT
         </div>
         <div class="theme-opt-box" id="color-opt-dark" onclick="selectColorConfig('dark')">
-          DARK<br><span class="small">暗い背景</span>
+          DARK
         </div>
       </div>
       
@@ -944,8 +944,8 @@ button:active { transform: scale(.97); }
 
       <div id="burstConfigArea" class="hidden">
         <hr class="section-divider">
-        <div class="setup-section-title">💀 BURST SYSTEM (連続ミス失格)</div>
-        <div class="small" style="margin-bottom:10px;">指定回数連続でMISS(0マーク)するとそのセットのみ失格となる機能</div>
+        <div class="setup-section-title">DISQUALIFIED(連続ミス)</div>
+        <div class="small" style="margin-bottom:10px;">指定回数連続でMISS(0マーク)するとそのセットが失格となる機能</div>
         <div class="radio-row" style="margin-bottom:10px;">
           <label class="radio-chip" id="lblBurstOff">
             <input type="radio" name="burstSwitch" value="off" checked onchange="handleBurstToggle()"> 無効
@@ -1086,7 +1086,7 @@ button:active { transform: scale(.97); }
     </div>
  
     <div class="card">
-      <div class="section-title"><span>①</span> ACTION確定パネル</div>
+      <div class="section-title"><span>ACTION確定パネル</span></div>
       
       <div class="action-panel-vertical">
         
@@ -1133,7 +1133,7 @@ button:active { transform: scale(.97); }
     </div>
     
   <div class="card">
-  <div class="rule-header">MÖLKKY CRICKET ルール解説</div>
+  <div class="rule-header">ルール解説</div>
 
   <div class="rule-block">
     <div class="rule-h3">1. 勝利条件</div>
