@@ -45,7 +45,6 @@
   --font-body: 'Noto Sans JP', sans-serif;
   --skew: skewX(0deg);
   
-  /* グラデーション表記を撤廃し、ライト時は「黒」を標準設定 */
   --title-color: #0f172a;
   --primary-gradient: linear-gradient(135deg, #059669, #047857);
 
@@ -70,7 +69,16 @@
   --mini-mark-opacity: 0.12;
   --mini-mark-two-opacity: 0.65;
   --closed-opacity: 0.4;
-  --popup-skew: skewX(0deg); /* ポップアップ用傾き変数 */
+  --popup-skew: skewX(0deg);
+
+  /* 吹き出し用追加変数 */
+  --chat-senpai: #dbeafe;
+  --chat-senpai-txt: #1e3a8a;
+  --chat-kohai: #fce7f3;
+  --chat-kohai-txt: #9d174d;
+  --chat-name-senpai: #2563eb;
+  --chat-name-kohai: #db2777;
+  --custom-card-bg: rgba(0, 0, 0, 0.03);
 }
 
 /* SOFT - DARK */
@@ -103,8 +111,16 @@
   --action-yellow-dark: #b45309;
   --action-yellow-text: #ffffff;
   --border: #1e2a40;
-  --title-color: #ffffff; /* ダーク時は「白」 */
+  --title-color: #ffffff;
   --primary-gradient: linear-gradient(135deg, #10b981, #059669);
+
+  --chat-senpai: #1e3a8a;
+  --chat-senpai-txt: #f8fafc;
+  --chat-kohai: #500734;
+  --chat-kohai-txt: #fce7f3;
+  --chat-name-senpai: #60a5fa;
+  --chat-name-kohai: #f472b6;
+  --custom-card-bg: rgba(255, 255, 255, 0.02);
 }
 
 /* CYBER - BASE */
@@ -113,7 +129,7 @@
   --radius-lg: 6px;
   --radius-sm: 2px;
   --skew: skewX(-6deg);
-  --popup-skew: skewX(0deg); /* サイバー時もターン終了ポップアップは「長方形」に固定 */
+  --popup-skew: skewX(0deg);
   --cyber-border-left: 1px solid var(--border);
   --dot-radius: 0%;
   --mark-width: 2.5px;
@@ -163,19 +179,27 @@
   --action-yellow-dark: #cc8800;
   --action-yellow-text: #000000;
   --border: #384f73;
-  --title-color: #ffffff; /* ダーク時は「白」 */
+  --title-color: #ffffff;
   --primary-gradient: linear-gradient(135deg, #00ff66, #00b344);
   --cyber-glow: 0 0 8px currentColor;
   --cyber-bg-alpha: #111a30;
+
+  --chat-senpai: #1e3a8a;
+  --chat-senpai-txt: #ffffff;
+  --chat-kohai: #4c0519;
+  --chat-kohai-txt: #ffb3c6;
+  --chat-name-senpai: #00bfff;
+  --chat-name-kohai: #ff124f;
+  --custom-card-bg: rgba(255, 255, 255, 0.02);
 }
 
-/* CYBER - LIGHT (白基調に刷新して超高視認化) */
+/* CYBER - LIGHT */
 [data-theme="cyber-light"] {
-  --bg: #f8fafc;        /* 明るくクリアな背景に変更 */
-  --card: #ffffff;      /* カードベースは白に固定 */
-  --sub: #cbd5e1;       /* ボタン等の非アクティブ要素のグレー */
-  --txt: #0f172a;       /* メインテキストは深い黒 */
-  --txt2: #475569;      /* サブテキストも見やすいダークグレー */
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --sub: #cbd5e1;
+  --txt: #0f172a;
+  --txt2: #475569;
   --ca: #e6003a;
   --cb: #0088cc;
   --cc: #c48100;
@@ -186,7 +210,7 @@
   --cd-light: rgba(0, 204, 82, 0.12);
   --green: #00cc52;
   --green-dark: #00993d;
-  --flat: #e2e8f0;      /* ボードの未獲得枠を明るい白ベースのグレーへ変更 */
+  --flat: #e2e8f0;
   --open: #00cc52;
   --closed-gray: #94a3b8;
   --closed-num: #64748b;
@@ -195,10 +219,18 @@
   --notice-border: #ffcbd7;
   --shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
   --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.1);
-  --border: #94a3b8;    /* 境界線をより際立たせる */
-  --title-color: #0f172a; /* ライト時は「黒」 */
+  --border: #94a3b8;
+  --title-color: #0f172a;
   --primary-gradient: linear-gradient(135deg, #00cc52, #00993d);
   --cyber-bg-alpha: rgba(241, 245, 249, 0.9);
+
+  --chat-senpai: #dbeafe;
+  --chat-senpai-txt: #0088cc;
+  --chat-kohai: #fce7f3;
+  --chat-kohai-txt: #e6003a;
+  --chat-name-senpai: #0088cc;
+  --chat-name-kohai: #e6003a;
+  --custom-card-bg: rgba(0, 0, 0, 0.03);
 }
 
 /* ── BASE LAYOUT ── */
@@ -261,7 +293,6 @@ body { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--f
   text-align: center; cursor: pointer; font-size: 13px; font-weight: 900; background: var(--sub); color: var(--txt2); transition: all 0.15s;
 }
 
-/* 緑アクティブ状態になったときの文字を「白」に強制上書き補正 */
 .theme-opt-box.active {
   border-color: var(--green);
   background: var(--green);
@@ -333,7 +364,7 @@ body { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--f
   background: var(--card); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border);
   text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-width: 220px; 
   animation: var(--howan-anim);
-  transform: var(--popup-skew); /* ポップアップを「長方形」にするため専用の変数へ紐付け */
+  transform: var(--popup-skew);
 }
 [data-theme^="cyber-"] .howan-box { background: #ffffff; padding: 24px 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); min-width: 260px; gap: 12px; }
 [data-theme="cyber-dark"] .howan-box { background: #070d1a; box-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 20px var(--border); }
@@ -377,27 +408,75 @@ body { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--f
 .pD-color { color: var(--cd); text-shadow: var(--cyber-glow); }
 .miss-color { color: var(--txt2); opacity: var(--closed-opacity); font-weight: bold; font-size: 14px; }
 
-/* ── RULES INFO SCREEN ── */
-.rule-header { font-size: 24px; font-weight: 900; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
-.rule-block { margin-bottom: 20px; }
-.rule-h3 { font-size: 15px; font-weight: 900; color: var(--txt); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-.rule-h3::before { content: ''; width: 4px; height: 14px; background: var(--green); border-radius: 2px; }
-.rule-p { font-size: 13.5px; color: var(--txt); line-height: 1.6; margin: 0 0 8px 0; }
-.theory-box { background: var(--notice-bg); border: 1px solid var(--notice-border); color: var(--notice-txt); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 10px; font-size: 13px; line-height: 1.5; }
+/* ── RULES INFO SCREEN (RICH DIALOG & TIMELINE DESIGN) ── */
+.rule-header {
+  font-family: var(--font-display), var(--font-body);
+  font-size: 26px;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+  text-transform: uppercase;
+}
+.rule-block { margin-bottom: 24px; }
+.rule-h3 { font-size: 16px; font-weight: 900; color: var(--txt); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.rule-h3::before { content: ''; width: 4px; height: 16px; background: var(--green); border-radius: 2px; display: inline-block; }
+[data-theme^="cyber-"] .rule-h3::before { width: 3px; height: 14px; border-radius: 0px; background: var(--open); }
 
-[data-theme^="cyber-"] .rule-header { font-family: var(--font-body); font-weight: 900; color: var(--txt); border-bottom-width: 1px; }
-[data-theme="cyber-dark"] .rule-header { color: #fff; }
-[data-theme^="cyber-"] .rule-h3 { font-size: 14px; color: var(--txt); }
-[data-theme="cyber-dark"] .rule-h3 { color: #fff; }
-[data-theme^="cyber-"] .rule-h3::before { width: 3px; height: 12px; border-radius: 0px; }
-[data-theme^="cyber-"] .rule-p { font-size: 13px; color: var(--txt2); line-height: 1.5; }
-[data-theme^="cyber-"] .theory-box { background: rgba(15, 22, 38, 0.05); border: none; border-left: 3px solid var(--action-yellow); color: var(--txt); font-size: 12.5px; }
-[data-theme="cyber-dark"] .theory-box { background: #0f1626; }
+/* CHAT BUBBLE SYSTEM */
+.chat-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 10px; }
+.chat-line { display: flex; flex-direction: column; max-width: 85%; transform: var(--skew); }
+.chat-line.senpai { align-self: flex-start; }
+.chat-line.kohai { align-self: flex-end; }
+.chat-name { font-size: 11px; font-weight: 900; margin-bottom: 4px; letter-spacing: 1px; }
+.chat-line.senpai .chat-name { color: var(--chat-name-senpai); text-align: left; }
+.chat-line.kohai .chat-name { color: var(--chat-name-kohai); text-align: right; }
+.bubble { padding: 12px 16px; font-size: 13.5px; line-height: 1.5; border-radius: var(--radius); }
+.chat-line.senpai .bubble { background: var(--chat-senpai); color: var(--chat-senpai-txt); border-left: 4px solid var(--cb); }
+.chat-line.kohai .bubble { background: var(--chat-kohai); color: var(--chat-kohai-txt); border-right: 4px solid var(--ca); }
+
+/* VISUAL STATE SUMMARY CHIPS */
+.status-flow-container { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+.status-step { display: flex; align-items: center; gap: 12px; background: var(--custom-card-bg); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--border); transform: var(--skew); }
+.status-chip { font-size: 13px; font-weight: 700; width: 80px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); flex-shrink: 0; color: #fff; }
+.status-chip.flat { background: #475569; }
+.status-chip.one-mark { background: var(--ca-light); color: var(--ca); border: 1px solid var(--ca); }
+.status-chip.open-mark { background: var(--green); }
+.status-chip.closed-mark { background: var(--closed-gray); }
+.status-text { font-size: 13px; color: var(--txt); }
+.status-text strong { font-weight: 900; }
+
+/* THEORY BOXES */
+.theory-wrapper { display: flex; flex-direction: column; gap: 12px; }
+.theory-box { background: var(--custom-card-bg); border: 1px solid var(--notice-border); border-left: 4px solid var(--action-yellow); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); transform: var(--skew); }
+.theory-title { font-size: 14px; font-weight: 900; color: var(--action-yellow-dark); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+[data-theme*="-dark"] .theory-title { color: var(--action-yellow); }
+.theory-desc { font-size: 12.5px; color: var(--txt2); line-height: 1.5; }
+
+/* APP USAGE TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 14px; position: relative; padding-left: 12px; }
+.timeline::before { content: ''; position: absolute; left: 21px; top: 10px; bottom: 10px; width: 2px; background: var(--border); }
+.timeline-item { display: flex; gap: 16px; position: relative; transform: var(--skew); }
+.timeline-badge { font-family: var(--font-display); font-size: 14px; font-weight: 900; background: var(--primary-gradient); color: #fff; width: 22px; height: 22px; border-radius: var(--dot-radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 2; box-shadow: 0 0 0 4px var(--card); }
+.timeline-content { background: var(--custom-card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; flex-grow: 1; }
+.timeline-title { font-size: 13.5px; font-weight: 700; color: var(--txt); margin-bottom: 4px; }
+.timeline-body { font-size: 12px; color: var(--txt2); line-height: 1.4; }
+
+/* UI PARTS INLINE BADGES */
+.ui-inline { display: inline-block; padding: 2px 6px; font-size: 11px; font-weight: 700; border-radius: 4px; background: var(--sub); color: var(--txt); margin: 0 2px; border: 1px solid var(--border); }
+.ui-inline.primary { background: var(--primary-gradient); color: white; }
+.ui-inline.action { background: linear-gradient(135deg, var(--action-yellow), var(--action-yellow-dark)); color: white; }
+.ui-inline.multi { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+.ui-inline.miss { background: linear-gradient(135deg, #475569, #334155); color: white; }
+
+strong { color: var(--txt); font-weight: 900; }
 
 /* ── SETUP MAIN HEADER ── */
 .setup-title {
   font-family: var(--font-body); font-weight: 900; font-size: 42px; text-align: center; line-height: 1; margin-bottom: 6px;
-  color: var(--title-color); /* ライトモード・ダークモードで完全単色コントロール */
+  color: var(--title-color);
   transform: var(--skew); padding-top: 12px;
 }
 .setup-subtitle { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--txt2); margin-bottom: 28px; }
@@ -436,7 +515,6 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus { border-colo
 }
 .toggle-chip input, .radio-chip input { display: none; }
 
-/* ラジオ・トグルの選択時、文字を「白」へ確実にする上書き補正 */
 .toggle-chip:has(input:checked), .radio-chip:has(input:checked) { border-color: var(--green); background: var(--green); color: #ffffff !important; }
 
 [data-theme^="cyber-"] .toggle-chip, [data-theme^="cyber-"] .radio-chip { padding: 12px; border: 1px solid var(--border); border-radius: var(--radius); font-weight: 700; font-size: 13px; background: #e2e8f0; color: var(--txt); transition: all 0.1s; }
@@ -949,8 +1027,8 @@ button:active { transform: scale(.97); }
       </div>
     </div>
  
-    <div class="card" style="background:transparent; border:none; box-shadow:none; padding:0;">
-      <button class="action-btn large-btn" onclick="quickMiss()" style="background:linear-gradient(135deg, #475569, #334155); color:#ffffff; box-shadow:0 4px 12px rgba(71,85,105,.25);">
+    <div class="card">
+      <button class="action-btn large-btn" onclick="quickMiss()" style="background:linear-gradient(135deg, #475569, #334155); color:#ffffff; box-shadow:0 4px 12px rgba(71,85,105,.25); width:100%;">
         💀 MISS / 0 MARKS
       </button>
     </div>
@@ -969,40 +1047,256 @@ button:active { transform: scale(.97); }
     </div>
     
     <div class="card">
-      <div class="rule-header">多人数対応クリケット ルール解説</div>
+      <div class="rule-header">MÖLKKY CRICKET ルール解説</div>
       
       <div class="rule-block">
-        <div class="rule-h3">1. 多人数におけるオープンとクローズ</div>
-        <p class="rule-p">・まだ自分が規定マーク数に達していないスキットルへ的中させることで、マークが蓄積されます。規定数に達すると、そのスキットルは自分の中で<b>「オープン（自分専用の加点権利）」</b>となります。</p>
-        <p class="rule-p">・<b>クローズの条件：</b>ゲームに「参加している全プレイヤー」が該当スキットルをオープンした瞬間、そのスキットルは完全に<b>クローズ（無効化）</b>され、盤面から除外されます。以降は全員マークも加点も不可能になります。</p>
+        <div class="rule-h3">1. 勝利条件</div>
+        <div class="chat-container">
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">仙人！モルックリケットって、通常のモルックと何が違うんですか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">うむ、モルックリケットは一言で言えば『陣取りゲーム』じゃ！通常のモルックとは異なり、<strong>モルックリケットでは1ターンにつき2回モルックを投げる</strong>のが基本ルールじゃ。12ターン終了時に<strong>相手より高いスコアを獲得していたプレイヤーの勝ち</strong>となる。もし同点だった場合は、クローズされずにオープンしたまま残っているスキットル数が多い方が勝ちじゃ。</div>
+          </div>
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">なるほど！勝利条件は他にもあると聞いたのですが本当ですか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">良い質問じゃ。自分が全てのスキットル（6〜12番）をすべて『オープン』し、かつ自分のスコアが相手のプレイヤーと同点以上になった瞬間に、その場で勝利が確定するぞ！</div>
+          </div>
+        </div>
       </div>
 
       <div class="rule-block">
-        <div class="rule-h3">2. 加点条件（ダーツ準拠）</div>
-        <p class="rule-p">自分がオープン済み、かつ<b>「まだその数字をオープンしていないプレイヤーが、自分以外に1人でも残っている」</b>状態のときに当てると、数字分の点数が自分へ加算されます。</p>
-        <p class="rule-p">※全員がオープンしてしまった後は誰も加点できません。</p>
+        <div class="rule-h3">2. オープンとクローズ</div>
+        <div class="chat-container">
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">自分の陣地にする『オープン』と、それを無効化する『クローズ』の条件を詳しく教えてください！</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">最初の状態（フラット）のスキットルに、合計2マークヒットさせると、自分の陣地（オープン）にできる。そして、すでに相手がオープンしている数字に対して自分も2マークヒットさせると、そのスキットルを無効化（クローズ）できるのじゃ。</div>
+          </div>
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">クローズされたスキットルはどうなってしまうんですか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">クローズされたスキットルは盤面から排除され、以降は全員がマークも加点もできなくなる。ライバルの得点源を潰すための非常に重要な戦術じゃな。</div>
+          </div>
+        </div>
       </div>
 
       <div class="rule-block">
-        <div class="rule-h3">3. 勝利条件</div>
-        <p class="rule-p">・<b>ゲーム中コールド勝ち：</b>自分がすべてのスキットル（6〜12番）をオープンし、かつ自分のスコアが<b>「他のプレイヤー全員のスコア以上」</b>になった瞬間にその場で即時勝利が確定します。</p>
-        <p class="rule-p">・<b>12ターン終了時：</b>最も獲得点数が高いプレイヤーが勝利となります。同点の場合は、その時点でクローズされずに残っている自分自身のオープンキープ数が最も多いプレイヤーを勝ちとして判定します。</p>
+        <div class="rule-h3">3. 得点の取り方</div>
+        <div class="chat-container">
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">スキットルをオープンした後は、どのようにスコアを伸ばしていけばいいですか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">自分がすでにオープンしている数字のスキットルに当てると、そのスキットルの数字がそのまま自分の得点になる。さらに、スキットルに直接ヒットさせる『直当て』なら、2マーク扱いとなり、2倍の点数が手に入るぞ！</div>
+          </div>
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">まだオープンしていない『1マーク状態』のときに、直当てを決めたらどうなりますか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">ふぉっふぉ、その場合は直当てで得た2マーク分のうち、最初の1マーク分が『オープン』に消費され、残った1マーク分が『等倍の得点』としてスコアに加算される仕組みじゃ。無駄にはならんから安心するがよい。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-h3">4. 複数本倒した場合（MULTI HIT）</div>
+        <div class="chat-container">
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">スキットルが複数本まとめて倒れてしまいました……！</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">心配するな、その場合は複数本的中として処理されるぞ。倒したスキットルの中に、自分がすでにオープンしている数字が含まれていれば、その<strong>『倒した本数の合計』がそのまま点数</strong>として加算されるぞ。</div>
+          </div>
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">まだオープンしていないフラットなスキットルや、相手のオープンのスキットルが混ざって倒れた場合はどうなりますか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">それらの未オープンピンに対しては、一律で<strong>『1マーク』ずつが同時に付与</strong>される。一気に複数のスキットルへマークすることができる、強力な戦術になり得るのじゃ。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-h3">5. その他のルール</div>
+        <div class="chat-container">
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">先攻プレイヤーの1ターン目だけ、画面に特殊な通知が出ています！</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">よく気づいたな。先攻の1ターン目（計2投）のみ、どの数字に当ててもマーク処理は行われず、<strong>『倒した本数』がそのままダイレクトに合計得点に加算</strong>される特殊ルールが発動する。これは先攻の有利度を平準化し、ゲームバランスを整えるためのルールじゃよ。</div>
+          </div>
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">コートの広さや、スキットルが外に出たときのルールはどうなっていますか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">基本は<strong>横6m×縦8mのコート</strong>で行うぞ（プレイヤーのレベルによって自由に大きさは変更してください）。コート外に出たスキットルは<strong>コートのライン上</strong>に戻すのじゃが、他のスキットルと密集した場合は<strong>モルック棒1本分の距離をあけて配置</strong>するルールじゃ。通常のモルックと少しルールが異なるから注意が必要じゃぞ。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-h3">🔄 ステータス推移のまとめ</div>
+        <div class="status-flow-container">
+          <div class="status-step">
+            <div class="status-chip flat">フラット</div>
+            <div class="status-text">まだお互いにオープンしていない状態。</div>
+          </div>
+          <div class="status-step">
+            <div class="status-chip one-mark">1マーク</div>
+            <div class="status-text">陣地獲得への布石。相手に取られる前に早めにオープンせよ！</div>
+          </div>
+          <div class="status-step">
+            <div class="status-chip open-mark">オープン</div>
+            <div class="status-text"><strong>自分だけの陣地に！</strong> 以降、当てるたびにスコアを加算することができる！</div>
+          </div>
+          <div class="status-step">
+            <div class="status-chip closed-mark">クローズ</div>
+            <div class="status-text">全プレイヤーがオープンするとクローズとなり、盤面から消滅します。</div>
+          </div>
+        </div>
       </div>
 
       <div class="rule-block">
         <div class="rule-h3">✨ 勝つための3大セオリー</div>
-        <div class="theory-box">
-          <b>💡 高得点エリアを素早くオープンする</b><br>
-          11番や12番を早期にオープンすることで、他プレイヤーが追いつく前に大きなアドバンテージを得られます。
+        <div class="theory-wrapper">
+          <div class="theory-box">
+            <div class="theory-title">👑 数字の大きいスキットルから狙う</div>
+            <div class="theory-desc">11番や12番といった高得点スキットルを早めにオープンすることで、その後のフェーズを有利に進められます。</div>
+          </div>
+          <div class="theory-box">
+            <div class="theory-title">🎯 近いスキットルから狙う</div>
+            <div class="theory-desc">狙いやすい手前側のスキットルを確実に仕留めてマークを重ね、着実に自分の陣地を拡大していく戦略です。</div>
+          </div>
+          <div class="theory-box">
+            <div class="theory-title">📊 スコアを同点以上にしてからクローズを狙う</div>
+            <div class="theory-desc">勝利の絶対条件は「スコアが相手と同点以上であること」です。点数が大きく負けている段階で無理にクローズに手を出すと勝利を確定できないため、まずは点数を捲るか並ぶのが鉄則です。</div>
+          </div>
         </div>
-        <div class="theory-box">
-          <b>💡 独走しているプレイヤーの加点を止める</b><br>
-          特定のプレイヤーが1つの数字で大量得点している場合、まだオープンしていないメンバーで協力してその数字を狙い、全員オープン（クローズ）させて得点源を潰すのが鉄則です。
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-h3">⚙️ カスタムモードの魅力</div>
+        <div class="chat-container">
+          <div class="chat-line kohai">
+            <div class="chat-name">見習い</div>
+            <div class="bubble">仙人、このアプリに搭載されている「カスタム対戦」の設定項目がすごく豪華ですね！一体どんなゲームメイクができるんですか？</div>
+          </div>
+          <div class="chat-line senpai">
+            <div class="chat-name">仙人</div>
+            <div class="bubble">うむ、カスタム対戦の真髄を教えてやろう。この6つの機能を使えば、プレイスタイルに合わせた自由自在なゲームバランスを構築できるぞ！</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #10b981;">
+            <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">👥 3人・4人対戦への拡張（PLAYER COUNT）</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">2人だけの対戦だけでなく、最大4人での大乱戦クリケットが可能に！参加者全員がオープンするまで数字がクローズされないため、一人の独走をみんなで阻止するような熱い駆け引きが楽しめるぞ。</span>
+          </div>
+          <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #3b82f6;">
+            <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">🏆 マッチフォーマット（MATCH FORMAT）</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">1試合完結だけでなく、2本先取や3本先取などのセットマッチが可能に（最大5本先取まで可能）。セット間の投げ順も自由に設定可能じゃ。</span>
+          </div>
+          <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #a855f7;">
+            <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">💎 ボーナスマーク設定（BONUS MARKS）</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">通常のボーナスである『DOUBLE（×2）』だけでなく、さらに難易度を上げた『TRIPLE（×3）』などの切り替えが可能に。ONにすれば、独自のボーナスを設定しゲームの幅を広げるのじゃ（縦投げでTRIPLE、左投げでDOUBLEなど）！</span>
+          </div>
+          <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #ec4899;">
+            <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">🎯 必要マーク数の変更（OPEN MARKS PER SKITTLE）</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">各スキットルをオープンするのに必要なマーク数を、標準の『2』から『3マーク』へ変更可能に！</span>
+          </div>
+          <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #f59e0b;">
+            <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">⚖️ ハンデ設定（HANDICAP）</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">ハンデ設定をONにすると、プレイヤーごとに『初期スコア』や『特定の数字の初期マーク数』を付与できる。実力差を一瞬で補正し、全員が白熱できるゲームにすることが可能じゃ。</span>
+          </div>
+          <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #6366f1;">
+            <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">⚔️ 持ち投げ数の変更（THROWS / TURN）</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">1ターンに投げられる本数を『1本』『2本』『3本』から選択可能。3本にすると大量の加点やマークが乱れ飛ぶ、ハイスピードなバトルが幕を開けるぞ！</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-h3">📱 アプリの使用方法</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-badge">1</div>
+            <div class="timeline-content">
+              <div class="timeline-title">モード選択とプレイヤー登録 🚀</div>
+              <div class="timeline-body">
+                ノーマル、またはカスタム対戦を選択。カスタムでは自由にルールを変更できます。ルールを設定したら <span class="ui-inline primary">🎯 GAME START</span> をタップして試合開始！
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge">2</div>
+            <div class="timeline-content">
+              <div class="timeline-title">倒したスキットルの選択 🔢</div>
+              <div class="timeline-body">
+                モルックを投げてスキットル（6〜12番）が倒れたら、画面中央の <span class="ui-inline">BOARD & INPUT</span> 盤面から、該当する数字のエリアをタップして選択状態（枠が緑に発光）にします。複数本倒した場合は、倒れたピンをすべてタップしてください。
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge">3</div>
+            <div class="timeline-content">
+              <div class="timeline-title">単品ヒットはマーク数を指定 🎯</div>
+              <div class="timeline-body">
+                <strong>狙ったスキットルが1本だけ倒れた場合</strong>は、下部パネルの <span class="ui-inline">SINGLE</span> / <span class="ui-inline">DOUBLE</span> / <span class="ui-inline">TRIPLE</span> からマーク数を選択し、 <span class="ui-inline action">🎯 SINGLE確定</span> ボタンをタップして入力を確定させます。
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge">4</div>
+            <div class="timeline-content">
+              <div class="timeline-title">複数ヒット・ミス入力もワンタップ ❌</div>
+              <div class="timeline-body">
+                <strong>2本以上まとめて倒れた場合</strong>は、対象ピンを選択した後に右下の <span class="ui-inline multi">👥 MULTI確定</span> をタップします。1本も当たらなかった場合（ミスショット）は、下部の <span class="ui-inline miss">💀 MISS / 0 MARKS</span> を1タップするだけで自動記録されます。
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge">5</div>
+            <div class="timeline-content">
+              <div class="timeline-title">入力ミスはいつでも取り消し可能 ↩</div>
+              <div class="timeline-body">
+                画面最下部には <span class="ui-inline">↩ UNDO</span> ボタンが常時配置されています。押し間違いやカウントの申告ミスがあっても、いつでも正確に1手前の状態に巻き戻せるので安心じゃ。
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <hr class="section-divider">
-      <button class="secondary large-btn" onclick="backToTopMenu()">↩ メインメニューに戻る</button>
+      <button class="secondary large-btn" onclick="backToTopMenu()" style="width:100%;">↩ メインメニューに戻る</button>
     </div>
   </div>
  
@@ -1270,14 +1564,12 @@ function swapPlayersData(idx1, idx2) {
   card.classList.add("shuffle-animate");
   setTimeout(() => card.classList.remove("shuffle-animate"), 200);
 
-  // Swap Names
   const nameInput1 = document.getElementById(`player${k1}Input`);
   const nameInput2 = document.getElementById(`player${k2}Input`);
   const tempName = nameInput1.value;
   nameInput1.value = nameInput2.value;
   nameInput2.value = tempName;
 
-  // Swap Handicap Scores
   const scoreInput1 = document.getElementById(`handicapScore${k1}`);
   const scoreInput2 = document.getElementById(`handicapScore${k2}`);
   if (scoreInput1 && scoreInput2) {
@@ -1286,7 +1578,6 @@ function swapPlayersData(idx1, idx2) {
     scoreInput2.value = tempScore;
   }
 
-  // Swap Handicap Marks
   nums.forEach(n => {
     const mark1 = document.getElementById(`handicapMark${k1}_${n}`);
     const mark2 = document.getElementById(`handicapMark${k2}_${n}`);
@@ -1298,9 +1589,7 @@ function swapPlayersData(idx1, idx2) {
   });
 }
  
-/* ═══════════════════════════════════════════════════════
-   GAME STATE TRANSLATION & VARIABLES
-═══════════════════════════════════════════════════════ */
+/* ── GAME STATE TRANSLATION & VARIABLES ── */
 let gameMode = 'normal'; 
 let targetSetsNeeded = 1; 
 let matchHistory = [];    
@@ -1342,9 +1631,7 @@ let history = [];
 let statHistory = [];
 let statFreezeIndex = null;
  
-/* ═══════════════════════════════════════════════════════
-   ROUTER AND SCREEN NAVIGATION MODULE
-═══════════════════════════════════════════════════════ */
+/* ── ROUTER AND SCREEN NAVIGATION MODULE ── */
 function switchScreen(screenId) {
   ["topMenuScreen", "setupScreen", "gameScreen", "ruleScreen", "themeConfigScreen"].forEach(id => {
     const el = document.getElementById(id);
@@ -1391,9 +1678,7 @@ function openSetup(mode) {
 function backToTopMenu() { switchScreen("topMenuScreen"); }
 function backToTopMenuFromWinner() { document.getElementById("winnerModal").classList.add("hidden"); backToTopMenu(); }
 
-/* ═══════════════════════════════════════════════════════
-   CORE INIT CONTROLLER GAME LOGIC
-═══════════════════════════════════════════════════════ */
+/* ── CORE INIT CONTROLLER GAME LOGIC ── */
 function startGame() {
   players[0].name = document.getElementById("playerAInput").value.trim() || "PLAYER A";
   players[1].name = document.getElementById("playerBInput").value.trim() || "PLAYER B";
@@ -1845,9 +2130,7 @@ function resetSelections() {
   });
 }
  
-/* ═══════════════════════════════════════════════════════
-   LIVE SCOREBOARD DISPLAYS & UPDATE DESIGNS
-═══════════════════════════════════════════════════════ */
+/* ── LIVE SCOREBOARD DISPLAYS & UPDATE DESIGNS ── */
 function getMarkStatusMulti(pObj, num) {
   const req = openThreshold(num);
   const suffix = pObj.key.toLowerCase(); 
@@ -1921,9 +2204,7 @@ function updateUI() {
   syncBoardSelectionUI();
 }
  
-/* ═══════════════════════════════════════════════════════
-   WIN ENGINE RESOLUTIONS AND SET MANAGEMENTS
-═══════════════════════════════════════════════════════ */
+/* ── WIN ENGINE RESOLUTIONS AND SET MANAGEMENTS ── */
 function checkColdWin() {
   const pIdx = playerRotationOrder[currentPlayerIndex];
   const p = players[pIdx];
@@ -2115,9 +2396,7 @@ function showFinalMatchWinner(lastSetWinnerIdx) {
   modal.classList.remove("hidden"); modal.querySelector('.confirm-box').scrollTop = 0; 
 }
  
-/* ═══════════════════════════════════════════════════════
-   STATS REPORTING METRICS & RENDER TABLES
-═══════════════════════════════════════════════════════ */
+/* ── STATS REPORTING METRICS & RENDER TABLES ── */
 function recordStatSnapshot() {
   statHistory.push(JSON.parse(JSON.stringify(players)));
   let isFrozenCandidate = playerRotationOrder.some(pIdx => {
@@ -2185,7 +2464,7 @@ function createStatsHTML() {
  
   let historySection = "";
   if (matchHistory.length > 0) {
-    historySection = `<div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 6px;opacity:.7;text-align:left;">📜 対戦履歴</div>`;
+    historySection = `<div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 6px;opacity:.7;text-align:left;">📜 对战履歴</div>`;
     matchHistory.forEach(logLine => { historySection += `<div class="small" style="line-height:1.4; margin-bottom:4px; text-align:left;">${logLine}</div>`; });
   }
 
@@ -2214,9 +2493,7 @@ function createStatsHTML() {
   `;
 }
  
-/* ═══════════════════════════════════════════════════════
-   HISTORY SNAPSHOT UNDO MANAGEMENT SYSTEMS
-═══════════════════════════════════════════════════════ */
+/* ── HISTORY SNAPSHOT UNDO MANAGEMENT SYSTEMS ── */
 function saveHistory() {
   history.push(JSON.stringify({ players, turn, currentPlayerIndex, playerRotationOrder, throwNum, throwRecords }));
 }
