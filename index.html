@@ -63,7 +63,7 @@
   --howan-miss-size: 40px;
   --score-box-border: 3px solid transparent;
   --score-box-shadow: initial;
-  --score-box-scale: scale(1.02);
+  --score-box-scale: scale(1.04);
   --score-box-bottom-indicator: transparent;
   --text-strike: line-through;
   --mini-mark-opacity: 0.12;
@@ -71,7 +71,6 @@
   --closed-opacity: 0.4;
   --popup-skew: skewX(0deg);
 
-  /* 吹き出し用追加変数 */
   --chat-senpai: #dbeafe;
   --chat-senpai-txt: #1e3a8a;
   --chat-kohai: #fce7f3;
@@ -79,6 +78,11 @@
   --chat-name-senpai: #2563eb;
   --chat-name-kohai: #db2777;
   --custom-card-bg: rgba(0, 0, 0, 0.03);
+  
+  --menu-border-normal: #10b981;
+  --menu-border-custom: #06b6d4;
+  --menu-border-system: #f59e0b;
+  --menu-border-rule: #ec4899;
 }
 
 /* SOFT - DARK */
@@ -147,6 +151,11 @@
   --mini-mark-opacity: 0.05;
   --mini-mark-two-opacity: 1;
   --closed-opacity: 0.6;
+  
+  --menu-cyber-left-normal: #00993d;
+  --menu-cyber-left-custom: #0088cc;
+  --menu-cyber-left-system: #c48100;
+  --menu-cyber-left-rule: #e6003a;
 }
 
 /* CYBER - DARK */
@@ -191,6 +200,11 @@
   --chat-name-senpai: #00bfff;
   --chat-name-kohai: #ff124f;
   --custom-card-bg: rgba(255, 255, 255, 0.02);
+  
+  --menu-cyber-left-normal: #053418;
+  --menu-cyber-left-custom: #0a2540;
+  --menu-cyber-left-system: #3a2200;
+  --menu-cyber-left-rule: #3c0312;
 }
 
 /* CYBER - LIGHT */
@@ -269,20 +283,29 @@ body { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--f
 /* ── MENU SCREEN ── */
 .menu-title-area { text-align: center; margin-bottom: 24px; }
 .menu-list { display: flex; flex-direction: column; gap: 14px; }
+
 .menu-item-btn {
   background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
   padding: 20px; text-align: left; cursor: pointer; transition: transform 0.15s, border-color 0.15s; box-shadow: var(--shadow); width: 100%;
 }
-.menu-item-btn:active { transform: scale(0.98); border-color: var(--green); }
+#menuBtnNormal { border-color: var(--menu-border-normal); }
+#menuBtnCustom { border-color: var(--menu-border-custom); }
+#menuBtnSystem { border-color: var(--menu-border-system); }
+#menuBtnRule { border-color: var(--menu-border-rule); }
+
+.menu-item-btn:active { transform: scale(0.98); opacity: 0.9; }
 .menu-item-title { font-size: 18px; font-weight: 900; color: var(--txt); margin-bottom: 4px; }
 .menu-item-desc { font-size: 13px; color: var(--txt2); line-height: 1.4; }
 
 [data-theme^="cyber-"] .menu-item-btn {
-  background: var(--cyber-bg-alpha); border: 1px solid var(--border); border-left: 4px solid var(--border); padding: 16px;
+  background: var(--cyber-bg-alpha); border: 1px solid var(--border); padding: 16px;
 }
-[data-theme^="cyber-"] .menu-item-btn:active {
-  background: var(--sub); border-left-color: var(--green); box-shadow: inset 0 0 10px rgba(0,255,102,0.2);
-}
+[data-theme^="cyber-"] #menuBtnNormal { border-left: 5px solid var(--menu-cyber-left-normal); }
+[data-theme^="cyber-"] #menuBtnCustom { border-left: 5px solid var(--menu-cyber-left-custom); }
+[data-theme^="cyber-"] #menuBtnSystem { border-left: 5px solid var(--menu-cyber-left-system); }
+[data-theme^="cyber-"] #menuBtnRule { border-left: 5px solid var(--menu-cyber-left-rule); }
+
+[data-theme^="cyber-"] .menu-item-btn:active { background: var(--sub); }
 [data-theme^="cyber-"] .menu-item-title { font-size: 16px; font-weight: 900; }
 [data-theme^="cyber-"] .menu-item-desc { font-size: 12px; }
 
@@ -326,7 +349,9 @@ body { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--f
 .history-table th { background: var(--sub); color: var(--txt); font-weight: 900; }
 .history-table td.turn-col { font-weight: 900; background: var(--sub); width: 35px; }
 .history-cell-box { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: var(--mark-box-height); }
+
 .cell-score { font-size: 9px; color: var(--txt2); font-weight: 700; }
+[data-theme^="cyber-"] .cell-score { font-family: monospace, sans-serif; font-style: italic; font-size: 11px; }
 
 [data-theme^="cyber-"] .history-table { background: #ffffff; min-width: 460px; }
 [data-theme="cyber-dark"] .history-table { background: #090f1c; }
@@ -334,7 +359,6 @@ body { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--f
 [data-theme="cyber-dark"] .history-table th { background: var(--card); }
 [data-theme^="cyber-"] .history-table td.turn-col { background: #f1f5f9; color: var(--txt); width: 32px; }
 [data-theme="cyber-dark"] .history-table td.turn-col { background: var(--sub); color: #fff; }
-[data-theme^="cyber-"] .cell-score { font-family: var(--font-display); }
 
 /* ── CRICKET MARKS SVG/CSS ── */
 .c-mark-css { position: relative; width: 22px; height: 22px; display: inline-block; vertical-align: middle; }
@@ -578,6 +602,7 @@ button:active { transform: scale(.97); }
 .header { position: sticky; top: 0; z-index: 10; background: var(--bg); padding-bottom: 8px; }
 .status-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 10px; }
 .status-box { background: var(--card); border-radius: var(--radius-sm); padding: 10px 8px; text-align: center; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.status-box.disqualified-box { opacity: 0.35; background: #cbd5e1 !important; text-decoration: line-through; }
 .status-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--txt2); margin-bottom: 2px; }
 .status-value { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; transform: var(--skew); }
  
@@ -594,26 +619,35 @@ button:active { transform: scale(.97); }
  
 /* ── SCORE BOX CARD SYSTEM ── */
 .scoreboard { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.score-box { border-radius: var(--radius); padding: 10px; text-align: center; color: white; position: relative; overflow: hidden; transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s; border: var(--score-box-border); }
+.score-box { border-radius: var(--radius); padding: 10px; color: white; position: relative; overflow: hidden; transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s; border: var(--score-box-border); display: flex; align-items: center; justify-content: space-between; }
 .score-box::after { content: ''; position: absolute; left: 0; right: 0; height: 3px; background: var(--score-box-bottom-indicator); bottom: 0; }
-.score-box.inactive-turn { opacity: 0.45; transform: scale(0.96); }
+
+.score-main-content { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; text-align: center; }
+
+.score-box.inactive-turn { opacity: 0.35; transform: scale(0.96); box-shadow: none !important; }
+.score-box.disqualified-score { opacity: 0.25 !important; background: #475569 !important; transform: scale(0.92) !important; box-shadow: none !important; }
 
 .score-a { background: linear-gradient(135deg,var(--ca),#be123c); }
 .score-b { background: linear-gradient(135deg,var(--cb),#1e40af); }
 .score-c { background: linear-gradient(135deg,var(--cc),#b45309); }
 .score-d { background: linear-gradient(135deg,var(--cd),#047857); }
 
-.score-box.active-turn-a { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(225,29,72,0.6); border-color: rgba(255,255,255,0.7); }
-.score-box.active-turn-b { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(29,78,216,0.6); border-color: rgba(255,255,255,0.7); }
-.score-box.active-turn-c { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(234,179,8,0.6); border-color: rgba(255,255,255,0.7); }
-.score-box.active-turn-d { transform: var(--score-box-scale); box-shadow: 0 0 16px rgba(34,197,94,0.6); border-color: rgba(255,255,255,0.7); }
+.score-box.active-turn-a { transform: var(--score-box-scale); box-shadow: 0 4px 20px rgba(225,29,72,0.65); border-color: rgba(255,255,255,0.9); }
+.score-box.active-turn-b { transform: var(--score-box-scale); box-shadow: 0 4px 20px rgba(29,78,216,0.65); border-color: rgba(255,255,255,0.9); }
+.score-box.active-turn-c { transform: var(--score-box-scale); box-shadow: 0 4px 20px rgba(234,179,8,0.65); border-color: rgba(255,255,255,0.9); }
+.score-box.active-turn-d { transform: var(--score-box-scale); box-shadow: 0 4px 20px rgba(34,197,94,0.65); border-color: rgba(255,255,255,0.9); }
 
-.score-name { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; opacity: .9; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+.score-name { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; opacity: .9; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 90px; }
 .score-value { font-family: var(--font-display); font-size: 36px; letter-spacing: 1px; line-height: 1; transform: var(--skew); }
+
+/* 動的バーストインジケーター（ミス✕印の縦並び配置エリア） */
+.burst-indicator-lane { display: flex; flex-direction: column; gap: 3px; justify-content: center; align-items: center; padding-left: 4px; }
+.burst-dot-枠 { width: 14px; height: 14px; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 900; color: transparent; background: rgba(0,0,0,0.15); transition: all 0.15s ease; }
+.burst-dot-枠.hit-miss { border-color: #ff3366; color: #ff3366; background: rgba(255, 18, 79, 0.25); text-shadow: 0 0 4px #ff3366; box-shadow: 0 0 6px rgba(255, 18, 79, 0.4); }
 
 [data-theme^="cyber-"] .score-box { padding: 8px; background: #ffffff; color: var(--txt); border: 2px solid var(--border); transition: all 0.2s; }
 [data-theme="cyber-dark"] .score-box { background: #0e172a; color: white; border-width: 1px; }
-[data-theme^="cyber-"] .score-box.inactive-turn { opacity: 0.4; box-shadow: none; border-color: #cbd5e1; }
+[data-theme^="cyber-"] .score-box.inactive-turn { opacity: 0.35; box-shadow: none; border-color: #cbd5e1; }
 [data-theme^="cyber-"] .score-box.active-turn-a { background: #fff1f2; border-color: var(--ca); box-shadow: 0 4px 14px rgba(255,18,79,0.15); --score-box-bottom-indicator: var(--ca); }
 [data-theme="cyber-dark"] .score-box.active-turn-a { background: #1c1424; }
 [data-theme^="cyber-"] .score-box.active-turn-b { background: #f0fdfa; border-color: var(--cb); box-shadow: 0 4px 14px rgba(0,191,255,0.15); --score-box-bottom-indicator: var(--cb); }
@@ -626,6 +660,9 @@ button:active { transform: scale(.97); }
 [data-theme^="cyber-"] .score-name { font-size: 11px; opacity: .9; font-weight: bold; }
 [data-theme^="cyber-"] .score-value { font-size: 32px; margin-top: 2px; letter-spacing: 0px; color: var(--txt); }
 [data-theme="cyber-dark"] .score-value { color: white; }
+[data-theme^="cyber-"] .burst-dot-枠 { border-color: rgba(0,0,0,0.2); background: rgba(0,0,0,0.05); }
+[data-theme="cyber-dark"] .burst-dot-枠 { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
+[data-theme^="cyber-"] .burst-dot-枠.hit-miss { border-color: var(--ca); color: var(--ca); background: var(--ca-light); }
  
 /* ── HEADS-UP NOTIFICATION ── */
 .notice { background: var(--notice-bg); color: var(--notice-txt); border: 1px solid var(--notice-border); padding: 10px 14px; border-radius: var(--radius-sm); text-align: center; font-weight: 800; font-size: 13px; letter-spacing: .5px; margin-bottom: 12px; }
@@ -703,26 +740,49 @@ button:active { transform: scale(.97); }
 [data-theme^="cyber-"] .center-num-btn.closed-num { color: #94a3b8; background: #e2e8f0; }
 [data-theme="cyber-dark"] .center-num-btn.closed-num { color: #2a384e; background: #080e1a; }
  
-/* ── KEYPAD INPUT ELEMENT PANEL ── */
-.mark-type-row { display: flex; gap: 8px; margin-bottom: 12px; }
-.mark-type-btn { flex: 1; padding: 12px 6px; font-size: 13px; font-weight: 900; letter-spacing: .5px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--sub); color: var(--txt2); }
-.mark-type-btn.active-single { border-color: var(--green); background: var(--green); color: white; }
-.mark-type-btn.active-double { border-color: #7c3aed; background: #7c3aed; color: white; }
-.mark-type-btn.active-triple { border-color: #0891b2; background: #0891b2; color: white; }
+/* ── 縦並び型アクションパネル ── */
+.action-panel-vertical { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+.action-block {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; box-shadow: var(--shadow); user-select: none;
+}
+.action-block .block-label { font-family: var(--font-body); font-size: 15px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; color: var(--txt2); text-align: center; }
+.block-single { padding-bottom: 16px; }
+.block-single .block-label { margin-bottom: 12px; width: 100%; }
+.block-buttons-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; width: 100%; }
 
-[data-theme^="cyber-"] .mark-type-row { gap: 6px; margin-bottom: 10px; }
-[data-theme^="cyber-"] .mark-type-btn { padding: 10px 4px; font-family: var(--font-body); font-size: 12px; border: 1px solid var(--border); border-radius: var(--radius); background: #e2e8f0; color: var(--txt); letter-spacing: 0px; }
-[data-theme="cyber-dark"] .mark-type-btn { background: #1e2d4a; color: #94a3b5; }
-[data-theme^="cyber-"] .mark-type-btn.active-single { background: var(--green); color: #fff; border-color: var(--green); }
-[data-theme^="cyber-"] .mark-type-btn.active-double { border-color: #bd00ff; background: #bd00ff; color: #fff; }
-[data-theme^="cyber-"] .mark-type-btn.active-triple { border-color: #00f0ff; background: #00f0ff; color: #fff; }
- 
-/* ── PANEL MULTI SYSTEM CORE BUTTONS ── */
-.action-btn { background: linear-gradient(135deg,var(--action-yellow),var(--action-yellow-dark)); color: #fff; box-shadow: 0 4px 12px rgba(245,158,11,.25); }
-.undo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.action-sub-btn {
+  border: none; border-radius: var(--radius); padding: 10px 4px; cursor: pointer; text-align: center; font-family: var(--font-body);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); transition: all 0.1s ease;
+}
+.action-sub-btn:active { transform: scale(0.95); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06); }
+.action-sub-btn .btn-main-txt { font-size: 14px; font-weight: 900; color: #ffffff; letter-spacing: 0.5px; }
+.action-sub-btn .btn-sub-txt { font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, 0.85); }
 
-[data-theme^="cyber-"] .action-btn { background: linear-gradient(135deg, #ff9900, #e68a00); font-weight: 900; box-shadow: 0 0 10px rgba(255,153,0,0.2); }
-[data-theme^="cyber-"] .undo-wrap { gap: 8px; margin-bottom: 16px; }
+#btnSingle { background: linear-gradient(135deg, #f59e0b, #d97706); }
+#btnDouble { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+#btnTriple { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+
+.block-multi { min-height: 58px; cursor: pointer; background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3); border: none; transition: all 0.12s ease; }
+.block-multi:active { transform: scale(0.97); box-shadow: 0 2px 6px rgba(5, 150, 105, 0.2); }
+.block-multi .block-label { color: #ffffff !important; font-size: 15px; font-weight: 900; display: flex; align-items: center; gap: 6px; }
+
+.block-miss { min-height: 54px; cursor: pointer; background: linear-gradient(135deg, #475569, #334155); box-shadow: 0 4px 12px rgba(71, 85, 105, 0.25); border: none; transition: all 0.12s ease; }
+.block-miss:active { transform: scale(0.97); box-shadow: 0 2px 4px rgba(71, 85, 105, 0.15); }
+.block-miss .block-label { color: #ffffff !important; font-size: 15px; font-weight: 900; display: flex; align-items: center; gap: 6px; }
+
+.undo-wrap {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+[data-theme^="cyber-"] .action-block { border-radius: var(--radius); box-shadow: none; border: 1px solid var(--border); }
+[data-theme^="cyber-"] .action-sub-btn { border-radius: var(--radius-sm); box-shadow: none; }
+[data-theme^="cyber-"] .block-multi { background: var(--primary-gradient); box-shadow: 0 0 15px rgba(0, 255, 102, 0.25); }
+[data-theme="cyber-dark"] .block-multi { background: #00ff66; }
+[data-theme="cyber-dark"] .block-multi .block-label { color: #000000 !important; }
+[data-theme^="cyber-"] .block-miss { background: #334155; box-shadow: none; }
  
 /* ── FLOATING OVERLAYS DIALOG SYSTEM ── */
 .confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 999; padding: 18px; }
@@ -751,7 +811,7 @@ button:active { transform: scale(.97); }
 
 .handicap-inputs { display: grid; gap: 6px; align-items: center; margin-bottom: 8px; }
 .handicap-inputs .sk-label { font-family: var(--font-body); font-weight: 900; font-size: 16px; text-align: center; }
- 
+
 @media(max-width:480px){
   .score-value { font-size: 30px; }
   [data-theme^="cyber-"] .score-value { font-size: 28px; }
@@ -773,22 +833,22 @@ button:active { transform: scale(.97); }
       </div>
       
       <div class="menu-list">
-        <button class="menu-item-btn" onclick="openSetup('normal')">
+        <button class="menu-item-btn" id="menuBtnNormal" onclick="openSetup('normal')">
           <div class="menu-item-title">① ノーマル対戦 (NORMAL MATCH)</div>
           <div class="menu-item-desc">初心者や手軽に遊びたい方向けの固定ルールモード（2人対戦・ハンデ無し）。</div>
         </button>
         
-        <button class="menu-item-btn" onclick="openSetup('custom')">
+        <button class="menu-item-btn" id="menuBtnCustom" onclick="openSetup('custom')">
           <div class="menu-item-title">② カスタム対戦 (CUSTOM MATCH)</div>
           <div class="menu-item-desc">人数、マッチ形式、投擲数、ボーナス、ハンデなどを自由に設定できます。</div>
         </button>
         
-        <button class="menu-item-btn" onclick="switchScreen('themeConfigScreen')">
+        <button class="menu-item-btn" id="menuBtnSystem" onclick="switchScreen('themeConfigScreen')">
           <div class="menu-item-title">⚙️ システム・テーマ設定 (SYSTEM & THEME)</div>
           <div class="menu-item-desc">アプリ全体のカラーテーマ・ビジュアルスタイルを変更できます。</div>
         </button>
         
-        <button class="menu-item-btn" onclick="switchScreen('ruleScreen')">
+        <button class="menu-item-btn" id="menuBtnRule" onclick="switchScreen('ruleScreen')">
           <div class="menu-item-title">📖 ルール解説 (RULE INFO)</div>
           <div class="menu-item-desc">多人数クリケット（ダーツ準拠）の基本ルール、得点、セオリーを解説。</div>
         </button>
@@ -878,8 +938,26 @@ button:active { transform: scale(.97); }
       <div id="matchFormatArea" class="hidden">
         <hr class="section-divider">
         <div class="setup-section-title">MATCH FORMAT</div>
-        <div class="small" style="margin-bottom:10px;">マッチ全体の勝利条件（勝利に必要なセット数：1〜5）</div>
-        <input type="number" id="matchTargetInput" value="1" min="1" max="5" style="width: 100%; text-align: center;">
+        <div class="field-label" id="matchTargetSliderLabel">試合の勝利条件: 1セット先取</div>
+        <input type="range" id="matchTargetInput" min="1" max="5" value="1" step="1" style="width: 100%; margin: 8px 0;" oninput="updateMatchTargetSliderLabel()">
+      </div>
+
+      <div id="burstConfigArea" class="hidden">
+        <hr class="section-divider">
+        <div class="setup-section-title">💀 BURST SYSTEM (連続ミス失格)</div>
+        <div class="small" style="margin-bottom:10px;">指定回数連続でMISS(0マーク)するとそのセットのみ失格となる機能</div>
+        <div class="radio-row" style="margin-bottom:10px;">
+          <label class="radio-chip" id="lblBurstOff">
+            <input type="radio" name="burstSwitch" value="off" checked onchange="handleBurstToggle()"> 無効
+          </label>
+          <label class="radio-chip" id="lblBurstOn">
+            <input type="radio" name="burstSwitch" value="on" onchange="handleBurstToggle()"> 有効にする
+          </label>
+        </div>
+        <div id="burstCountWrapper" class="hidden" style="background: var(--bg); padding:12px; border-radius: var(--radius-sm); border:1px solid var(--border);">
+          <div class="field-label" id="burstSliderLabel">失格となる連続ミス本数: 3回</div>
+          <input type="range" id="burstCountInput" min="3" max="6" value="3" step="1" style="width:100%; margin:8px 0;" oninput="updateBurstSliderLabel()">
+        </div>
       </div>
 
       <div id="handicapToggleArea" class="hidden">
@@ -985,7 +1063,7 @@ button:active { transform: scale(.97); }
           <div class="status-label">TURN</div>
           <div class="status-value" id="turnText"></div>
         </div>
-        <div class="status-box">
+        <div class="status-box" id="statusBoxPlayer">
           <div class="status-label">PLAYER</div>
           <div class="status-value"><span id="playerText"></span></div>
         </div>
@@ -1009,35 +1087,43 @@ button:active { transform: scale(.97); }
  
     <div class="card">
       <div class="section-title"><span>①</span> ACTION確定パネル</div>
-      <div class="mark-type-row" id="markTypeRow">
-        <button class="mark-type-btn" id="btnSingle" onclick="selectMarkType('single')">
-          SINGLE<br><span class="small">1 MARK</span>
-        </button>
-        <button class="mark-type-btn" id="btnDouble" onclick="selectMarkType('double')">
-          DOUBLE<br><span class="small">2 MARKS</span>
-        </button>
-        <button class="mark-type-btn" id="btnTriple" onclick="selectMarkType('triple')">
-          TRIPLE<br><span class="small">3 MARKS</span>
-        </button>
+      
+      <div class="action-panel-vertical">
+        
+        <div class="action-block block-single">
+          <div class="block-label">SINGLE</div>
+          <div class="block-buttons-row">
+            <button type="button" class="action-sub-btn" id="btnSingle" onclick="selectMarkType('single')">
+              <span class="btn-main-txt">🎯 SINGLE</span>
+              <span class="btn-sub-txt">1 MARK</span>
+            </button>
+            <button type="button" class="action-sub-btn" id="btnDouble" onclick="selectMarkType('double')">
+              <span class="btn-main-txt">🎯 DOUBLE</span>
+              <span class="btn-sub-txt">2 MARKS</span>
+            </button>
+            <button type="button" class="action-sub-btn" id="btnTriple" onclick="selectMarkType('triple')">
+              <span class="btn-main-txt">🎯 TRIPLE</span>
+              <span class="btn-sub-txt">3 MARKS</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="action-block block-multi" onclick="confirmMulti()">
+          <div class="block-label">👥 MULTI確定</div>
+        </div>
+        
+        <div class="action-block block-miss" onclick="quickMiss()">
+          <div class="block-label">💀 MISS / 0 MARKS</div>
+        </div>
+        
       </div>
- 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-        <button class="action-btn" onclick="confirmSingle()" style="padding:14px; font-size:14px;">🎯 SINGLE確定</button>
-        <button class="action-btn" onclick="confirmMulti()" style="padding:14px; font-size:14px; background:linear-gradient(135deg, #10b981, #059669); box-shadow:0 4px 12px rgba(16,185,129,.25);">👥 MULTI確定</button>
-      </div>
-    </div>
- 
-    <div class="card">
-      <button class="action-btn large-btn" onclick="quickMiss()" style="background:linear-gradient(135deg, #475569, #334155); color:#ffffff; box-shadow:0 4px 12px rgba(71,85,105,.25); width:100%;">
-        💀 MISS / 0 MARKS
-      </button>
     </div>
     
     <div style="margin-bottom:14px;"></div>
  
     <div class="undo-wrap">
-      <button class="secondary large-btn" onclick="confirmUndo()">↩ UNDO</button>
-      <button class="danger large-btn" onclick="confirmReset()">↺ RESET</button>
+      <button class="secondary large-btn" style="flex:1;" onclick="confirmUndo()">↩ UNDO</button>
+      <button class="danger large-btn" style="flex:1;" onclick="confirmReset()">↺ RESET</button>
     </div>
   </div>
 
@@ -1080,7 +1166,7 @@ button:active { transform: scale(.97); }
           </div>
           <div class="chat-line senpai">
             <div class="chat-name">仙人</div>
-            <div class="bubble">最初の状態（フラット）のスキットルに、合計2マークヒットさせると、自分の陣地（オープン）にできる。そして、すでに相手がオープンしている数字に対して自分も2マークヒットさせると、そのスキットルを無効化（クローズ）できるのじゃ。</div>
+            <div class="bubble">最初の状態（フラット）のスキットルに、合計2マークヒットさせると、自分の陣地（オープン）にできる。すでに相手がオープンしている数字に対して自分も2マークヒットさせると、そのスキットルを無効化（クローズ）できるのじゃ。</div>
           </div>
           <div class="chat-line kohai">
             <div class="chat-name">見習い</div>
@@ -1102,7 +1188,7 @@ button:active { transform: scale(.97); }
           </div>
           <div class="chat-line senpai">
             <div class="chat-name">仙人</div>
-            <div class="bubble">自分がすでにオープンしている数字のスキットルに当てると、そのスキットルの数字がそのまま自分の得点になる。さらに、スキットルに直接ヒットさせる『直当て』なら、2マーク扱いとなり、2倍の点数が手に入るぞ！</div>
+            <div class="bubble">自分がすでにオープンしている数字のスキットルに当てると、そのスキットルの数字がそのまま自分の得点になる。さらに、スキットルに直接ヒットさせる『直当て』なら、2マーク扱いとなり、2倍の点数（2投制限下なら、オープン後なら1投で該当ピン数字×2のスコア）が手に入るぞ！</div>
           </div>
           <div class="chat-line kohai">
             <div class="chat-name">見習い</div>
@@ -1208,11 +1294,15 @@ button:active { transform: scale(.97); }
           </div>
           <div class="chat-line senpai">
             <div class="chat-name">仙人</div>
-            <div class="bubble">うむ、カスタム対戦の真髄を教えてやろう。この6つの機能を使えば、プレイスタイルに合わせた自由自在なゲームバランスを構築できるぞ！</div>
+            <div class="bubble">うむ、カスタム対戦の真髄を教えてやろう。このルール追加を含めた機能群を使えば、プレイスタイルに合わせた自由自在なゲームバランスを構築できるぞ！</div>
           </div>
         </div>
         
         <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #ef4444;">
+            <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">💀 連続ミス失格ルール（BURST SYSTEM）</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">カスタム設定でONにすると、3回〜6回（スライダーで自由選択）連続でMISS（0マーク）を叩いてしまったプレイヤーが、そのセットのみ強制失格（グレーアウト）するサバイバル仕様じゃ。一気にゲームの緊迫感が跳ね上がるぞ！</span>
+          </div>
           <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #10b981;">
             <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">👥 3人・4人対戦への拡張（PLAYER COUNT）</span>
             <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">2人だけの対戦だけでなく、最大4人での大乱戦クリケットが可能に！参加者全員がオープンするまで数字がクローズされないため、一人の独走をみんなで阻止するような熱い駆け引きが楽しめるぞ。</span>
@@ -1235,7 +1325,7 @@ button:active { transform: scale(.97); }
           </div>
           <div style="background: var(--custom-card-bg); padding: 12px; border-radius: var(--radius); border-left: 3px solid #6366f1;">
             <span style="font-weight: bold; font-size: 13.5px; color: var(--txt); display: block; margin-bottom: 2px;">⚔️ 持ち投げ数の変更（THROWS / TURN）</span>
-            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">1ターンに投げられる本数を『1本』『2本』『3本』から選択可能。3本にすると大量の加点やマークが乱れ飛ぶ、ハイスピードなバトルが幕を開けるぞ！</span>
+            <span style="font-size: 12px; color: var(--txt2); display: block; line-height: 1.4;">1ターンに投げられる本数を『1本』『2本』『3本』から選択可能。3本にすると大量 of 加点やマークが乱れ飛ぶ、ハイスピードなバトルが幕を開けるぞ！</span>
           </div>
         </div>
       </div>
@@ -1258,7 +1348,7 @@ button:active { transform: scale(.97); }
             <div class="timeline-content">
               <div class="timeline-title">倒したスキットルの選択 🔢</div>
               <div class="timeline-body">
-                モルックを投げてスキットル（6〜12番）が倒れたら、画面中央の <span class="ui-inline">BOARD & INPUT</span> 盤面から、該当する数字のエリアをタップして選択状態（枠が緑に発光）にします。複数本倒した場合は、倒れたピンをすべてタップしてください。
+                モルックを投げてスキットル（6〜12番）が倒れたら、画面中央の <span class="ui-inline">BOARD & INPUT</span> 盤面から、該当する数字 of エリアをタップして選択状態（枠が緑に発光）にします。複数本倒した場合は、倒れたピンをすべてタップしてください。
               </div>
             </div>
           </div>
@@ -1268,7 +1358,7 @@ button:active { transform: scale(.97); }
             <div class="timeline-content">
               <div class="timeline-title">単品ヒットはマーク数を指定 🎯</div>
               <div class="timeline-body">
-                <strong>狙ったスキットルが1本だけ倒れた場合</strong>は、下部パネルの <span class="ui-inline">SINGLE</span> / <span class="ui-inline">DOUBLE</span> / <span class="ui-inline">TRIPLE</span> からマーク数を選択し、 <span class="ui-inline action">🎯 SINGLE確定</span> ボタンをタップして入力を確定させます。
+                <strong>狙ったスキットルが1本だけ倒れた場合</strong>は、下部パネルの <span class="ui-inline">SINGLE</span> 内から確定させたいマーク数をタップして選択状態にします。
               </div>
             </div>
           </div>
@@ -1278,7 +1368,7 @@ button:active { transform: scale(.97); }
             <div class="timeline-content">
               <div class="timeline-title">複数ヒット・ミス入力もワンタップ ❌</div>
               <div class="timeline-body">
-                <strong>2本以上まとめて倒れた場合</strong>は、対象ピンを選択した後に右下の <span class="ui-inline multi">👥 MULTI確定</span> をタップします。1本も当たらなかった場合（ミスショット）は、下部の <span class="ui-inline miss">💀 MISS / 0 MARKS</span> を1タップするだけで自動記録されます。
+                <strong>2本以上まとめて倒れた場合</strong>は、対象ピンを選択した後に <span class="ui-inline multi">MULTI</span> ブロックをタップします。1本も当たらなかった場合（ミスショット）は、一番下の <span class="ui-inline miss">MISS</span> ブロックを1タップするだけで自動記録されます。
               </div>
             </div>
           </div>
@@ -1435,23 +1525,41 @@ function renderHandicapMarksContainer() {
   const handicapMarksContainer = document.getElementById("handicapMarksContainer");
   handicapMarksContainer.innerHTML = "";
   
-  let gridStyle = `grid-template-columns: 50px repeat(${activeCount}, 1fr);`;
-  if (activeCount > 2) gridStyle = `grid-template-columns: 40px repeat(${activeCount}, 1fr); gap:4px; font-size:12px;`;
+  let gridStyle = `grid-template-columns: 50px repeat(${activeCount}, 1fr); gap: 10px 6px;`;
+  if (activeCount > 2) gridStyle = `grid-template-columns: 40px repeat(${activeCount}, 1fr); gap: 10px 4px; font-size:12px;`;
 
   nums.forEach(n => {
     const row = document.createElement("div");
     row.className = "handicap-inputs";
     row.style = gridStyle;
     
-    let inner = `<div class="sk-label" style="font-size:14px; font-weight:900;">[${n}]</div>`;
-    inner += `<div><input type="number" id="handicapMarkA_${n}" value="0" min="0" max="2" placeholder="A" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
-    inner += `<div><input type="number" id="handicapMarkB_${n}" value="0" min="0" max="2" placeholder="B" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
+    let inner = `<div class="sk-label" style="font-size:14px; font-weight:900; align-self:center;">[${n}]</div>`;
+    
+    inner += `
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <span id="valLblMarkA_${n}" style="font-size:10px; font-weight:bold; color:var(--txt2);">A: 0</span>
+        <input type="range" id="handicapMarkA_${n}" value="0" min="0" max="2" step="1" style="width:100%; margin:4px 0;" oninput="document.getElementById('valLblMarkA_${n}').innerText='A: '+this.value">
+      </div>`;
+      
+    inner += `
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <span id="valLblMarkB_${n}" style="font-size:10px; font-weight:bold; color:var(--txt2);">B: 0</span>
+        <input type="range" id="handicapMarkB_${n}" value="0" min="0" max="2" step="1" style="width:100%; margin:4px 0;" oninput="document.getElementById('valLblMarkB_${n}').innerText='B: '+this.value">
+      </div>`;
     
     if (activeCount >= 3) {
-      inner += `<div><input type="number" id="handicapMarkC_${n}" value="0" min="0" max="2" placeholder="C" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
+      inner += `
+        <div style="display:flex; flex-direction:column; align-items:center;">
+          <span id="valLblMarkC_${n}" style="font-size:10px; font-weight:bold; color:var(--txt2);">C: 0</span>
+          <input type="range" id="handicapMarkC_${n}" value="0" min="0" max="2" step="1" style="width:100%; margin:4px 0;" oninput="document.getElementById('valLblMarkC_${n}').innerText='C: '+this.value">
+        </div>`;
     }
     if (activeCount === 4) {
-      inner += `<div><input type="number" id="handicapMarkD_${n}" value="0" min="0" max="2" placeholder="D" style="margin-bottom:0; padding:8px 4px; text-align:center;"></div>`;
+      inner += `
+        <div style="display:flex; flex-direction:column; align-items:center;">
+          <span id="valLblMarkD_${n}" style="font-size:10px; font-weight:bold; color:var(--txt2);">D: 0</span>
+          <input type="range" id="handicapMarkD_${n}" value="0" min="0" max="2" step="1" style="width:100%; margin:4px 0;" oninput="document.getElementById('valLblMarkD_${n}').innerText='D: '+this.value">
+        </div>`;
     }
     
     row.innerHTML = inner;
@@ -1468,7 +1576,11 @@ function syncHandicapMarkMax(num) {
     const el = document.getElementById(`handicapMark${p}_${num}`);
     if (el) {
       el.max = maxVal;
-      if (parseInt(el.value) > maxVal) el.value = maxVal;
+      if (parseInt(el.value) > maxVal) {
+        el.value = maxVal;
+        const lbl = document.getElementById(`valLblMark${p}_${num}`);
+        if(lbl) lbl.innerText = `${p}: ${maxVal}`;
+      }
     }
   });
 }
@@ -1519,6 +1631,27 @@ function handleHandicapToggle() {
   
   document.getElementById("lblHandicapOff").classList.toggle("active", !isEnabled);
   document.getElementById("lblHandicapOn").classList.toggle("active", isEnabled);
+}
+
+function handleBurstToggle() {
+  if (gameMode === 'normal') {
+    document.getElementById("burstConfigArea").classList.add("hidden");
+    return;
+  }
+  const isEnabled = document.querySelector("input[name='burstSwitch']:checked").value === 'on';
+  document.getElementById("burstCountWrapper").classList.toggle("hidden", !isEnabled);
+  document.getElementById("lblBurstOff").classList.toggle("active", !isEnabled);
+  document.getElementById("lblBurstOn").classList.toggle("active", isEnabled);
+}
+
+function updateBurstSliderLabel() {
+  const val = document.getElementById("burstCountInput").value;
+  document.getElementById("burstSliderLabel").innerText = `失格となる連続ミス本数: ${val}回`;
+}
+
+function updateMatchTargetSliderLabel() {
+  const val = document.getElementById("matchTargetInput").value;
+  document.getElementById("matchTargetSliderLabel").innerText = `試合の勝利条件: ${val}セット先取`;
 }
 
 function syncCheckboxChips() {
@@ -1585,6 +1718,11 @@ function swapPlayersData(idx1, idx2) {
       const tempMark = mark1.value;
       mark1.value = mark2.value;
       mark2.value = tempMark;
+      
+      const lbl1 = document.getElementById(`valLblMark${k1}_${n}`);
+      const lbl2 = document.getElementById(`valLblMark${k2}_${n}`);
+      if (lbl1) lbl1.innerText = `${k1}: ${mark1.value}`;
+      if (lbl2) lbl2.innerText = `${k2}: ${mark2.value}`;
     }
   });
 }
@@ -1610,12 +1748,21 @@ function initThrowRecordsData() {
   }
 }
 
-let cfg = { doubleEnabled: true, tripleEnabled: false, throwsPerTurn: 2, openMarks: {} };
+let cfg = { 
+  doubleEnabled: true, 
+  tripleEnabled: false, 
+  throwsPerTurn: 2, 
+  openMarks: {},
+  burstEnabled: false,
+  burstLimit: 3,
+  handicapData: { scores: {}, marks: {} } 
+};
+
 let players = [
-  { id: 0, key: 'A', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pA-color', activeClass: 'active-turn-a', scoreClass: 'score-a' },
-  { id: 1, key: 'B', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pB-color', activeClass: 'active-turn-b', scoreClass: 'score-b' },
-  { id: 2, key: 'C', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pC-color', activeClass: 'active-turn-c', scoreClass: 'score-c' },
-  { id: 3, key: 'D', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, colorClass: 'pD-color', activeClass: 'active-turn-d', scoreClass: 'score-d' }
+  { id: 0, key: 'A', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, isDisqualified: false, colorClass: 'pA-color', activeClass: 'active-turn-a', scoreClass: 'score-a' },
+  { id: 1, key: 'B', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, isDisqualified: false, colorClass: 'pB-color', activeClass: 'active-turn-b', scoreClass: 'score-b' },
+  { id: 2, key: 'C', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, isDisqualified: false, colorClass: 'pC-color', activeClass: 'active-turn-c', scoreClass: 'score-c' },
+  { id: 3, key: 'D', name:"", score:0, marks:{}, totalMarks:0, throws:0, currentMiss:0, maxMiss:0, setsWon:0, isDisqualified: false, colorClass: 'pD-color', activeClass: 'active-turn-d', scoreClass: 'score-d' }
 ];
  
 let turn = 1;
@@ -1645,6 +1792,7 @@ function openSetup(mode) {
   const customOnlyElements = [
     document.getElementById("customPlayerCountArea"),
     document.getElementById("matchFormatArea"),
+    document.getElementById("burstConfigArea"),
     document.getElementById("handicapToggleArea"),
     document.getElementById("bonusMarksArea"),
     document.getElementById("throwsPerTurnArea"),
@@ -1665,6 +1813,8 @@ function openSetup(mode) {
     
     customOnlyElements.forEach(el => { if (el) el.classList.remove("hidden"); });
     handleHandicapToggle();
+    handleBurstToggle();
+    updateMatchTargetSliderLabel(); 
   }
 
   handlePlayerCountChange();
@@ -1685,11 +1835,15 @@ function startGame() {
   players[2].name = document.getElementById("playerCInput").value.trim() || "PLAYER C";
   players[3].name = document.getElementById("playerDInput").value.trim() || "PLAYER D";
  
+  cfg.handicapData.scores = {};
+  cfg.handicapData.marks = {};
+
   if (gameMode === 'normal') {
     activeCount = 2;
     cfg.doubleEnabled = true;
     cfg.tripleEnabled = false;
     cfg.throwsPerTurn = 2;
+    cfg.burstEnabled = false;
     targetSetsNeeded = 1; 
     nums.forEach(n => { cfg.openMarks[n] = 2; });
   } else {
@@ -1698,12 +1852,29 @@ function startGame() {
     cfg.tripleEnabled = document.getElementById("chkTriple").checked;
     cfg.throwsPerTurn = parseInt(document.querySelector("input[name='throwCount']:checked").value);
     
+    cfg.burstEnabled = document.querySelector("input[name='burstSwitch']:checked").value === 'on';
+    cfg.burstLimit = parseInt(document.getElementById("burstCountInput").value) || 3;
+
     const targetVal = parseInt(document.getElementById("matchTargetInput").value);
     targetSetsNeeded = (isNaN(targetVal) || targetVal < 1) ? 1 : targetVal;
 
     nums.forEach(n => {
       cfg.openMarks[n] = parseInt(document.querySelector(`input[name='sk_${n}']:checked`).value);
     });
+
+    const isHandicapOn = (document.querySelector("input[name='handicapSwitch']:checked").value === 'on');
+    if (isHandicapOn) {
+      ['A', 'B', 'C', 'D'].forEach(k => {
+        const scoreInput = document.getElementById(`handicapScore${k}`);
+        cfg.handicapData.scores[k] = scoreInput ? (parseInt(scoreInput.value) || 0) : 0;
+        
+        cfg.handicapData.marks[k] = {};
+        nums.forEach(n => {
+          const markInput = document.getElementById(`handicapMark${k}_${n}`);
+          cfg.handicapData.marks[k][n] = markInput ? (parseInt(markInput.value) || 0) : 0;
+        });
+      });
+    }
   }
  
   matchHistory = [];
@@ -1714,22 +1885,6 @@ function startGame() {
 
   initNewSet(playerRotationOrder); 
 
-  const isHandicapOn = (gameMode === 'custom' && document.querySelector("input[name='handicapSwitch']:checked").value === 'on');
-  if (isHandicapOn) {
-    for (let i = 0; i < activeCount; i++) {
-      const p = players[playerRotationOrder[i]];
-      const scoreInput = document.getElementById(`handicapScore${p.key}`);
-      p.score = scoreInput ? (parseInt(scoreInput.value) || 0) : 0;
-      
-      nums.forEach(n => {
-        const markInput = document.getElementById(`handicapMark${p.key}_${n}`);
-        const initMark = markInput ? Math.min(cfg.openMarks[n], parseInt(markInput.value) || 0) : 0;
-        p.marks[n] = initMark;
-        p.totalMarks += initMark;
-      });
-    }
-  }
-
   buildScoreboardUI();
   buildIntegratedBoardUI();
   updateUI();
@@ -1738,6 +1893,11 @@ function startGame() {
  
   document.getElementById("btnDouble").style.display = cfg.doubleEnabled ? "" : "none";
   document.getElementById("btnTriple").style.display = cfg.tripleEnabled ? "" : "none";
+
+  const rowContainer = document.querySelector(".block-buttons-row");
+  if (!cfg.doubleEnabled && !cfg.tripleEnabled) rowContainer.style.gridTemplateColumns = "1fr";
+  else if (cfg.doubleEnabled && cfg.tripleEnabled) rowContainer.style.gridTemplateColumns = "1fr 1fr 1fr";
+  else rowContainer.style.gridTemplateColumns = "1fr 1fr";
 }
 
 function initNewSet(order) {
@@ -1752,9 +1912,23 @@ function initNewSet(order) {
   initThrowRecordsData();
 
   players.forEach(p => {
-    p.score = 0; p.totalMarks = 0; p.throws = 0; p.currentMiss = 0; p.maxMiss = 0;
+    p.score = 0; p.totalMarks = 0; p.throws = 0; p.currentMiss = 0; p.maxMiss = 0; p.isDisqualified = false;
     nums.forEach(n => p.marks[n] = 0);
   });
+
+  if (gameMode === 'custom' && Object.keys(cfg.handicapData.scores).length > 0) {
+    for (let i = 0; i < activeCount; i++) {
+      const p = players[playerRotationOrder[i]];
+      p.score = cfg.handicapData.scores[p.key] || 0;
+      nums.forEach(n => {
+        const initMark = cfg.handicapData.marks[p.key] ? (cfg.handicapData.marks[p.key][n] || 0) : 0;
+        const boundedMark = Math.min(cfg.openMarks[n], initMark);
+        p.marks[n] = boundedMark;
+        p.totalMarks += boundedMark;
+      });
+    }
+  }
+
   resetSelections();
 }
 
@@ -1768,18 +1942,21 @@ function buildScoreboardUI() {
     const box = document.createElement("div");
     box.className = `score-box ${p.scoreClass}`;
     box.id = `scoreBox_${p.id}`;
+    
+    // スコアコンテンツとバーストインジケーター用レーンを左右に内包させる構造を動的に生成
     box.innerHTML = `
-      <div class="score-name" id="scoreName_${p.id}">${p.name}</div>
-      <div class="score-value" id="scoreVal_${p.id}">0</div>
-      <div class="dot-container" id="scoreDots_${p.id}"></div>
+      <div class="score-main-content">
+        <div class="score-name" id="scoreName_${p.id}">${p.name}</div>
+        <div class="score-value" id="scoreVal_${p.id}">0</div>
+        <div class="dot-container" id="scoreDots_${p.id}"></div>
+      </div>
+      <div class="burst-indicator-lane" id="burstLane_${p.id}"></div>
     `;
     container.appendChild(box);
   });
 }
  
-/* ═══════════════════════════════════════════════════════
-   MATRIX UI BUILDER MODULE
-═══════════════════════════════════════════════════════ */
+/* ── MATRIX UI BUILDER MODULE ── */
 function buildIntegratedBoardUI() {
   const board = document.getElementById("integratedBoard");
   board.innerHTML = "";
@@ -1841,58 +2018,50 @@ function syncBoardSelectionUI() {
 }
  
 function selectMarkType(type) {
+  const activePlayer = players[playerRotationOrder[currentPlayerIndex]];
+  
+  if (selectedMulti.length > 1) {
+    alert("単品ヒット（SINGLE HIT）の場合は、スキットルを1本だけ選択してください。\n複数本的中した場合は下の『MULTI確定』ブロックを押してください。");
+    return;
+  }
+  if (selectedSingle === null || selectedMulti.length === 0) {
+    alert("ボード上でスキットル番号を1本タップして選択してから、マークボタンを押してください");
+    return;
+  }
+  
   selectedMarkType = type;
-  ["btnSingle", "btnDouble", "btnTriple"].forEach(k => {
-    const btn = document.getElementById(k);
-    if (btn) {
-      btn.className = "mark-type-btn";
-      if (k === `btn${type.charAt(0).toUpperCase() + type.slice(1)}`) {
-        btn.classList.add(`active-${type}`);
-      }
-    }
-  });
+  const markVal = markTypeValue(type);
+  openConfirm(
+    `${activePlayer.name}\n\nSINGLE HIT\n\n対象: ${selectedSingle}番\n${markTypeLabel(type)}（${markVal} MARK${markVal > 1 ? 'S' : ''}）\n\nで確定しますか？`,
+    () => processSingle(selectedSingle, type)
+  );
 }
  
 /* ═══════════════════════════════════════════════════════
-   CONFIRMATION MODAL OVERLAYS
+   FLOATING OVERLAYS DIALOG SYSTEM
 ═══════════════════════════════════════════════════════ */
 function openConfirm(text, callback) {
   pendingAction = callback;
   document.getElementById("confirmText").innerText = text;
   document.getElementById("confirmModal").classList.remove("hidden");
 }
-function closeConfirm() { document.getElementById("confirmModal").classList.add("hidden"); }
-function executePending() { closeConfirm(); if (pendingAction) pendingAction(); }
+function closeConfirm() { 
+  document.getElementById("confirmModal").classList.add("hidden"); 
+  resetSelections();
+}
+function executePending() { document.getElementById("confirmModal").classList.add("hidden"); if (pendingAction) pendingAction(); }
  
 /* ═══════════════════════════════════════════════════════
    HIT PROCESS EVENTS AND USER GUARDS
 ═══════════════════════════════════════════════════════ */
-function confirmSingle() {
-  const activePlayer = players[playerRotationOrder[currentPlayerIndex]];
-  if (selectedMulti.length > 1) {
-    alert("単品ヒット（SINGLE HIT）の場合は、スキットルを1本だけ選択してください。\n複数本的中した場合は『MULTI確定』を押してください。");
-    return;
-  }
-  if (selectedSingle === null || selectedMulti.length === 0 || !selectedMarkType) {
-    alert("ボード上でスキットル番号を1本タップして選択し、マーク種別を選択してください");
-    return;
-  }
-  
-  const markVal = markTypeValue(selectedMarkType);
-  openConfirm(
-    `${activePlayer.name}\n\nSINGLE HIT\n\n対象: ${selectedSingle}\n${markTypeLabel(selectedMarkType)}（${markVal} MARK${markVal > 1 ? 'S' : ''}）\n\nで確定しますか？`,
-    () => processSingle(selectedSingle, selectedMarkType)
-  );
-}
- 
 function confirmMulti() {
   const activePlayer = players[playerRotationOrder[currentPlayerIndex]];
   if (selectedMulti.length === 0) {
-    alert("ボード上で倒したスキットルを1本以上タップして選択してください");
+    alert("ボード上で倒したスキットルを2本以上タップして選択してください");
     return;
   }
   if (selectedMulti.length === 1) {
-    alert("複数本的中（MULTI HIT）の場合は、スキットルを2本以上選択してください。\n1本のみ的中した場合は『SINGLE確定』を押してください。");
+    alert("複数本的中（MULTI HIT）の場合は、スキットルを2本以上選択してください。\n1本のみ的中した場合は上の『SINGLE』内にある各マーク数を直接押してください。");
     return;
   }
 
@@ -1913,34 +2082,52 @@ function quickMiss() {
       if (activePlayer.currentMiss > activePlayer.maxMiss) activePlayer.maxMiss = activePlayer.currentMiss;
       
       throwRecords[turn][pIdx][throwNum] = { markStr: 'M', gain: 0, total: activePlayer.score };
-      
       playSE('miss');
       recordStatSnapshot();
+
+      // 規定の連続ミスに達した際のポップアップを撤廃し、即時失格判定ロジックへ流す
+      if (cfg.burstEnabled && activePlayer.currentMiss >= cfg.burstLimit) {
+        activePlayer.isDisqualified = true;
+        
+        // 2人対戦の場合は即座にセットを終了させる仕様
+        if (activeCount === 2) {
+          triggerTurnEndAnimation(() => {
+            let opponentIdx = playerRotationOrder.find(idx => idx !== pIdx);
+            resolveSetEnd(opponentIdx, "相手のバースト失格によるセット終了");
+          });
+          return;
+        }
+      }
+
       nextThrow();
     }
   );
 }
  
-/* ═══════════════════════════════════════════════════════
-   CRICKET MATHEMATICS MATCH CORE RULES HELPERS
-═══════════════════════════════════════════════════════ */
+/* ── CRICKET RULES HELPERS ── */
 function markTypeValue(type) { return type === "double" ? 2 : type === "triple" ? 3 : 1; }
 function markTypeLabel(type) { return type.toUpperCase(); }
 function openThreshold(num) { return cfg.openMarks[num] || 2; }
 function isOpen(playerObj, num) { return playerObj.marks[num] >= openThreshold(num); }
 
 function isClosedGlobally(num) {
+  let activeSurvivalCount = 0;
   for (let i = 0; i < activeCount; i++) {
-    if (!isOpen(players[playerRotationOrder[i]], num)) return false;
+    let p = players[playerRotationOrder[i]];
+    if (p.isDisqualified) continue;
+    activeSurvivalCount++;
+    if (!isOpen(p, num)) return false;
   }
-  return true;
+  return activeSurvivalCount > 0;
 }
 
 function hasUnopenedOpponent(myIdx, num) {
   for (let i = 0; i < activeCount; i++) {
     let pIdx = playerRotationOrder[i];
     if (pIdx === myIdx) continue;
-    if (!isOpen(players[pIdx], num)) return true;
+    let p = players[pIdx];
+    if (p.isDisqualified) continue; 
+    if (!isOpen(p, num)) return true;
   }
   return false;
 }
@@ -1949,9 +2136,7 @@ function isSpecialRule() {
   return turn === 1 && currentPlayerIndex === 0; 
 }
  
-/* ═══════════════════════════════════════════════════════
-   CORE PROCESS SINGLE HIT
-═══════════════════════════════════════════════════════ */
+/* ── CORE PROCESS SINGLE HIT ── */
 function processSingle(num, type) {
   saveHistory();
  
@@ -1965,8 +2150,11 @@ function processSingle(num, type) {
   let scoreGain = 0;
   let markDisplayStr = (type === 'single') ? '/' : (type === 'double' ? '✕' : '⨂');
 
+  // 当たった場合は連続ミス数をリセット（全解除）
+  p.currentMiss = 0;
+
   if (isSpecialRule()) {
-    p.score += value; p.currentMiss = 0;
+    p.score += value;
     throwRecords[turn][pIdx][throwNum] = { markStr: markDisplayStr, gain: value, total: p.score };
     playSE('mark'); recordStatSnapshot(); nextThrow(); return;
   }
@@ -1974,7 +2162,6 @@ function processSingle(num, type) {
   p.totalMarks += value;
  
   if (isClosedGlobally(num)) {
-    p.currentMiss = 0;
     throwRecords[turn][pIdx][throwNum] = { markStr: markDisplayStr, gain: 0, total: p.score };
     playSE('mark'); recordStatSnapshot(); nextThrow(); return;
   }
@@ -1997,15 +2184,13 @@ function processSingle(num, type) {
  
   if (isClosedGlobally(num)) seType = 'close';
  
-  p.score += scoreGain; p.currentMiss = 0;
+  p.score += scoreGain;
   throwRecords[turn][pIdx][throwNum] = { markStr: markDisplayStr, gain: scoreGain, total: p.score };
 
   playSE(seType); recordStatSnapshot(); nextThrow();
 }
  
-/* ═══════════════════════════════════════════════════════
-   CORE PROCESS MULTI HIT
-═══════════════════════════════════════════════════════ */
+/* ── CORE PROCESS MULTI HIT ── */
 function processMulti(list) {
   saveHistory();
  
@@ -2013,8 +2198,11 @@ function processMulti(list) {
   const p = players[pIdx];
   p.throws++;
  
+  // 当たった場合は連続ミス数をリセット（全解除）
+  p.currentMiss = 0;
+
   if (isSpecialRule()) {
-    p.score += list.length; p.currentMiss = 0;
+    p.score += list.length;
     throwRecords[turn][pIdx][throwNum] = { markStr: `⭕${list.length}`, gain: list.length, total: p.score };
     playSE('mark'); recordStatSnapshot(); nextThrow(); return;
   }
@@ -2036,7 +2224,7 @@ function processMulti(list) {
     }
   });
  
-  p.score += scoreGain; p.currentMiss = 0;
+  p.score += scoreGain;
   throwRecords[turn][pIdx][throwNum] = { markStr: `⭕${list.length}`, gain: scoreGain, total: p.score };
 
   if (openedAny) {
@@ -2049,28 +2237,49 @@ function processMulti(list) {
   recordStatSnapshot(); nextThrow();
 }
  
-/* ═══════════════════════════════════════════════════════
-   TIMELINE TURN SEQUENCE ROTATOR
-═══════════════════════════════════════════════════════ */
+/* ── TIMELINE TURN SEQUENCE ROTATOR ── */
 function nextThrow() {
   if (checkColdWinSilent()) {
     triggerTurnEndAnimation(() => { checkColdWin(); });
     return; 
   }
 
+  // 全員が失格した場合のサドンデス決着判定
+  let allDQ = playerRotationOrder.every(idx => players[idx].isDisqualified);
+  if (allDQ) {
+    triggerTurnEndAnimation(() => { resolveSetEnd(null, "全員失格によるサドンデス終了"); });
+    return;
+  }
+
   if (throwNum >= cfg.throwsPerTurn) {
     triggerTurnEndAnimation(() => {
       throwNum = 1; 
-      if (currentPlayerIndex >= activeCount - 1) {
-        currentPlayerIndex = 0; turn++; 
-        if (turn > 12) { finishGame(); return; }
-      } else {
-        currentPlayerIndex++; 
+      
+      let loopCount = 0;
+      do {
+        if (currentPlayerIndex >= activeCount - 1) {
+          currentPlayerIndex = 0; turn++; 
+          if (turn > 12) { finishGame(); return; }
+        } else {
+          currentPlayerIndex++; 
+        }
+        loopCount++;
+      } while (players[playerRotationOrder[currentPlayerIndex]].isDisqualified && loopCount < activeCount + 2);
+
+      if (players[playerRotationOrder[currentPlayerIndex]].isDisqualified) {
+        finishGame(); return;
       }
+
       resetSelections(); updateUI();
     });
   } else {
-    throwNum++; resetSelections(); updateUI();
+    throwNum++; 
+    if (players[playerRotationOrder[currentPlayerIndex]].isDisqualified) {
+      throwNum = cfg.throwsPerTurn;
+      nextThrow();
+    } else {
+      resetSelections(); updateUI();
+    }
   }
 }
 
@@ -2114,10 +2323,13 @@ function triggerTurnEndAnimation(callback) {
 function checkColdWinSilent() {
   const pIdx = playerRotationOrder[currentPlayerIndex];
   const p = players[pIdx];
+  if (p.isDisqualified) return false;
   if (!nums.every(n => isOpen(p, n))) return false;
   
   for (let i = 0; i < activeCount; i++) {
-    if (players[playerRotationOrder[i]].score > p.score) return false;
+    let targetP = players[playerRotationOrder[i]];
+    if (targetP.isDisqualified) continue;
+    if (targetP.score > p.score) return false;
   }
   return true;
 }
@@ -2125,9 +2337,6 @@ function checkColdWinSilent() {
 function resetSelections() {
   selectedSingle = null; selectedMulti = []; selectedMarkType = null;
   syncBoardSelectionUI();
-  ["btnSingle","btnDouble","btnTriple"].forEach(id => {
-    const el = document.getElementById(id); if (el) el.className = "mark-type-btn";
-  });
 }
  
 /* ── LIVE SCOREBOARD DISPLAYS & UPDATE DESIGNS ── */
@@ -2136,6 +2345,7 @@ function getMarkStatusMulti(pObj, num) {
   const suffix = pObj.key.toLowerCase(); 
   const mine = pObj.marks[num] || 0;
  
+  if (pObj.isDisqualified) return ["✖", "flat"]; 
   if (isClosedGlobally(num)) return ["CLOSED", "closed has-circlecross"];
   if (isOpen(pObj, num)) return ["OPEN", `open-${suffix} has-cross`];
   if (mine > 0) return [`${mine}/${req}`, `${mine === 2 ? 'two' : 'one'}-${suffix} has-slash`];
@@ -2164,7 +2374,7 @@ function updateUI() {
   const tText = document.getElementById("throwText");
  
   const activePlayer = players[playerRotationOrder[currentPlayerIndex]];
-  pName.innerText = activePlayer.name;
+  pName.innerText = activePlayer.isDisqualified ? "---" : activePlayer.name;
   tText.innerText = `${throwNum}/${cfg.throwsPerTurn}`;
   
   pName.className = tText.className = activePlayer.colorClass;
@@ -2172,14 +2382,46 @@ function updateUI() {
   playerRotationOrder.forEach(pIdx => {
     const p = players[pIdx];
     const sVal = document.getElementById(`scoreVal_${p.id}`);
-    if (sVal) sVal.innerText = p.score;
+    
+    // スコアボード上でのテキスト表記を「DQ」から「失格」へと完全ローカライズ
+    if (sVal) sVal.innerText = p.isDisqualified ? "失格" : p.score;
+
+    const sName = document.getElementById(`scoreName_${p.id}`);
+    if (sName) sName.innerText = p.isDisqualified ? `💀 ${p.name}` : p.name;
 
     const box = document.getElementById(`scoreBox_${p.id}`);
     if (box) {
-      const isCurrent = (p.id === activePlayer.id);
-      box.className = `score-box ${p.scoreClass} ${isCurrent ? p.activeClass : 'inactive-turn'}`;
+      if (p.isDisqualified) {
+        box.className = `score-box disqualified-score`;
+      } else {
+        const isCurrent = (p.id === activePlayer.id);
+        box.className = `score-box ${p.scoreClass} ${isCurrent ? p.activeClass : 'inactive-turn'}`;
+      }
+    }
+
+    // 連続ミス失格（バースト）用✕インジケーターの動的DOM構築と点灯制御
+    const lane = document.getElementById(`burstLane_${p.id}`);
+    if (lane) {
+      if (cfg.burstEnabled && !p.isDisqualified) {
+        lane.style.display = "flex";
+        let laneHTML = "";
+        for (let b = 1; b <= cfg.burstLimit; b++) {
+          let isMissed = (p.currentMiss >= b);
+          laneHTML += `<div class="burst-dot-枠 ${isMissed ? 'hit-miss' : ''}">✕</div>`;
+        }
+        lane.innerHTML = laneHTML;
+      } else {
+        lane.innerHTML = "";
+        lane.style.display = "none";
+      }
     }
   });
+
+  const pBox = document.getElementById("statusBoxPlayer");
+  if (pBox) {
+    if (activePlayer.isDisqualified) pBox.classList.add("disqualified-box");
+    else pBox.classList.remove("disqualified-box");
+  }
 
   updateDotsUI();
   document.getElementById("specialNotice").classList.toggle("hidden", !isSpecialRule());
@@ -2208,10 +2450,14 @@ function updateUI() {
 function checkColdWin() {
   const pIdx = playerRotationOrder[currentPlayerIndex];
   const p = players[pIdx];
+  if (p.isDisqualified) return false;
+
   if (nums.every(n => isOpen(p, n))) {
     let scoreWin = true;
     for (let i = 0; i < activeCount; i++) {
-      if (players[playerRotationOrder[i]].score > p.score) scoreWin = false;
+      let targetP = players[playerRotationOrder[i]];
+      if (targetP.isDisqualified) continue;
+      if (targetP.score > p.score) scoreWin = false;
     }
     if (scoreWin) {
       resolveSetEnd(pIdx, "点数トップかつ全オープン達成コールド");
@@ -2227,6 +2473,8 @@ function finishGame() {
   
   for (let i = 0; i < activeCount; i++) {
     let pIdx = playerRotationOrder[i];
+    if (players[pIdx].isDisqualified) continue;
+
     if (players[pIdx].score > maxScore) {
       maxScore = players[pIdx].score;
       candidates = [pIdx];
@@ -2237,7 +2485,7 @@ function finishGame() {
 
   if (candidates.length === 1) {
     resolveSetEnd(candidates[0], "12ターン終了最高得点");
-  } else {
+  } else if (candidates.length > 1) {
     let maxKeep = -1;
     let finalWinnerIdx = candidates[0];
     let absoluteDraw = true;
@@ -2258,6 +2506,8 @@ function finishGame() {
     } else {
       resolveSetEnd(null, "スコア・残存オープンキープ数ともに完全同等につき引き分け");
     }
+  } else {
+    resolveSetEnd(null, "生存プレイヤー不在（全員バースト失格）");
   }
 }
 
@@ -2269,13 +2519,14 @@ function resolveSetEnd(winnerIdx, reason) {
   let setNum = matchHistory.length + 1;
   let logText = "";
   
+  // ログ内表記の「DQ」部分も漏れなく日本語の「失格」へ変換補正
   if (winnerIdx === null) {
-    let scoresStr = playerRotationOrder.map(pIdx => `${players[pIdx].name}:${players[pIdx].score}`).join(" / ");
-    logText = `第${setNum}セット: 引き分け (${scoresStr}) [${reason}]`;
+    let scoresStr = playerRotationOrder.map(pIdx => `${players[pIdx].name}:${players[pIdx].isDisqualified ? '失格' : players[pIdx].score}`).join(" / ");
+    logText = `第${setNum}セット: 引き分け (${scoresStr})`;
   } else {
     players[winnerIdx].setsWon++;
-    let scoresStr = playerRotationOrder.map(pIdx => `${players[pIdx].name}:${players[pIdx].score}`).join(" / ");
-    logText = `第${setNum}セット: ${players[winnerIdx].name} 勝利 (${scoresStr}) [${reason}]`;
+    let scoresStr = playerRotationOrder.map(pIdx => `${players[pIdx].name}:${players[pIdx].isDisqualified ? '失格' : players[pIdx].score}`).join(" / ");
+    logText = `第${setNum}セット: ${players[winnerIdx].name} 勝利 (${scoresStr})`;
   }
   matchHistory.push(logText);
 
@@ -2307,7 +2558,7 @@ function showNextSetModal(winnerIdx) {
     else winTxt.style.color = "var(--cd)";
   }
 
-  document.getElementById("nextSetScoreText").innerText = playerRotationOrder.map(pIdx => players[pIdx].score).join("  -  ");
+  document.getElementById("nextSetScoreText").innerText = playerRotationOrder.map(pIdx => players[pIdx].isDisqualified ? '失格' : players[pIdx].score).join("  -  ");
   document.getElementById("setResultTableArea").innerHTML = createStatsHTML();
   
   buildOrderConfigUI();
@@ -2456,7 +2707,11 @@ function createCellMarkup(rec, playerIdx) {
   else if (mStr.startsWith('⭕')) displayHTML = `<span class="m-multi-circle ${pColorClass}">${mStr.replace('⭕','')}</span>`;
   else if (mStr === 'M') displayHTML = `<span class="miss-color">•</span>`; 
 
-  return `<td><div class="history-cell-box">${displayHTML}<span class="cell-score">${rec.gain}/${rec.total}</span></div></td>`;
+  // スコア推移表グリッド内部の点数部分のテキストも「DQ」から「失格」へ変換
+  let scoreText = rec.gain + "/" + (rec.total === "失格" ? "失格" : rec.total);
+  if (typeof rec.total === "string" && rec.total.includes("失格")) scoreText = "失格";
+
+  return `<td><div class="history-cell-box">${displayHTML}<span class="cell-score">${scoreText}</span></div></td>`;
 }
  
 function createStatsHTML() {
@@ -2464,17 +2719,18 @@ function createStatsHTML() {
  
   let historySection = "";
   if (matchHistory.length > 0) {
-    historySection = `<div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 6px;opacity:.7;text-align:left;">📜 对战履歴</div>`;
+    historySection = `<div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 6px;opacity:.7;text-align:left;">📜 对戦履歴</div>`;
     matchHistory.forEach(logLine => { historySection += `<div class="small" style="line-height:1.4; margin-bottom:4px; text-align:left;">${logLine}</div>`; });
   }
 
+  // 最終リザルト画面のスタッツテキスト内にある[DQ失格]バッジも「[失格]」表記へ完全調整
   let statLinesHTML = "";
   playerRotationOrder.forEach(pIdx => {
     const p = s[pIdx];
     const avg = p.throws === 0 ? 0 : (p.totalMarks / (p.throws / tp)).toFixed(2);
     statLinesHTML += `
       <div class="stat-line" style="text-align:left;">
-        <strong>${p.name}</strong><br>
+        <strong>${p.name}</strong> ${p.isDisqualified ? '<span style="color:var(--ca); font-weight:900;">[失格]</span>' : ''}<br>
         ${(gameMode === 'custom' && targetSetsNeeded > 1) ? `獲得セット数: <strong>${p.setsWon}</strong><br>` : ''}
         平均マーク数 / ターン: <strong>${avg}</strong><br>
         最大連続 MISS: <strong>${p.maxMiss}</strong>
@@ -2486,6 +2742,7 @@ function createStatsHTML() {
     <div class="stats">
       <div style="font-size:13px;font-weight:900;letter-spacing:2px;margin-bottom:6px;opacity:.7;text-align:left;">📊 SCORE HISTORY (スコア推移)</div>
       ${generateScoreTableHTML()}
+      
       <div style="font-size:13px;font-weight:900;letter-spacing:2px;margin:16px 0 12px;opacity:.7;text-align:left;">📈 MATCH STATS (スタッツ)</div>
       ${statLinesHTML}
       ${historySection}
@@ -2495,7 +2752,15 @@ function createStatsHTML() {
  
 /* ── HISTORY SNAPSHOT UNDO MANAGEMENT SYSTEMS ── */
 function saveHistory() {
-  history.push(JSON.stringify({ players, turn, currentPlayerIndex, playerRotationOrder, throwNum, throwRecords }));
+  // 履歴退避オブジェクト作成のタイミングで、失格状態のプレイヤーの現在のトータルスコア文字列を「失格」として焼き付ける
+  let clonedRecords = JSON.parse(JSON.stringify(throwRecords));
+  if (clonedRecords[turn] && clonedRecords[turn][playerRotationOrder[currentPlayerIndex]]) {
+    let currentRec = clonedRecords[turn][playerRotationOrder[currentPlayerIndex]][throwNum];
+    if (currentRec && players[playerRotationOrder[currentPlayerIndex]].isDisqualified) {
+      currentRec.total = "失格";
+    }
+  }
+  history.push(JSON.stringify({ players, turn, currentPlayerIndex, playerRotationOrder, throwNum, throwRecords: clonedRecords }));
 }
 function undoFromWinner() { document.getElementById("winnerModal").classList.add("hidden"); undo(); }
  
